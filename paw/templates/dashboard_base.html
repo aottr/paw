@@ -26,7 +26,11 @@
             <div class="flex items-center py-2 lg:p-2 justify-center lg:justify-start">
                 <div class="avatar placeholder">
                     <div class="bg-base-300 text-base-content rounded-full w-10">
-                    <span class="text-xl">{{ request.user.username|slice:":2" }}</span>
+                        {% if request.user.profile_picture %}
+                        <img src="{{ request.user.profile_picture.url }}" />
+                        {% else %}
+                        <span class="text-xl">{{ request.user.username|slice:":2" }}</span>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="hidden ml-2 text-neutral-content lg:flex flex-col p-1">

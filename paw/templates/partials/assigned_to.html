@@ -1,12 +1,18 @@
 {% block assigned_to %}
 {% load i18n %}
 {% if assigned_to %}
-<div class="avatar placeholder">
-    <div class="bg-base-300 text-base-content rounded-full w-6 mr-1">
-    <span class="text-xl">{{ assigned_to.username|slice:":2" }}</span>
+<div class="flex items-center justify-start">
+    <div class="avatar placeholder">
+        <div class="bg-base-300 text-base-content rounded-full w-6 mr-1">
+            {% if assigned_to.profile_picture %}
+            <img src="{{ assigned_to.profile_picture.url }}" />
+            {% else %}
+            <span>{{ assigned_to.username|slice:":2" }}</span>
+            {% endif %}
+        </div>
     </div>
-</div>
     {{ assigned_to.username }}
+</div>
 {% else %}
 <span class="italic">{% trans 'Unassigned' %}</span>
 {% endif %}
