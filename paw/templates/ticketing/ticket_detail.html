@@ -1,0 +1,162 @@
+{% extends 'dashboard_base.html' %}
+{% block dashboard_content %}
+{% load i18n %}
+<div class="flex flex-col lg:flex-row w-full h-full">
+    <div class="flex-grow p-8">
+        <h1 class="text-2xl font-bold mb-4">{{ ticket.title }}</h1>
+        <div class="card bg-base-300 rounded-box p-4 mb-6 whitespace-pre-line">{{ ticket.description }}</div>
+        <h1 class="text-xl font-bold mb-4">Activity</h1>
+        <div class="mb-4">
+        {% for comment in comments %}
+            {% if not comment.is_only_for_staff or comment.is_only_for_staff and request.user.is_staff %}
+                {% if comment.user == request.user %}
+                <div class="chat chat-start">
+                {% else %}
+                <div class="chat chat-end">
+                {% endif %}
+                    <div class="chat-header">
+                    {{ comment.user.username }}
+                    <time class="text-xs opacity-50">{{ comment.created_at|date:"d.m.y" }}</time>
+                    </div>
+                    <div class="chat-bubble whitespace-pre-line">{{ comment.text }}</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <div class="mb-10">
+        {% if ticket.status != 'closed' %}
+        {% if request.user.is_staff %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="flex justify-end items-center mt-4 mb-2">
+                <div class="form-control w-full max-w-xs">
+                    {{ template_form.template_select }}
+                </div>
+                <button type="submit" name="apply_template" class="btn btn-sm btn-success ml-2">Apply Template</button>
+            </div>
+        </form>
+        {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <label class="form-control">
+                {{ form.text.errors }}
+                {{ form.text }}
+            </label>
+            <div class="flex justify-end items-center mt-4">
+                {% if request.user.is_staff %}
+                <div class="form-control w-52 mr-4">
+                    <label for="{{ form.hidden_from_client.id_for_label }}" class="cursor-pointer label">
+                    <span class="label-text">Hidden from client</span> 
+                    {{ form.hidden_from_client }}
+                    </label>
+                </div>
+                {% endif %}
+                <button type="submit" name="submit" class="btn btn-success">{% trans 'Add Comment' %}</button>
+                {% if request.user.is_staff %}
+                <button type="submit" name="close" class="btn btn-error ml-4">{% trans 'Comment and close' %}</button>
+                {% endif %}
+            </div>
+        </form>
+        {% else %}
+        <div class="divider">{% trans 'Ticket has been closed' %}</div>
+        {% if request.user.is_staff and ticket.status == 'closed' %}
+        <div class="flex justify-end items-center mt-4">
+            <form method="post">
+                {% csrf_token %}
+                <button class="btn btn-warning ml-2" name="reopen_ticket">{% trans 'Re-Open Ticket' %}</button>
+            </form>
+            {% endif %}
+        </div>
+        {% endif %}
+        </div>
+    </div>
+
+    <div class="order-first lg:order-none w-full lg:max-w-md border-l-2 border-base-300 bg-base-200 p-8">
+        <h1 class="text-xl font-bold">Ticket #{{ ticket.id }}</h1>
+        <div class="text-neutral text-xs mb-4">{% trans 'Created by' %} {{ ticket.user.username }}</div>
+        <div class="mb-4">
+            <div class="join">
+                <span class="badge badge-neutral join-item">Status</span>
+            {% include 'partials/ticket_status_badge.html' with ticket=ticket %}
+            </div>
+            <div class="join">
+                <span class="badge badge-neutral join-item">Priority</span>
+            {% include 'partials/ticket_priority_badge.html' with ticket=ticket %}
+            </div>
+        </div>
+        <div class="my-4 text-neutral flex items-center text-sm font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M16 3l0 4" /><path d="M8 3l0 4" /><path d="M4 11l16 0" /><path d="M8 15h2v2h-2z" /></svg>
+            {% trans 'Created on' %} {{ ticket.created_at }}
+        </div>
+        <div class="text-neutral flex items-center text-sm font-semibold">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M16 3l0 4" /><path d="M8 3l0 4" /><path d="M4 11l16 0" /><path d="M8 15h2v2h-2z" /></svg>
+            {% trans 'Last updated' %} {{ ticket.updated_at }}
+        </div>
+
+        <h2 class="font-semibold text-xs mt-4 mb-2">{% trans 'Contact' %}</h2>
+        <div class="text-neutral flex items-center text-sm mb-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
+            <a href="mailto:{{ ticket.user.email }}" class="ml-2 underline">{{ ticket.user.email }}</a>
+        </div>
+        {% if ticket.user.telegram_username %}
+        <div class="text-neutral flex items-center text-sm mb-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
+            <span class="ml-2">{{ ticket.user.telegram_username }}</span>
+        </div>
+        {% endif %}
+
+        <div class="divider"></div>
+        <h2 class="font-semibold mb-4">{% trans 'Category' %}</h2>
+        <div class="text-neutral flex items-center text-sm mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4h6v6h-6z" /><path d="M14 4h6v6h-6z" /><path d="M4 14h6v6h-6z" /><path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
+            {% if ticket.category %}
+                {{ ticket.category.name }}
+            {% else %}
+            <span class="italic">{% trans 'Unassigned' %}</span>
+            {% endif %}
+        </div>
+        {% if request.user.is_staff %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2 class="font-semibold text-xs mb-2">{% trans 'Assign to new category' %}</h2>
+            <div class="flex justify-end items-center mb-2">
+                {{ category_assignment_form.category_select }}
+                <button type="submit" name="assign_to_category" class="btn btn-sm btn-neutral ml-2">Assign</button>
+            </div>
+        </form>
+        {% endif %}
+        <div class="divider"></div>
+        <h2 class="font-semibold mb-4">Assignees</h2>
+        <div class="text-neutral flex items-center text-sm mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+            {% include 'partials/assigned_to.html' with assigned_to=ticket.assigned_to %}
+            {% if request.user.is_staff and ticket.assigned_to != request.user %}
+            <form method="post">
+                {% csrf_token %}
+                <button class="btn btn-xs btn-neutral ml-2" name="assign_self">{% trans 'Assign to me' %}</button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="text-neutral flex items-center text-sm mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg>
+            {% if ticket.assigned_team %}
+                {{ ticket.assigned_team.name }}
+            {% else %}
+            <span class="italic">{% trans 'Unassigned' %}</span>
+            {% endif %}
+        </div>
+        {% if request.user.is_staff %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2 class="font-semibold text-xs mb-2">Assign to new team</h2>
+            <div class="flex justify-end items-center mb-2">
+                {{ team_assignment_form.team_select }}
+                <button type="submit" name="assign_to_team" class="btn btn-sm btn-neutral ml-2">Assign</button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock dashboard_content %}

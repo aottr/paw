@@ -1,0 +1,25 @@
+{% extends 'dashboard_base.html' %}
+{% block dashboard_content %}
+    <div class="w-full p-8">
+        <table class="table w-full">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Category</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+              <tr>
+                <td>#{{ ticket.id }}</td>
+                <td>{{ ticket.title }}</td>
+                <td><div class="badge badge-neutral">{{ ticket.category }}</div></td>
+                <td class="flex justify-end"><a href="{% url 'ticket_detail' ticket.id %}" class="btn btn-xs btn-accent">View</a></td>
+              </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+{% endblock %}

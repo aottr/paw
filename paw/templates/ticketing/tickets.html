@@ -1,0 +1,47 @@
+{% extends 'dashboard_base.html' %}
+{% block dashboard_content %}
+{% load i18n %}
+<div class="w-full p-8">
+  <h1 class="flex items-center text-2xl text-base-content font-bold mb-4">{% trans 'Open Tickets' %}
+    {% if request.user.team_set.all %}
+    {% trans 'for' %}:
+    {% for team in request.user.team_set.all %}
+      <span class="ml-2 badge badge-neutral">{{ team.name }}</span>
+    {% endfor %}
+    {% endif %}
+  </h1>
+  <table class="table w-full">
+    <thead>
+      <tr>
+        <th></th>
+        <th>{% trans 'Title' %}</th>
+        <th>{% trans 'Assigned to' %}</th>
+        <th>{% trans 'Category' %}</th>
+        <th>{% trans 'Status' %}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if tickets.count == 0 %}
+      <tr>
+        <td colspan="5" class="text-center p-10">{% trans 'No tickets found' %}</td>
+      </tr>
+      {% endif %}
+      {% for ticket in tickets %}
+      <tr>
+        <td><span class="badge badge-neutral">#{{ ticket.id }}</span></td>
+        <td>{{ ticket.title }}</td>
+        <td>
+          {% include 'partials/assigned_to.html' with assigned_to=ticket.assigned_to %}
+        </td>
+        <td><div class="badge badge-neutral">{{ ticket.category }}</div></td>
+        <td class="w-48">
+          {% include 'partials/ticket_status_badge.html' with ticket=ticket %}
+        </td>
+        <td class="flex justify-end"><a href="{% url 'ticket_detail' ticket.id %}" class="btn btn-xs btn-accent">{% trans 'View' %}</a></td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

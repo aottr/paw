@@ -1,0 +1,10 @@
+{
+  "name": "theme",
+  "version": "1.0.0",
+  "author": "Alex Ottr <alex@otter.foo>",
+  "license": "MIT",
+  "devDependencies": {
+    "daisyui": "^4.7.2",
+    "tailwindcss": "^3.4.1"
+  }
+}

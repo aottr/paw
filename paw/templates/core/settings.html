@@ -1,0 +1,40 @@
+<!-- templates/core/settings.html -->
+{% extends 'dashboard_base.html' %}
+{% block dashboard_content %}
+{% load i18n %}
+<div class="w-full max-w-4xl mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-4">{% trans 'Settings' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label class="form-control w-full mb-2">
+            <div class="label">
+              <span for="{{ form.email.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Mail Address' %}</span>
+            </div>
+            {{ form.email }}
+        </label>
+
+        <label class="form-control w-full mb-2">
+            <div class="label">
+              <span for="{{ form.language.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Language' %}</span>
+            </div>
+            {{ form.language }}
+        </label>
+
+        <label class="form-control w-full mb-2">
+            <div class="label">
+              <span for="{{ form.profile_picture.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Profile Picture' %}</span>
+            </div>
+            {{ form.profile_picture }}
+        </label>
+
+        <h2 class="text-xl font-semibold mt-8 mb-2">{% trans 'Contact' %}</h2>
+        <label class="input input-bordered flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 opacity-70" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
+            {{ form.telegram_username }}
+            </label>
+        <div class="flex justify-end items-center mt-4">
+            <button type="submit" class="btn btn-success">{% trans 'Save' %}</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

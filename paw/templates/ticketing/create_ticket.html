@@ -1,0 +1,35 @@
+{% extends 'dashboard_base.html' %}
+{% block dashboard_content %}
+{% load i18n %}
+<div class="w-full max-w-4xl mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-4">{% trans 'Create a new ticket' %}</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <label class="form-control mb-2">
+            {{ form.title.errors }}
+            <div class="label">
+                <span for="{{ form.title.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Title' %}</span>
+            </div>
+            {{ form.title }}
+        </label>
+        <label class="form-control mb-2">
+            {{ form.description.errors }}
+            <div class="label">
+                <span for="{{ form.description.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Description' %}</span>
+                </div>
+            {{ form.description }}
+        </label>
+        <label class="form-control mb-2">
+            {{ form.category.errors }}
+            <div class="label">
+                <span for="{{ form.category.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Category' %}</span>
+                </div>
+            {{ form.category }}
+        </label>
+        <div class="flex justify-end items-center mt-4">
+            <button type="submit" class="btn btn-success">{% trans 'Create Ticket' %}</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

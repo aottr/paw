@@ -1,0 +1,171 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-08 00:49+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: paw/settings.py:117
+msgid "English"
+msgstr "Anglais"
+
+#: paw/settings.py:118
+msgid "French"
+msgstr "Français"
+
+#: paw/settings.py:119
+msgid "German"
+msgstr "Allemand"
+
+#: paw/templates/core/settings.html:6 paw/templates/dashboard_base.html:49
+msgid "Settings"
+msgstr "Paramètres"
+
+#: paw/templates/core/settings.html:11
+msgid "Mail Address"
+msgstr "Adresse e-mail"
+
+#: paw/templates/core/settings.html:18
+msgid "Language"
+msgstr "Langue"
+
+#: paw/templates/core/settings.html:25
+msgid "Profile Picture"
+msgstr "Image du profil"
+
+#: paw/templates/core/settings.html:30
+msgid "Contact"
+msgstr ""
+
+#: paw/templates/core/settings.html:36
+msgid "Save"
+msgstr "Enregistrer"
+
+#: paw/templates/dashboard_base.html:14
+#: paw/templates/ticketing/create_ticket.html:31
+msgid "Create Ticket"
+msgstr "Nouveau ticket"
+
+#: paw/templates/dashboard_base.html:18
+msgid "Tickets"
+msgstr ""
+
+#: paw/templates/dashboard_base.html:22
+msgid "History"
+msgstr "Historique"
+
+#: paw/templates/dashboard_base.html:53
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: paw/templates/partials/assigned_to.html:11
+#: paw/templates/ticketing/ticket_detail.html:104
+#: paw/templates/ticketing/ticket_detail.html:134
+msgid "Unassigned"
+msgstr "Non attribué"
+
+#: paw/templates/partials/ticket_status_badge.html:4 ticketing/models.py:30
+msgid "Open"
+msgstr "Ouvert"
+
+#: paw/templates/partials/ticket_status_badge.html:6 ticketing/models.py:31
+msgid "In Progress"
+msgstr "En cours"
+
+#: paw/templates/partials/ticket_status_badge.html:8 ticketing/models.py:32
+msgid "Closed"
+msgstr "Fermé"
+
+#: paw/templates/ticketing/create_ticket.html:5
+msgid "Create a new ticket"
+msgstr "Créer un ticket"
+
+#: paw/templates/ticketing/create_ticket.html:12
+#: paw/templates/ticketing/tickets.html:17
+msgid "Title"
+msgstr "Titre"
+
+#: paw/templates/ticketing/create_ticket.html:19
+msgid "Description"
+msgstr "Description"
+
+#: paw/templates/ticketing/create_ticket.html:26
+#: paw/templates/ticketing/ticket_detail.html:98
+#: paw/templates/ticketing/tickets.html:19
+msgid "Category"
+msgstr "Catégorie"
+
+#: paw/templates/ticketing/ticket_detail.html:56
+msgid "Add Comment"
+msgstr "Ajouter un commentaire"
+
+#: paw/templates/ticketing/ticket_detail.html:58
+msgid "Comment and close"
+msgstr "Commentaire et fermer"
+
+#: paw/templates/ticketing/ticket_detail.html:68
+msgid "Re-Open Ticket"
+msgstr "Réouverture du ticket"
+
+#: paw/templates/ticketing/ticket_detail.html:110
+#, fuzzy
+#| msgid "Assign to me"
+msgid "Assign to new category"
+msgstr "Me l'attribuer"
+
+#: paw/templates/ticketing/ticket_detail.html:125
+msgid "Assign to me"
+msgstr "Me l'attribuer"
+
+#: paw/templates/ticketing/tickets.html:5
+#, fuzzy
+#| msgid "Re-Open Ticket"
+msgid "Open Tickets"
+msgstr "Réouverture du ticket"
+
+#: paw/templates/ticketing/tickets.html:7
+msgid "for"
+msgstr "pour"
+
+#: paw/templates/ticketing/tickets.html:18
+#, fuzzy
+#| msgid "Assign to me"
+msgid "Assigned to"
+msgstr "Me l'attribuer"
+
+#: paw/templates/ticketing/tickets.html:20
+msgid "Status"
+msgstr "Statut"
+
+#: paw/templates/ticketing/tickets.html:27
+msgid "No tickets found"
+msgstr "Aucun ticket trouvé"
+
+#: paw/templates/ticketing/tickets.html:41
+msgid "View"
+msgstr "Ouvrir"
+
+#: ticketing/models.py:35
+msgid "Low"
+msgstr ""
+
+#: ticketing/models.py:36
+msgid "Medium"
+msgstr ""
+
+#: ticketing/models.py:37
+msgid "High"
+msgstr ""

@@ -1,0 +1,10 @@
+{% block ticket_status_badge %}
+{% load i18n %}
+    {% if ticket.status == 'open' %}
+    <span class="badge badge-success join-item">{% trans 'Open' %}</span>
+    {% elif ticket.status == 'in_progress' %}
+    <span class="badge badge-warning join-item">{% trans 'In Progress' %}</span>
+    {% else %}
+    <span class="badge badge-error join-item">{% trans 'Closed' %}</span>
+    {% endif %}
+{% endblock %}

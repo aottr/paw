@@ -1,0 +1,13 @@
+{% block assigned_to %}
+{% load i18n %}
+{% if assigned_to %}
+<div class="avatar placeholder">
+    <div class="bg-base-300 text-base-content rounded-full w-6 mr-1">
+    <span class="text-xl">{{ assigned_to.username|slice:":2" }}</span>
+    </div>
+</div>
+    {{ assigned_to.username }}
+{% else %}
+<span class="italic">{% trans 'Unassigned' %}</span>
+{% endif %}
+{% endblock %}
