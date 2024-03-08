@@ -14,6 +14,15 @@
                 {% else %}
                 <div class="chat chat-end">
                 {% endif %}
+                    <div class="chat-image avatar placeholder">
+                        <div class="bg-base-300 text-base-content rounded-full w-10">
+                            {% if comment.user.profile_picture %}
+                            <img src="{{ comment.user.profile_picture.url }}" />
+                            {% else %}
+                            <span>{{ comment.user.username|slice:":2" }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
                     <div class="chat-header">
                     {{ comment.user.username }}
                     <time class="text-xs opacity-50">{{ comment.created_at|date:"d.m.y" }}</time>
