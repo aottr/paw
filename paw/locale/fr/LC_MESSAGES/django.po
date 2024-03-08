@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-08 00:49+0000\n"
+"POT-Creation-Date: 2024-03-08 01:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr "Français"
 msgid "German"
 msgstr "Allemand"
 
-#: paw/templates/core/settings.html:6 paw/templates/dashboard_base.html:49
+#: paw/templates/core/settings.html:6 paw/templates/dashboard_base.html:53
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -47,6 +47,7 @@ msgid "Profile Picture"
 msgstr "Image du profil"
 
 #: paw/templates/core/settings.html:30
+#: paw/templates/ticketing/ticket_detail.html:98
 msgid "Contact"
 msgstr ""
 
@@ -67,13 +68,13 @@ msgstr ""
 msgid "History"
 msgstr "Historique"
 
-#: paw/templates/dashboard_base.html:53
+#: paw/templates/dashboard_base.html:57
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: paw/templates/partials/assigned_to.html:11
-#: paw/templates/ticketing/ticket_detail.html:104
-#: paw/templates/ticketing/ticket_detail.html:134
+#: paw/templates/partials/assigned_to.html:17
+#: paw/templates/ticketing/ticket_detail.html:117
+#: paw/templates/ticketing/ticket_detail.html:147
 msgid "Unassigned"
 msgstr "Non attribué"
 
@@ -103,7 +104,7 @@ msgid "Description"
 msgstr "Description"
 
 #: paw/templates/ticketing/create_ticket.html:26
-#: paw/templates/ticketing/ticket_detail.html:98
+#: paw/templates/ticketing/ticket_detail.html:111
 #: paw/templates/ticketing/tickets.html:19
 msgid "Category"
 msgstr "Catégorie"
@@ -116,17 +117,33 @@ msgstr "Ajouter un commentaire"
 msgid "Comment and close"
 msgstr "Commentaire et fermer"
 
+#: paw/templates/ticketing/ticket_detail.html:63
+msgid "Ticket has been closed"
+msgstr "Le ticket a été fermé"
+
 #: paw/templates/ticketing/ticket_detail.html:68
 msgid "Re-Open Ticket"
 msgstr "Réouverture du ticket"
 
-#: paw/templates/ticketing/ticket_detail.html:110
+#: paw/templates/ticketing/ticket_detail.html:78
+msgid "Created by"
+msgstr "Créé par"
+
+#: paw/templates/ticketing/ticket_detail.html:91
+msgid "Created on"
+msgstr "Créé le"
+
+#: paw/templates/ticketing/ticket_detail.html:95
+msgid "Last updated"
+msgstr "Dernière mise à jour le"
+
+#: paw/templates/ticketing/ticket_detail.html:123
 #, fuzzy
 #| msgid "Assign to me"
 msgid "Assign to new category"
 msgstr "Me l'attribuer"
 
-#: paw/templates/ticketing/ticket_detail.html:125
+#: paw/templates/ticketing/ticket_detail.html:138
 msgid "Assign to me"
 msgstr "Me l'attribuer"
 
@@ -157,6 +174,14 @@ msgstr "Aucun ticket trouvé"
 #: paw/templates/ticketing/tickets.html:41
 msgid "View"
 msgstr "Ouvrir"
+
+#: ticketing/forms.py:31
+msgid "No Team"
+msgstr "Aucune Team"
+
+#: ticketing/forms.py:36
+msgid "No Category"
+msgstr "Aucune catégorie"
 
 #: ticketing/models.py:35
 msgid "Low"

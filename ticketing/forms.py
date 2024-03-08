@@ -1,5 +1,6 @@
 from django import forms
 from .models import Ticket, Template, Team, Category
+from django.utils.translation import gettext_lazy as _
 
 
 class CommentForm(forms.Form):
@@ -25,16 +26,12 @@ class TemplateForm(forms.Form):
     template_select = forms.ModelChoiceField(queryset=Template.objects.all(), widget=forms.Select(
         attrs={'class': 'select select-bordered select-sm w-full'}))
 
-    # def __init__(self, queryset, *args, **kwargs):
-    # self.fields["template"].queryset = queryset
-    #    super(TemplateForm, self).__init__(*args, **kwargs)
-
 
 class TeamAssignmentForm(forms.Form):
-    team_select = forms.ModelChoiceField(queryset=Team.objects.all(), empty_label='No Team', required=False, widget=forms.Select(
+    team_select = forms.ModelChoiceField(queryset=Team.objects.all(), empty_label=_('No Team'), required=False, widget=forms.Select(
         attrs={'class': 'select select-bordered select-sm w-full'}))
 
 
 class CategoryAssignmentForm(forms.Form):
-    category_select = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label='No Category', required=False, widget=forms.Select(
+    category_select = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label=_('No Category'), required=False, widget=forms.Select(
         attrs={'class': 'select select-bordered select-sm w-full'}))
