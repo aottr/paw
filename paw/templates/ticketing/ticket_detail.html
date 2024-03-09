@@ -41,7 +41,7 @@
                 <div class="form-control w-full max-w-xs">
                     {{ template_form.template_select }}
                 </div>
-                <button type="submit" name="apply_template" class="btn btn-sm btn-success ml-2">Apply Template</button>
+                <button type="submit" name="apply_template" class="btn btn-sm btn-success ml-2">{% trans 'Apply Template' %}</button>
             </div>
         </form>
         {% endif %}
@@ -57,7 +57,7 @@
                 {% if request.user.is_staff %}
                 <div class="form-control w-52 mr-4">
                     <label for="{{ form.hidden_from_client.id_for_label }}" class="cursor-pointer label">
-                    <span class="label-text">Hidden from client</span> 
+                    <span class="label-text">{% trans 'Hidden from client' %}</span> 
                     {{ form.hidden_from_client }}
                     </label>
                 </div>
@@ -123,7 +123,7 @@
             {% if ticket.category %}
                 {{ ticket.category.name }}
             {% else %}
-            <span class="italic">{% trans 'Unassigned' %}</span>
+            <span>{% trans 'General' %}</span>
             {% endif %}
         </div>
         {% if request.user.is_staff %}
@@ -132,12 +132,12 @@
             <h2 class="font-semibold text-xs mb-2">{% trans 'Assign to new category' %}</h2>
             <div class="flex justify-end items-center mb-2">
                 {{ category_assignment_form.category_select }}
-                <button type="submit" name="assign_to_category" class="btn btn-sm btn-neutral ml-2">Assign</button>
+                <button type="submit" name="assign_to_category" class="btn btn-sm btn-neutral ml-2">{% trans 'Assign' %}</button>
             </div>
         </form>
         {% endif %}
         <div class="divider"></div>
-        <h2 class="font-semibold mb-4">Assignees</h2>
+        <h2 class="font-semibold mb-4">{% trans 'Assignees' %}</h2>
         <div class="text-neutral flex items-center text-sm mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
             {% include 'partials/assigned_to.html' with assigned_to=ticket.assigned_to %}
@@ -159,10 +159,10 @@
         {% if request.user.is_staff %}
         <form action="" method="post">
             {% csrf_token %}
-            <h2 class="font-semibold text-xs mb-2">Assign to new team</h2>
+            <h2 class="font-semibold text-xs mb-2">{% trans 'Assign to new team' %}</h2>
             <div class="flex justify-end items-center mb-2">
                 {{ team_assignment_form.team_select }}
-                <button type="submit" name="assign_to_team" class="btn btn-sm btn-neutral ml-2">Assign</button>
+                <button type="submit" name="assign_to_team" class="btn btn-sm btn-neutral ml-2">{% trans 'Assign' %}</button>
             </div>
         </form>
         {% endif %}

@@ -15,10 +15,14 @@ class TicketForm(forms.ModelForm):
         model = Ticket
         fields = ['title', 'description', 'category']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'input input-bordered w-full'}),
-            'description': forms.Textarea(attrs={'class': 'textarea textarea-bordered h-32 w-full'}),
+            'title': forms.TextInput(attrs={'class': 'input input-bordered w-full', 'placeholder': _('Please enter a title'), 'aria-label': _('Title')}),
+            'description': forms.Textarea(attrs={'class': 'textarea textarea-bordered h-32 w-full', 'placeholder': _('Please describe your issue'), 'aria-label': _('Description')}),
             'category': forms.Select(attrs={'class': 'select select-bordered w-full'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(TicketForm, self).__init__(*args, **kwargs)
+        self.fields['category'].empty_label = _('General')
 
 
 class TemplateForm(forms.Form):
@@ -33,5 +37,5 @@ class TeamAssignmentForm(forms.Form):
 
 
 class CategoryAssignmentForm(forms.Form):
-    category_select = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label=_('No Category'), required=False, widget=forms.Select(
+    category_select = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label=_('General'), required=False, widget=forms.Select(
         attrs={'class': 'select select-bordered select-sm w-full'}))
