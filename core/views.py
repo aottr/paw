@@ -51,9 +51,11 @@ def login_view(request):
         request.session.save()
 
     if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
+        form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
+            login(request, form.get_user())
             return redirect("home")
+
     else:
         form = AuthenticationForm()
 
