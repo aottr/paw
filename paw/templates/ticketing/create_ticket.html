@@ -7,6 +7,13 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
         <label class="form-control mb-2">
+            {{ form.category.errors }}
+            <div class="label">
+                <span for="{{ form.category.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Category' %}</span>
+                </div>
+            {{ form.category }}
+        </label>
+        <label class="form-control mb-2">
             {{ form.title.errors }}
             <div class="label">
                 <span for="{{ form.title.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Title' %}</span>
@@ -20,13 +27,17 @@
                 </div>
             {{ form.description }}
         </label>
+
+        {% if has_closed_tickets %}
         <label class="form-control mb-2">
-            {{ form.category.errors }}
+            {{ form.follow_up_to.errors }}
             <div class="label">
-                <span for="{{ form.category.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Category' %}</span>
+                <span for="{{ form.follow_up_to.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Create as follow-up to a closed ticket' %}</span>
                 </div>
-            {{ form.category }}
+            {{ form.follow_up_to }}
         </label>
+        {% endif %}
+        
         <div class="flex justify-end items-center mt-4">
             <button type="submit" class="btn btn-success">{% trans 'Create Ticket' %}</button>
         </div>

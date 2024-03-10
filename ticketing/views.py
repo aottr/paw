@@ -85,16 +85,20 @@ def show_ticket(request, ticket_id):
 
 @login_required
 def create_ticket(request):
+
+    has_closed_tickets = Ticket.objects.filter(
+        user=request.user, status=Ticket.Status.CLOSED).exists()
+
     if request.method == "POST":
-        form = TicketForm(request.POST)
+        form = TicketForm(request.user, request.POST)
         if form.is_valid():
             ticket = form.save(commit=False)
             ticket.user = request.user
             ticket.save()
             return redirect("ticket_detail", ticket_id=ticket.id)
     else:
-        form = TicketForm()
-    return render(request, "ticketing/create_ticket.html", {"form": form})
+        form = TicketForm(request.user)
+    return render(request, "ticketing/create_ticket.html", {"form": form, "has_closed_tickets": has_closed_tickets})
 
 
 @login_required

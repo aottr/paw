@@ -13,16 +13,20 @@ class CommentForm(forms.Form):
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['title', 'description', 'category']
+        fields = ['title', 'description', 'category', 'follow_up_to']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'input input-bordered w-full', 'placeholder': _('Please enter a title'), 'aria-label': _('Title')}),
             'description': forms.Textarea(attrs={'class': 'textarea textarea-bordered h-32 w-full', 'placeholder': _('Please describe your issue'), 'aria-label': _('Description')}),
             'category': forms.Select(attrs={'class': 'select select-bordered w-full'}),
+            'follow_up_to': forms.Select(attrs={'class': 'select select-bordered w-full'}),
         }
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user, *args, **kwargs):
         super(TicketForm, self).__init__(*args, **kwargs)
         self.fields['category'].empty_label = _('General')
+        self.fields['follow_up_to'].empty_label = _('No Follow-up')
+        self.fields['follow_up_to'].queryset = Ticket.objects.filter(
+            status=Ticket.Status.CLOSED, user=user)
 
 
 class TemplateForm(forms.Form):

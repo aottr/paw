@@ -51,6 +51,8 @@ class Ticket(models.Model):
         PawUser, on_delete=models.CASCADE, related_name='assigned_to_user', null=True, blank=True)
     assigned_team = models.ForeignKey(
         Team, on_delete=models.CASCADE, related_name='assigned_to_team', null=True, blank=True)
+    follow_up_to = models.ForeignKey(
+        "self", on_delete=models.CASCADE, null=True, blank=True, related_name='follow_ups')
 
     class Meta:
         indexes = [
