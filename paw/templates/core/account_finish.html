@@ -1,4 +1,4 @@
-<!-- templates/registration/register.html -->
+<!-- templates/core/account_finish.html -->
 {% extends 'base.html' %}
 {% block content %}
 {% load i18n %}
@@ -7,8 +7,13 @@
     <div class="mb-4">
     {% include 'partials/logo.html' with responsive=False %}
     </div>
-    <h1 class="text-3xl font-bold p-2">Register a new account</h1>
+    <h1 class="text-3xl font-bold p-2">{% trans 'Register a new account' %}</h1>
     <div class="bg-base-200 rounded p-8">
+        <ul class="steps w-full mb-6">
+            <li class="step step-accent">{% trans 'Authenticate' %}</li>
+            <li class="step step-accent">{% trans 'Set up account' %}</li>
+            <li class="step step-success">{% trans 'Done' %}</li>
+          </ul>
       <form method="post">
         {% csrf_token %}
 
@@ -21,30 +26,12 @@
 
         <div>
           <label class="label">
-              <span class="text-base label-text" for="{{ form.username.id_for_label }}">Username</span>
+              <span class="text-base label-text" for="{{ form.username.id_for_label }}">{% trans 'Username' %}</span>
           </label>
           {{ form.username }}
         </div>
-        <div>
-          <label class="label">
-              <span class="text-base label-text" for="{{ form.email.id_for_label }}">Email Address</span>
-          </label>
-          {{ form.email}}
-        </div>
-        <div>
-            <label class="label">
-                <span class="text-base label-text" for="{{ form.password.id_for_label }}">Password</span>
-            </label>
-            {{ form.password }}
-        </div>
-        <div>
-          <label class="label">
-              <span class="text-base label-text" for="{{ form.password_confirm.id_for_label }}">Confirm Password</span>
-          </label>
-          {{ form.password_confirm }}
-      </div>
         <div class="flex justify-end mt-4">
-          <button type="submit" class="btn btn-accent">Register</button>
+          <button type="submit" name="account_finish" class="btn btn-success">{% trans 'Save' %}</button>
         </div>
       </form>
     </div>

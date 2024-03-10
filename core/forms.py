@@ -58,3 +58,22 @@ class RegisterForm(forms.Form):
                 "An account with this email already exists"
             )
         return cleaned_data
+
+
+class AccountFinishForm(forms.Form):
+    username = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={'class': 'input input-bordered w-full'}))
+
+    class Meta:
+        model = PawUser
+        fields = ('username')
+
+    def clean(self):
+        cleaned_data = super(AccountFinishForm, self).clean()
+
+        if PawUser.objects.filter(username=cleaned_data.get("username")).exists():
+            raise forms.ValidationError(
+                "An account with this username already exists"
+            )
+
+        return cleaned_data

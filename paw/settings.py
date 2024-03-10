@@ -148,3 +148,15 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "/tickets"
+
+# Google SSO
+GOOGLE_OAUTH_ENABLED = True
+GOOGLE_OAUTH_CLIENT_ID = ""
+GOOGLE_OAUTH_PROJECT_ID = ""
+GOOGLE_OAUTH_CLIENT_SECRET = ""
+GOOGLE_OAUTH_REDIRECT_URI = "http://localhost:8000/callback/google"
+GOOGLE_OAUTH_SCOPES = [
+    "openid",
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email"
+]

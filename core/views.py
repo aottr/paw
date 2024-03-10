@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import logout
-from .forms import UserChangeForm, RegisterForm
+from django.contrib.auth import logout, login
+from .forms import UserChangeForm, RegisterForm, AccountFinishForm
+from django.contrib.auth.forms import AuthenticationForm
 from .models import PawUser
 from django.utils import translation
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from .utils.google_sso import GoogleSSO
 
 
 @login_required
@@ -32,6 +34,66 @@ def register_view(request):
         form = RegisterForm()
 
     return render(request, "core/register.html", {"form": form})
+
+
+def login_view(request):
+
+    if settings.GOOGLE_OAUTH_ENABLED:
+        google_sso = GoogleSSO()
+        auth_url, state = google_sso.flow.authorization_url(prompt="consent")
+
+        # Save data on Session
+        if not request.session.session_key:
+            request.session.create()
+        request.session.set_expiry(60 * 1000)
+        request.session["sso_state"] = state
+        # request.session["sso_next_url"] = next_path
+        request.session.save()
+
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            return redirect("home")
+    else:
+        form = AuthenticationForm()
+
+    return render(request, "core/login.html", {"form": form, "google_sso_enabled": settings.GOOGLE_OAUTH_ENABLED, "google_sso_auth_url": auth_url})
+
+
+def google_callback_view(request):
+
+    if not settings.GOOGLE_OAUTH_ENABLED:
+        return redirect("login")
+
+    if request.method == "POST" and request.user.is_authenticated and "account_finish" in request.POST:
+        form = AccountFinishForm(request.POST)
+        if form.is_valid():
+            request.user.username = form.cleaned_data["username"]
+            request.user.save()
+            return redirect("home")
+        else:
+            return render(request, "core/account_finish.html", {"form": form})
+    else:
+        google_sso = GoogleSSO()
+        state = request.GET.get("state")
+        code = request.GET.get("code")
+
+        if state != request.session.get("sso_state"):
+            return redirect("login")
+
+        try:
+            google_sso.flow.fetch_token(code=code)
+            user_info = google_sso.get_user_info()
+        except Exception:
+            return redirect("login")
+
+        user, created = PawUser.objects.get_or_create(email=user_info["email"])
+        login(request, user)
+        if created or not user.username:
+            form = AccountFinishForm()
+            return render(request, "core/account_finish.html", {"form": form})
+
+    return redirect("home")
 
 
 def logout_view(request):
