@@ -76,8 +76,8 @@
                 {% csrf_token %}
                 <button class="btn btn-warning ml-2" name="reopen_ticket">{% trans 'Re-Open Ticket' %}</button>
             </form>
-            {% endif %}
         </div>
+        {% endif %} {% comment %} request.user.is_staff and ticket.status == 'closed' {% endcomment %}
         {% endif %}
         </div>
     </div>
