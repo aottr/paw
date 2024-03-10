@@ -2,6 +2,7 @@
 {% extends 'dashboard_base.html' %}
 {% block dashboard_content %}
 {% load i18n %}
+{% load filters %}
 <div class="w-full max-w-4xl mx-auto p-8">
     <h1 class="text-2xl font-bold mb-4">{% trans 'Settings' %}</h1>
     <form method="post">
@@ -10,7 +11,11 @@
             <div class="label">
               <span for="{{ form.email.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Mail Address' %}</span>
             </div>
+            {% if request.user.googlessouser %}
+            {{ form.email|add_attr:'class:input input-bordered w-full input-disabled,readonly:' }}
+            {% else %}
             {{ form.email }}
+            {% endif %}
         </label>
 
         <label class="form-control w-full mb-2">

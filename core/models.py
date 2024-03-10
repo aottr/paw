@@ -15,7 +15,8 @@ class PawUser(AbstractUser):
 
 
 class GoogleSSOUser(models.Model):
-    user = models.OneToOneField(PawUser, on_delete=models.CASCADE)
+    paw_user = models.OneToOneField(
+        PawUser, on_delete=models.CASCADE, primary_key=True)
     google_id = models.CharField(max_length=255)
 
     def __str__(self):

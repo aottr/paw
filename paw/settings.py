@@ -72,6 +72,9 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 'paw.templatetags.context_processors.app_version',
             ],
+            'libraries': {
+                'filters': 'paw.templatetags.filters',
+            },
         },
     },
 ]
@@ -148,6 +151,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "/tickets"
+LOGIN_URL = "/login"
 
 # Google SSO
 GOOGLE_OAUTH_ENABLED = True

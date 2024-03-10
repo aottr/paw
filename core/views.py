@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login
 from .forms import UserChangeForm, RegisterForm, AccountFinishForm
 from django.contrib.auth.forms import AuthenticationForm
-from .models import PawUser
+from .models import PawUser, GoogleSSOUser
 from django.utils import translation
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -90,6 +90,10 @@ def google_callback_view(request):
             return redirect("login")
 
         user, created = PawUser.objects.get_or_create(email=user_info["email"])
+
+        if created:
+            GoogleSSOUser.objects.create(user=user, google_id=user_info["id"])
+
         login(request, user)
         if created or not user.username:
             form = AccountFinishForm()
@@ -110,11 +114,14 @@ def settings_view(request):
     if request.method == "POST":
         form = UserChangeForm(request.POST, request.FILES)
         if form.is_valid():
+            print(form.cleaned_data)
             if form.cleaned_data["language"] != request.user.language:
                 translation.activate(form.cleaned_data["language"])
                 changed_user_language = True
 
-            request.user.email = form.cleaned_data["email"]
+            if not request.user.googlessouser:
+                request.user.email = form.cleaned_data["email"]
+
             request.user.language = form.cleaned_data["language"]
             request.user.telegram_username = form.cleaned_data["telegram_username"]
             request.user.use_darkmode = form.cleaned_data["use_darkmode"]
