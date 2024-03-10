@@ -20,6 +20,13 @@
             {{ form.language }}
         </label>
 
+        <div class="form-control w-full mb-2">
+            <label class="label cursor-pointer">
+              <span class="label-text font-semibold text-base-content" for="{{ form.use_darkmode.id_for_label }}">{% trans 'Use Darkmode' %}</span> 
+              {{ form.use_darkmode }}
+            </label>
+          </div>
+
         <label class="form-control w-full mb-2">
             <div class="label">
               <span for="{{ form.profile_picture.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Profile Picture' %}</span>
