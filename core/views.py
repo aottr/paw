@@ -114,12 +114,12 @@ def settings_view(request):
     if request.method == "POST":
         form = UserChangeForm(request.POST, request.FILES)
         if form.is_valid():
-            print(form.cleaned_data)
+
             if form.cleaned_data["language"] != request.user.language:
                 translation.activate(form.cleaned_data["language"])
                 changed_user_language = True
 
-            if not request.user.googlessouser:
+            if not hasattr(request.user, 'googlessouser'):
                 request.user.email = form.cleaned_data["email"]
 
             request.user.language = form.cleaned_data["language"]
