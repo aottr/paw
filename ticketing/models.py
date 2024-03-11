@@ -4,6 +4,13 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from uuid import uuid4
+
+
+def ticket_directory_path(instance, filename):
+    """ file will be uploaded to MEDIA_ROOT/ticket_<id>/<filename> """
+    ext = filename.split('.')[-1]
+    return "attachments/ticket_{0}/{1}.{2}".format(instance.ticket.id, uuid4(), ext)
 
 
 class Team(models.Model):
@@ -18,7 +25,7 @@ class Team(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=200)
     team = models.ForeignKey(
-        Team, on_delete=models.CASCADE, null=True, blank=True, help_text="If a team is selected, new tickets will automatically assigned to this team.")
+        Team, on_delete=models.CASCADE, null=True, blank=True, help_text=_("If a team is selected, new tickets will automatically assigned to this team."))
 
     def __str__(self):
         return self.name
@@ -102,6 +109,16 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.user.username} on {self.ticket.title}'
+
+
+class FileAttachment(models.Model):
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    file = models.FileField(
+        upload_to=ticket_directory_path, max_length=255)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{_('Attachment for')} {self.ticket.title}'
 
 
 class Template(models.Model):
