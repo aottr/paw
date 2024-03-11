@@ -3,7 +3,7 @@
 {% load i18n %}
 <div class="w-full max-w-4xl mx-auto p-8">
     <h1 class="text-2xl font-bold mb-4">{% trans 'Create a new ticket' %}</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.non_field_errors }}
         <label class="form-control mb-2">
@@ -26,6 +26,14 @@
                 <span for="{{ form.description.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Description' %}</span>
                 </div>
             {{ form.description }}
+        </label>
+
+        <label class="form-control mb-2">
+            {{ form.attachments.errors }}
+            <div class="label">
+                <span for="{{ form.attachments.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Attachments' %}</span>
+            </div>
+            {{ form.attachments }}
         </label>
 
         {% if has_closed_tickets %}

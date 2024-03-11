@@ -3,6 +3,25 @@ from .models import Ticket, Template, Team, Category
 from django.utils.translation import gettext_lazy as _
 
 
+class MultipleFileInput(forms.ClearableFileInput):
+    allow_multiple_selected = True
+
+
+class MultipleFileField(forms.FileField):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault("widget", MultipleFileInput(
+            attrs={'class': 'file-input file-input-bordered w-full'}))
+        super().__init__(*args, **kwargs)
+
+    def clean(self, data, initial=None):
+        single_file_clean = super().clean
+        if isinstance(data, (list, tuple)):
+            result = [single_file_clean(d, initial) for d in data]
+        else:
+            result = single_file_clean(data, initial)
+        return result
+
+
 class CommentForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea(
         attrs={'class': 'textarea textarea-bordered h-32', 'placeholder': 'Enter your comment here...'}))
@@ -27,6 +46,8 @@ class TicketForm(forms.ModelForm):
         self.fields['follow_up_to'].empty_label = _('No Follow-up')
         self.fields['follow_up_to'].queryset = Ticket.objects.filter(
             status=Ticket.Status.CLOSED, user=user)
+
+    attachments = MultipleFileField(required=False)
 
 
 class TemplateForm(forms.Form):

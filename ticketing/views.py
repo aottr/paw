@@ -77,7 +77,8 @@ def show_ticket(request, ticket_id):
 
     comments = ticket.comment_set.all()
     context = {
-        "ticket": ticket, "comments": comments, "form": form, "template_form": template_form,
+        "ticket": ticket, "comments": comments, "attachments": [attachment.file for attachment in ticket.fileattachment_set.all()],
+        "form": form, "template_form": template_form,
         "team_assignment_form": team_assignment_form, "category_assignment_form": category_assignment_form
     }
     return render(request, "ticketing/ticket_detail.html", context)
@@ -90,11 +91,17 @@ def create_ticket(request):
         user=request.user, status=Ticket.Status.CLOSED).exists()
 
     if request.method == "POST":
-        form = TicketForm(request.user, request.POST)
+        form = TicketForm(request.user, request.POST, request.FILES)
         if form.is_valid():
             ticket = form.save(commit=False)
             ticket.user = request.user
             ticket.save()
+
+            # Add attachments
+            if form.cleaned_data["attachments"]:
+                for file in form.cleaned_data["attachments"]:
+                    ticket.fileattachment_set.create(file=file)
+
             return redirect("ticket_detail", ticket_id=ticket.id)
     else:
         form = TicketForm(request.user)
