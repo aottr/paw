@@ -4,6 +4,13 @@ from django.utils.translation import gettext_lazy as _
 import magic
 
 
+ATTACHMENT_CONTENT_TYPES = [
+    'image/jpeg',
+    'image/png',
+    'application/pdf'
+]
+
+
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
 
@@ -23,18 +30,39 @@ class MultipleFileField(forms.FileField):
         return result
 
 
+def clean_attachments(files):
+    if files:
+        for file in files:
+            # Check file size
+            if file.size > 1024 * 1024 * 5:
+                raise forms.ValidationError(
+                    _('File size must be under 5MB.'))
+
+            # Check file type
+            uploaded_content_type = file.content_type
+            mg = magic.Magic(mime=True)
+            content_type = mg.from_buffer(file.read(1024))
+            file.seek(0)
+
+            if content_type != uploaded_content_type:
+                uploaded_content_type = content_type
+
+            if uploaded_content_type not in ATTACHMENT_CONTENT_TYPES:
+                raise forms.ValidationError(
+                    _('File type not supported. Supported types are: .jpg, .png, .pdf'))
+    return files
+
+
 class CommentForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea(
         attrs={'class': 'textarea textarea-bordered h-32', 'placeholder': 'Enter your comment here...'}))
     hidden_from_client = forms.BooleanField(widget=forms.CheckboxInput(
-        attrs={'class': 'toggle toggle-error'}), required=False)
+        attrs={'class': 'checkbox checkbox-secondary'}), required=False)
 
+    attachments = MultipleFileField(required=False)
 
-ATTACHMENT_CONTENT_TYPES = [
-    'image/jpeg',
-    'image/png',
-    'application/pdf'
-]
+    def clean_attachments(self):
+        return clean_attachments(self.cleaned_data.get('attachments'))
 
 
 class TicketForm(forms.ModelForm):
@@ -58,28 +86,7 @@ class TicketForm(forms.ModelForm):
     attachments = MultipleFileField(required=False)
 
     def clean_attachments(self):
-        files = self.cleaned_data.get('attachments')
-        if files:
-            for file in files:
-                # Check file size
-                if file.size > 1024 * 1024 * 5:
-                    raise forms.ValidationError(
-                        _('File size must be under 5MB.'))
-
-                # Check file type
-                uploaded_content_type = file.content_type
-                mg = magic.Magic(mime=True)
-                content_type = mg.from_buffer(file.read(1024))
-                file.seek(0)
-
-                if content_type != uploaded_content_type:
-                    uploaded_content_type = content_type
-
-                if uploaded_content_type not in ATTACHMENT_CONTENT_TYPES:
-                    raise forms.ValidationError(
-                        _('File type not supported. Supported types are: .jpg, .png, .pdf'))
-
-        return files
+        return clean_attachments(self.cleaned_data.get('attachments'))
 
 
 class TemplateForm(forms.Form):

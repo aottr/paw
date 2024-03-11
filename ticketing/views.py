@@ -66,12 +66,17 @@ def show_ticket(request, ticket_id):
             ticket.status = Ticket.Status.IN_PROGRESS
             ticket.save()
         else:
-            form = CommentForm(request.POST)
+            form = CommentForm(request.POST, request.FILES)
             if form.is_valid():
                 ticket.comment_set.create(
                     user=request.user, ticket=ticket,
                     text=form.cleaned_data["text"], is_only_for_staff=form.cleaned_data["hidden_from_client"]
                 )
+                # Add attachments
+                if form.cleaned_data["attachments"]:
+                    for file in form.cleaned_data["attachments"]:
+                        ticket.fileattachment_set.create(file=file)
+
                 if 'close' in request.POST and request.user.is_staff:
                     ticket.close_ticket()
 

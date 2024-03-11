@@ -9,14 +9,14 @@
         <h2 class="font-semibold mb-2">{% trans 'Attachments' %}</h2>
         <div class="flex flex-wrap mb-6">
             {% for attachment in attachments %}
-            <a href="{{ attachment.url }}" target="_blank" class="badge badge-lg badge-accent flex items-center mr-2">
+            <a href="{{ attachment.url }}" target="_blank" class="badge badge-lg badge-accent flex items-center mr-2 mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg"class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5" /></svg>
                 {% trans 'Attachment' %} {{ forloop.counter }}
             </a>
             {% endfor %}
         </div>
         {% endif %}
-        <h1 class="text-xl font-bold mb-4">Activity</h1>
+        <h1 class="text-xl font-bold mb-4">{% trans 'Activity' %}</h1>
         <div class="mb-4">
         {% for comment in comments %}
             {% if not comment.is_only_for_staff or comment.is_only_for_staff and request.user.is_staff %}
@@ -56,7 +56,7 @@
             </div>
         </form>
         {% endif %}
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.non_field_errors }}
 
@@ -64,18 +64,26 @@
                 {{ form.text.errors }}
                 {{ form.text }}
             </label>
-            <div class="flex justify-end items-center mt-4">
-                {% if request.user.is_staff %}
-                <div class="form-control w-52 mr-4">
-                    <label for="{{ form.hidden_from_client.id_for_label }}" class="cursor-pointer label">
-                    <span class="label-text">{% trans 'Hidden from client' %}</span> 
-                    {{ form.hidden_from_client }}
-                    </label>
+            
+            <div class="flex items-center mt-4">
+                <div class="form-control w-full max-w-lg mr-4">
+                    {{ form.attachments }}
                 </div>
-                {% endif %}
+                <div class="grow"></div>
                 <button type="submit" name="submit" class="btn btn-success">{% trans 'Add Comment' %}</button>
                 {% if request.user.is_staff %}
-                <button type="submit" name="close" class="btn btn-error ml-4">{% trans 'Comment and close' %}</button>
+                <button type="submit" name="close" class="btn btn-error ml-4">{% trans 'Close Ticket' %}</button>
+                {% endif %}
+            </div>
+
+            <div class="flex justify-end">
+                {% if request.user.is_staff %}
+                <div class="form-control mt-2">
+                    <label for="{{ form.hidden_from_client.id_for_label }}" class="cursor-pointer label">
+                    {{ form.hidden_from_client }}
+                    <span class="ml-2 label-text">{% trans 'Make this an internal comment' %}</span> 
+                    </label>
+                </div>
                 {% endif %}
             </div>
         </form>
