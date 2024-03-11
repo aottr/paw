@@ -1,6 +1,7 @@
 from django import forms
 from .models import Ticket, Template, Team, Category
 from django.utils.translation import gettext_lazy as _
+import magic
 
 
 class MultipleFileInput(forms.ClearableFileInput):
@@ -29,6 +30,13 @@ class CommentForm(forms.Form):
         attrs={'class': 'toggle toggle-error'}), required=False)
 
 
+ATTACHMENT_CONTENT_TYPES = [
+    'image/jpeg',
+    'image/png',
+    'application/pdf'
+]
+
+
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
@@ -48,6 +56,30 @@ class TicketForm(forms.ModelForm):
             status=Ticket.Status.CLOSED, user=user)
 
     attachments = MultipleFileField(required=False)
+
+    def clean_attachments(self):
+        files = self.cleaned_data.get('attachments')
+        if files:
+            for file in files:
+                # Check file size
+                if file.size > 1024 * 1024 * 5:
+                    raise forms.ValidationError(
+                        _('File size must be under 5MB.'))
+
+                # Check file type
+                uploaded_content_type = file.content_type
+                mg = magic.Magic(mime=True)
+                content_type = mg.from_buffer(file.read(1024))
+                file.seek(0)
+
+                if content_type != uploaded_content_type:
+                    uploaded_content_type = content_type
+
+                if uploaded_content_type not in ATTACHMENT_CONTENT_TYPES:
+                    raise forms.ValidationError(
+                        _('File type not supported. Supported types are: .jpg, .png, .pdf'))
+
+        return files
 
 
 class TemplateForm(forms.Form):
