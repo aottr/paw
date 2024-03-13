@@ -89,13 +89,13 @@ def google_callback_view(request):
         except Exception:
             return redirect("login")
 
-        user, created = PawUser.objects.get_or_create(email=user_info["email"])
+        user, created = PawUser.objects.get_or_create(email=user_info["email"], username=user_info["email"])
 
         if created:
-            GoogleSSOUser.objects.create(user=user, google_id=user_info["id"])
+            GoogleSSOUser.objects.create(paw_user=user, google_id=user_info["id"])
 
         login(request, user)
-        if created or not user.username:
+        if created or user.username == user.email:
             form = AccountFinishForm()
             return render(request, "core/account_finish.html", {"form": form})
 

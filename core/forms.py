@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 from .models import PawUser
-
+from django.utils.translation import gettext_lazy as _
 
 class UserChangeForm(forms.Form):
     email = forms.EmailField(required=True, widget=forms.EmailInput(
@@ -20,10 +20,21 @@ class UserChangeForm(forms.Form):
         fields = ('email', 'profile_picture',
                   'language', 'telegram_username', 'use_darkmode')
 
+USERNAME_REGEX_FIELD = forms.RegexField(
+    required=True,
+    label='Username',
+    max_length=50,
+    regex=r'^[a-zA-Z0-9-_@]+$',
+    error_messages={
+        'required': _('Please enter your name'),
+        'invalid': _('Alphanumeric characters and underscores and dashes only (a-z, 0-9, _, -, @)')
+    },
+    widget=forms.TextInput(
+        attrs={'placeholder': _('Username'), 'class': 'input input-bordered w-full'}),
+)
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(required=True, widget=forms.TextInput(
-        attrs={'class': 'input input-bordered w-full'}))
+    username = USERNAME_REGEX_FIELD
     email = forms.EmailField(required=True, widget=forms.EmailInput(
         attrs={'class': 'input input-bordered w-full'}))
     password = forms.CharField(required=True, widget=forms.PasswordInput(
@@ -61,8 +72,7 @@ class RegisterForm(forms.Form):
 
 
 class AccountFinishForm(forms.Form):
-    username = forms.CharField(required=True, widget=forms.TextInput(
-        attrs={'class': 'input input-bordered w-full'}))
+    username = USERNAME_REGEX_FIELD
 
     class Meta:
         model = PawUser
