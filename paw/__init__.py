@@ -1,5 +1,5 @@
 from django import get_version
 
-VERSION = (0, 1, 0, "beta", 14)
+VERSION = (0, 2, 0, "beta", 1)
 
 __version__ = get_version(VERSION)

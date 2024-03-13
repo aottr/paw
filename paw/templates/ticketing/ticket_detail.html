@@ -6,17 +6,34 @@
         <h1 class="text-2xl font-bold mb-4">{{ ticket.title }}</h1>
         <div class="card bg-base-300 rounded-box p-4 mb-4 whitespace-pre-line">{{ ticket.description }}</div>
         {% if attachments %}
-        <h2 class="font-semibold mb-2">{% trans 'Attachments' %}</h2>
-        <div class="flex flex-wrap mb-6">
+        <h2 class="font-semibold text-sm mb-1">{% trans 'Attachments' %}</h2>
+        <div class="flex flex-wrap mb-2">
             {% for attachment in attachments %}
-            <a href="{{ attachment.url }}" target="_blank" class="badge badge-lg badge-accent flex items-center mr-2 mb-2">
+            <a href="{{ attachment.url }}" target="_blank" class="badge badge-lg badge-accent flex items-center mr-1 mb-1">
                 <svg xmlns="http://www.w3.org/2000/svg"class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5" /></svg>
                 {% trans 'Attachment' %} {{ forloop.counter }}
             </a>
             {% endfor %}
         </div>
         {% endif %}
-        <h1 class="text-xl font-bold mb-4">{% trans 'Activity' %}</h1>
+
+        {% if ticket.follow_up_to %}
+        <h2 class="font-semibold text-sm mb-1">{% trans 'Follow-Up Ticket to' %}</h2>
+        <a href="{% url 'ticket_detail' ticket.follow_up_to.id %}" class="w-full block py-1 px-2 bg-base-200 border border-base-300 rounded-box mb-1">
+            {{ ticket.follow_up_to.title }}
+        </a>
+        {% endif %}
+
+        {% if ticket.followed_up_by %}
+        <h2 class="font-semibold text-sm mb-1">{% trans 'Followed-Up by' %}</h2>
+            {% for related_ticket in ticket.followed_up_by %}
+            <a href="{% url 'ticket_detail' related_ticket.id %}" class="w-full block py-1 px-2 bg-base-200 border border-base-300 rounded-box mb-1">
+                {{ related_ticket.title }}
+            </a>
+            {% endfor %}
+        {% endif %}
+
+        <h1 class="text-xl font-bold my-4">{% trans 'Activity' %}</h1>
         <div class="mb-4">
         {% for comment in comments %}
             {% if not comment.is_only_for_staff or comment.is_only_for_staff and request.user.is_staff %}

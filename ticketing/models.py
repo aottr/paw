@@ -76,6 +76,9 @@ class Ticket(models.Model):
 
         self.assigned_team = team
         self.save()
+    
+    def followed_up_by(self):
+        return Ticket.objects.filter(follow_up_to=self)
 
     def get_priority(self):
         return self.Priority(self.priority).label

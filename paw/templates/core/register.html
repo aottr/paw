@@ -2,52 +2,47 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load i18n %}
-<div class="flex flex-col w-full max-w-xl mx-auto h-full min-h-screen justify-center">
-  <div class="p-4">
-    <div class="mb-4">
-    {% include 'partials/logo.html' with responsive=False %}
-    </div>
-    <h1 class="text-3xl font-bold p-2">Register a new account</h1>
-    <div class="bg-base-200 rounded p-8">
-      <form method="post">
-        {% csrf_token %}
+<div class="self-center w-full max-w-xl mx-auto p-4">
+  <h1 class="text-3xl font-bold p-2">Register a new account</h1>
+  <div class="bg-base-200 rounded p-8">
+    <form method="post">
+      {% csrf_token %}
 
-        {% if form.non_field_errors %}
-        <div role="alert" class="alert alert-error mb-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="hidden sm:block stroke-current shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10l4 4m0 -4l-4 4" /><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" /></svg>
-          <span>{{ form.non_field_errors }}</span>
-        </div>
-        {% endif %}
-
-        <div>
-          <label class="label">
-              <span class="text-base label-text" for="{{ form.username.id_for_label }}">Username</span>
-          </label>
-          {{ form.username }}
-        </div>
-        <div>
-          <label class="label">
-              <span class="text-base label-text" for="{{ form.email.id_for_label }}">Email Address</span>
-          </label>
-          {{ form.email}}
-        </div>
-        <div>
-            <label class="label">
-                <span class="text-base label-text" for="{{ form.password.id_for_label }}">Password</span>
-            </label>
-            {{ form.password }}
-        </div>
-        <div>
-          <label class="label">
-              <span class="text-base label-text" for="{{ form.password_confirm.id_for_label }}">Confirm Password</span>
-          </label>
-          {{ form.password_confirm }}
+      {% if form.non_field_errors %}
+      <div role="alert" class="alert alert-error mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="hidden sm:block stroke-current shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10l4 4m0 -4l-4 4" /><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" /></svg>
+        <span>{{ form.non_field_errors }}</span>
       </div>
-        <div class="flex justify-end mt-4">
-          <button type="submit" class="btn btn-accent">Register</button>
-        </div>
-      </form>
+      {% endif %}
+
+      <div>
+        <label class="label">
+            <span class="text-base label-text" for="{{ form.username.id_for_label }}">Username</span>
+        </label>
+        {{ form.username }}
+      </div>
+      <div>
+        <label class="label">
+            <span class="text-base label-text" for="{{ form.email.id_for_label }}">Email Address</span>
+        </label>
+        {{ form.email}}
+      </div>
+      <div>
+          <label class="label">
+              <span class="text-base label-text" for="{{ form.password.id_for_label }}">Password</span>
+          </label>
+          {{ form.password }}
+      </div>
+      <div>
+        <label class="label">
+            <span class="text-base label-text" for="{{ form.password_confirm.id_for_label }}">Confirm Password</span>
+        </label>
+        {{ form.password_confirm }}
     </div>
+      <div class="flex justify-end mt-4">
+        <button type="submit" class="btn btn-accent">Register</button>
+      </div>
+    </form>
   </div>
 </div>
 {% endblock %}

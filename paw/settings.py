@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "colorfield",
+    "status",
 ]
 
 AUTH_USER_MODEL = "core.PawUser"

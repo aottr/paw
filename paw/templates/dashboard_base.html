@@ -1,4 +1,14 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en"{% if request.user %}{% if request.user.use_darkmode %} data-theme="dark"{% else %} data-theme="light" {% endif %}{% endif %}>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'css/paw.css' %}?v={{ website_version }}" rel="stylesheet">
+  <title>paw</title>
+</head>
+<body>
 {% block content %}
 {% load i18n %}
 <div class="flex h-full min-h-screen">
@@ -62,3 +72,5 @@
     </div>
 </div>
 {% endblock %}
+</body>
+</html>

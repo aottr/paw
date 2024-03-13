@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en"{% if request.user and request.user.use_darkmode %} data-theme="dark" {% endif %}>
+<html lang="en"{% if request.user.is_authenticated %}{% if request.user.use_darkmode %} data-theme="dark"{% else %} data-theme="light" {% endif %}{% endif %}>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +9,24 @@
   <title>paw</title>
 </head>
 <body>
-
-  {% block content %}
-  {% endblock %}
-
+  <div class="container h-full min-h-screen mx-auto flex flex-col w-full">
+    <div class="navbar">
+      <div class="navbar-start">
+        <a class="" href="/">{% include 'partials/logo.html' with responsive=False %}</a>
+      </div>
+      <div class="navbar-center"></div>
+      <div class="navbar-end">
+        <a class="btn mr-4" href="{% url 'all_tickets' %}">Tickets</a>
+        <a class="btn" href="{% url 'incident-list' %}">Status</a>
+      </div>
+    </div>
+    <div class="flex-grow flex">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <div class="footer w-full flex justify-end p-2">
+      <p class="text-sm text-base-content">v{{ app_version }}</p>
+    </div>
+  </div>
 </body>
 </html>

@@ -16,8 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: core/models.py:27
 msgid "Google SSO User"
 msgstr ""
@@ -44,260 +43,246 @@ msgstr ""
 
 #: paw/templates/core/account_finish.html:14
 msgid "Set up account"
-msgstr ""
+msgstr "Account einrichten"
 
 #: paw/templates/core/account_finish.html:15
 msgid "Done"
-msgstr ""
+msgstr "Fertig"
 
 #: paw/templates/core/account_finish.html:29 paw/templates/core/login.html:28
 msgid "Username"
-msgstr ""
+msgstr "Benutzername"
 
 #: paw/templates/core/account_finish.html:34
 #: paw/templates/core/settings.html:48
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Speichern"
 
 #: paw/templates/core/login.html:11 paw/templates/core/login.html:43
 msgid "Log In"
-msgstr ""
+msgstr "Anmelden"
 
 #: paw/templates/core/login.html:13
 msgid "Register Account"
-msgstr ""
+msgstr "Account erstellen"
 
 #: paw/templates/core/login.html:34
 msgid "Password"
-msgstr ""
+msgstr "Passwort"
 
 #: paw/templates/core/login.html:39
 msgid "Password Reset"
-msgstr ""
+msgstr "Passwort zurücksetzen"
 
 #: paw/templates/core/login.html:50
 msgid "Log in with Google"
-msgstr ""
+msgstr "Mit Google anmelden"
 
 #: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:51
 msgid "Settings"
-msgstr "Paramètres"
+msgstr "Einstellungen"
 
 #: paw/templates/core/settings.html:12
 msgid "Mail Address"
-msgstr "Adresse e-mail"
+msgstr "Mail Adresse"
 
 #: paw/templates/core/settings.html:23
 msgid "Language"
-msgstr "Langue"
+msgstr "Sprache"
 
 #: paw/templates/core/settings.html:30
 msgid "Use Darkmode"
-msgstr ""
+msgstr "Darkmode benutzen"
 
 #: paw/templates/core/settings.html:37
 msgid "Profile Picture"
-msgstr "Image du profil"
+msgstr "Profilbild"
 
 #: paw/templates/core/settings.html:42
 #: paw/templates/ticketing/ticket_detail.html:127
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: paw/templates/dashboard_base.html:12
 #: paw/templates/ticketing/create_ticket.html:50
 msgid "Create Ticket"
-msgstr "Nouveau ticket"
+msgstr "Ticket erstellen"
 
 #: paw/templates/dashboard_base.html:16
 msgid "Tickets"
-msgstr ""
+msgstr "Tickets"
 
 #: paw/templates/dashboard_base.html:20
 msgid "History"
-msgstr "Historique"
+msgstr "Historie"
 
 #: paw/templates/dashboard_base.html:55
 msgid "Logout"
-msgstr "Se déconnecter"
+msgstr "Abmelden"
 
 #: paw/templates/partials/assigned_to.html:17
 #: paw/templates/ticketing/ticket_detail.html:176
 msgid "Unassigned"
-msgstr "Non attribué"
+msgstr "Nicht zugewiesen"
 
 #: paw/templates/partials/ticket_status_badge.html:4 ticketing/models.py:37
 msgid "Open"
-msgstr "Ouvert"
+msgstr "Offen"
 
 #: paw/templates/partials/ticket_status_badge.html:6 ticketing/models.py:38
 msgid "In Progress"
-msgstr "En cours"
+msgstr "In Bearbeitung"
 
 #: paw/templates/partials/ticket_status_badge.html:8 ticketing/models.py:39
 msgid "Closed"
-msgstr "Fermé"
+msgstr "Geschlossen"
 
 #: paw/templates/ticketing/create_ticket.html:5
 msgid "Create a new ticket"
-msgstr "Créer un ticket"
+msgstr "Neues Ticket erstellen"
 
 #: paw/templates/ticketing/create_ticket.html:12
 #: paw/templates/ticketing/ticket_detail.html:140
 #: paw/templates/ticketing/tickets.html:19
 msgid "Category"
-msgstr "Catégorie"
+msgstr "Kategorie"
 
 #: paw/templates/ticketing/create_ticket.html:19
 #: paw/templates/ticketing/tickets.html:17 ticketing/forms.py:73
 msgid "Title"
-msgstr "Titre"
+msgstr "Titel"
 
 #: paw/templates/ticketing/create_ticket.html:26 ticketing/forms.py:74
 msgid "Description"
-msgstr "Description"
+msgstr "Beschreibung"
 
 #: paw/templates/ticketing/create_ticket.html:34
 #: paw/templates/ticketing/ticket_detail.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "Anhänge"
 
 #: paw/templates/ticketing/create_ticket.html:43
 msgid "Create as follow-up to a closed ticket"
-msgstr ""
+msgstr "Als Follow-Up zu einem geschlossenen Ticket erstellen"
 
 #: paw/templates/ticketing/ticket_detail.html:14
 msgid "Attachment"
-msgstr ""
+msgstr "Anhang"
 
 #: paw/templates/ticketing/ticket_detail.html:19
 msgid "Activity"
-msgstr ""
+msgstr "Aktivitäten"
 
 #: paw/templates/ticketing/ticket_detail.html:55
 msgid "Apply Template"
-msgstr ""
+msgstr "Vorlage anwenden"
 
 #: paw/templates/ticketing/ticket_detail.html:73
 msgid "Add Comment"
-msgstr "Ajouter un commentaire"
+msgstr "Kommentar hinzufügen"
 
 #: paw/templates/ticketing/ticket_detail.html:75
-#, fuzzy
-#| msgid "Create Ticket"
 msgid "Close Ticket"
-msgstr "Nouveau ticket"
+msgstr "Ticket schliessen"
 
 #: paw/templates/ticketing/ticket_detail.html:84
 msgid "Make this an internal comment"
-msgstr ""
+msgstr "Mache dies einen internen Kommentar"
 
 #: paw/templates/ticketing/ticket_detail.html:91
 msgid "Ticket has been closed"
-msgstr "Le ticket a été fermé"
+msgstr "Das Ticket wurde geschlossen"
 
 #: paw/templates/ticketing/ticket_detail.html:96
 msgid "Re-Open Ticket"
-msgstr "Réouverture du ticket"
+msgstr "Ticket wieder öffnen"
 
 #: paw/templates/ticketing/ticket_detail.html:107
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Erstellt von"
 
 #: paw/templates/ticketing/ticket_detail.html:120
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Erstellt am"
 
 #: paw/templates/ticketing/ticket_detail.html:124
 msgid "Last updated"
-msgstr "Dernière mise à jour le"
+msgstr "Zuletzt aktualisiert"
 
 #: paw/templates/ticketing/ticket_detail.html:146
 #: paw/templates/ticketing/tickets.html:42 ticketing/forms.py:81
 #: ticketing/forms.py:104
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
 #: paw/templates/ticketing/ticket_detail.html:152
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assign to new category"
-msgstr "Me l'attribuer"
+msgstr "Kategorie zuweisen"
 
 #: paw/templates/ticketing/ticket_detail.html:155
 #: paw/templates/ticketing/ticket_detail.html:185
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assign"
-msgstr "Me l'attribuer"
+msgstr "Zuweisen"
 
 #: paw/templates/ticketing/ticket_detail.html:160
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assignees"
-msgstr "Me l'attribuer"
+msgstr "Bearbeiter"
 
 #: paw/templates/ticketing/ticket_detail.html:167
 msgid "Assign to me"
-msgstr "Me l'attribuer"
+msgstr "Weise mir zu"
 
 #: paw/templates/ticketing/ticket_detail.html:182
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assign to new team"
-msgstr "Me l'attribuer"
+msgstr "Team zuweisen"
 
 #: paw/templates/ticketing/tickets.html:5
-#, fuzzy
-#| msgid "Re-Open Ticket"
 msgid "Open Tickets"
-msgstr "Réouverture du ticket"
+msgstr "Offene Tickets"
 
 #: paw/templates/ticketing/tickets.html:7
 msgid "for"
-msgstr "pour"
+msgstr "für"
 
 #: paw/templates/ticketing/tickets.html:18
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assigned to"
-msgstr "Me l'attribuer"
+msgstr "Zugewiesen an"
 
 #: paw/templates/ticketing/tickets.html:20
 msgid "Status"
-msgstr "Statut"
+msgstr ""
 
 #: paw/templates/ticketing/tickets.html:27
 msgid "No tickets found"
-msgstr "Aucun ticket trouvé"
+msgstr "Keine Tickets gefunden"
 
 #: paw/templates/ticketing/tickets.html:49
 msgid "View"
-msgstr "Ouvrir"
+msgstr "Anzeigen"
 
 #: ticketing/forms.py:39
 msgid "File size must be under 5MB."
-msgstr ""
+msgstr "Dateigrösse muss unter 5MB sein."
 
 #: ticketing/forms.py:52
 msgid "File type not supported. Supported types are: .jpg, .png, .pdf"
-msgstr ""
+msgstr "Datei Typ nicht unterstützt. Unterstützte Typen sind: .jpg, .png, .pdf"
 
 #: ticketing/forms.py:73
 msgid "Please enter a title"
-msgstr ""
+msgstr "Gib einen Titel ein"
 
 #: ticketing/forms.py:74
 msgid "Please describe your issue"
-msgstr ""
+msgstr "Beschreibe dein Anliegen"
 
 #: ticketing/forms.py:82
 msgid "No Follow-up"
-msgstr ""
+msgstr "Kein Follow-Up"
 
 #: ticketing/forms.py:99
 msgid "No Team"
-msgstr "Aucune Team"
+msgstr "Kein Team"
 
 #: ticketing/models.py:28
 msgid ""
@@ -306,18 +291,12 @@ msgstr ""
 
 #: ticketing/models.py:42
 msgid "Low"
-msgstr ""
+msgstr "Niedrig"
 
 #: ticketing/models.py:43
 msgid "Medium"
-msgstr ""
+msgstr "Mittel"
 
 #: ticketing/models.py:44
 msgid "High"
-msgstr ""
-
-#~ msgid "Comment and close"
-#~ msgstr "Commentaire et fermer"
-
-#~ msgid "No Category"
-#~ msgstr "Aucune catégorie"
+msgstr "Hoch"
