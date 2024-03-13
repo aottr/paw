@@ -87,7 +87,7 @@ WSGI_APPLICATION = "paw.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-if DEBUG:
+if environ['DATABASE_ENGINE'] == "sqlite3":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -97,7 +97,7 @@ if DEBUG:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': f"django.db.backends.{environ['DATABASE_ENGINE']}",
             'NAME': environ['DATABASE_NAME'],
             'HOST': environ['DATABASE_HOST'],
             'PORT': int(environ['DATABASE_PORT']),
