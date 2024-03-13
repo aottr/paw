@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from os import path
+from dotenv import load_dotenv
+from os import path, environ
 from django.utils.translation import gettext_lazy as _
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,13 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-d738_hvwfer!9$!h#wk%ynp-z8d0tlk*-et7d)kl9lygm(*0bx"
+SECRET_KEY = environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = environ.get('DEBUG').lower() == 'true'
+ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS', '').split(",")
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{s}" for s in environ.get('ALLOWED_HOSTS', '').split(",")]
 
 # Application definition
 
@@ -84,14 +87,24 @@ WSGI_APPLICATION = "paw.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': environ['DATABASE_NAME'],
+            'HOST': environ['DATABASE_HOST'],
+            'PORT': int(environ['DATABASE_PORT']),
+            'USER': environ['DATABASE_USER'],
+            'PASSWORD': environ['DATABASE_PASSWORD'],
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -153,14 +166,23 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "/tickets"
 LOGIN_URL = "/login"
 
+# Email
+if environ['MAIL_SERVER'] == "smtp":
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_FROM = environ['EMAIL_FROM']
+    DEFAULT_FROM_EMAIL = environ['EMAIL_FROM']
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = environ['EMAIL_HOST']
+    EMAIL_PORT = int(environ['EMAIL_PORT'])
+    EMAIL_HOST_USER = environ['EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = environ['EMAIL_HOST_PASSWORD']
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Google SSO
-GOOGLE_OAUTH_ENABLED = True
-GOOGLE_OAUTH_CLIENT_ID = ""
-GOOGLE_OAUTH_PROJECT_ID = ""
-GOOGLE_OAUTH_CLIENT_SECRET = ""
-GOOGLE_OAUTH_REDIRECT_URI = "http://localhost:8000/callback/google"
-GOOGLE_OAUTH_SCOPES = [
-    "openid",
-    "https://www.googleapis.com/auth/userinfo.profile",
-    "https://www.googleapis.com/auth/userinfo.email"
-]
+GOOGLE_OAUTH_ENABLED = environ.get('GOOGLE_OAUTH_ENABLED').lower() == 'true'
+GOOGLE_OAUTH_CLIENT_ID = environ['GOOGLE_OAUTH_CLIENT_ID']
+GOOGLE_OAUTH_PROJECT_ID = environ['GOOGLE_OAUTH_PROJECT_ID']
+GOOGLE_OAUTH_CLIENT_SECRET = environ['GOOGLE_OAUTH_CLIENT_SECRET']
+GOOGLE_OAUTH_REDIRECT_URI = environ['GOOGLE_OAUTH_REDIRECT_URI']
+GOOGLE_OAUTH_SCOPES = environ.get('GOOGLE_OAUTH_SCOPES', '').split(",")
