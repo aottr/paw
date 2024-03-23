@@ -51,6 +51,41 @@ poetry run python manage.py runserver
 
 The Project contains a [Dockerfile](Dockerfile) that can be built locally or in a pipeline. I also provide the latest state of the `main` branch as an image
 
+#### Compose
+
+1. Create a compose file, e.g. `docker-compose.yml`
+
+```bash
+version: '3.8'
+services:
+  paw:
+    image: ghcr.io/aottr/paw:latest
+    container_name: paw-ticket-system
+    restart: unless-stopped
+    ports:
+    - "127.0.0.1:8000:8000"
+    env_file:
+    - .env
+```
+
+2. Run the container with compose
+
+```bash
+docker compose up -d
+```
+
+3. Migrate the database (optional, recommended)
+
+```bash
+docker compose exec paw python manage.py migrate
+```
+
+4. Collect static files (optional, recommended)
+
+```bash
+docker compose exec paw python manage.py collectstatic --no-input
+```
+
 ## Usage
 
 - Access the application through `http://localhost:8000`.
