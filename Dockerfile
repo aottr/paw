@@ -7,9 +7,8 @@ ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_CREATE=1 \
     POETRY_CACHE_DIR=/tmp/poetry_cache
 
-WORKDIR /app
-
-COPY pyproject.toml poetry.lock ./
+COPY pyproject.toml poetry.lock /usr/src/app/
+WORKDIR /usr/src/app
 
 RUN poetry install --no-root && rm -rf $POETRY_CACHE_DIR
 
@@ -18,11 +17,12 @@ FROM python:3.12-slim-bullseye as runtime
 
 RUN apt-get update && apt-get -y install --no-install-recommends libmagic1 && rm -rf /var/lib/apt/lists/*
 
-ENV VIRTUAL_ENV=/app/.venv \
-    PATH="/app/.venv/bin:$PATH"
+ENV VIRTUAL_ENV=/usr/src/app/.venv \
+    PATH="/usr/src/app/.venv/bin:$PATH"
 
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
-COPY . .
+COPY . /usr/src/app
+WORKDIR /usr/src/app
 
 ENTRYPOINT ["python3"] 
 CMD ["manage.py", "runserver", "0.0.0.0:8000"]
