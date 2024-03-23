@@ -2,9 +2,10 @@ from django.db import models
 from core.models import PawUser
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from uuid import uuid4
+from core.models import MailTemplate
 
 
 def ticket_directory_path(instance, filename):
@@ -89,12 +90,55 @@ class Ticket(models.Model):
 
 @receiver(post_save, sender=Ticket, dispatch_uid="team_auto_assignment")
 def update_team_assignment(sender, instance, created, **kwargs):
-    if not created or not instance.category or not instance.category.team:
-        return
-
+    if not created:
+        return None
+    
+    if not instance.category or not instance.category.team:
+        mail_template = MailTemplate.get_template('ticket_assigned')
+        if not mail_template:
+            return None
+        #TODO send mail to all supporters
+        return None
+    
+    # assign team to ticket
     instance.assigned_team = instance.category.team
     instance.save()
 
+    mail_template = MailTemplate.get_template('ticket_assigned')
+    if not mail_template:
+        return None
+    mail_template.send_mail(instance.category.team.members.values_list('email', flat=True), {
+        'ticket_id': instance.id, 'ticket_title': instance.title, 'ticket_description': instance.description, 
+        'ticket_priority': instance.get_priority(), 'ticket_category': instance.category.name if instance.category else _('General'),
+        'ticket_creator_username': instance.user.username})
+
+
+
+@receiver(post_save, sender=Ticket, dispatch_uid="mail_notification")
+def send_mail_notification(sender, instance, created, **kwargs):
+    if created:
+        mail_template = MailTemplate.get_template('new_ticket', instance.user.language)
+        if not mail_template:
+            return None
+        mail_template.send_mail(instance.user.email, {
+            'ticket_id': instance.id, 'ticket_creator_username': instance.user.username, 'ticket_title': instance.title,
+            'ticket_description': instance.description, 'ticket_category': instance.category.name if instance.category else _('General')})
+
+@receiver(pre_save, sender=Ticket, dispatch_uid="mail_change_notification")
+def send_mail_change_notification(sender, instance, update_fields=None, **kwargs):
+    try:
+        old_instance = Ticket.objects.get(id=instance.id)
+    except Ticket.DoesNotExist:
+        return None 
+    
+    if old_instance.status != instance.status:
+        mail_template = MailTemplate.get_template('ticket_status_change', instance.user.language)
+        if not mail_template:
+            return None
+        mail_template.send_mail(instance.user.email, {
+            'ticket_id': instance.id, 'ticket_creator_username': instance.user.username, 'ticket_status': instance.status, 
+            'ticket_status_old': old_instance.status, 'ticket_title': instance.title
+        })
 
 class Comment(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
