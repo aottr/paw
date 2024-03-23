@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "status",
+    "fbl_integration"
 ]
 
 AUTH_USER_MODEL = "core.PawUser"
@@ -65,7 +66,10 @@ ROOT_URLCONF = "paw.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'paw' / 'templates'],
+        "DIRS": [
+            BASE_DIR / 'paw' / 'templates',
+            BASE_DIR / 'fbl_integration' / 'templates',
+            ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -97,7 +101,7 @@ if environ['DATABASE_ENGINE'] == "sqlite3":
 else:
     DATABASES = {
         'default': {
-            'ENGINE': f"django.db.backends.{environ['DATABASE_ENGINE']}",
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': environ['DATABASE_NAME'],
             'HOST': environ['DATABASE_HOST'],
             'PORT': int(environ['DATABASE_PORT']),

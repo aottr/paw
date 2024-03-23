@@ -9,6 +9,9 @@
     <a href="{% url 'register' %}" class="btn btn-sm btn-neutral">{% trans 'Register Account' %}</a>
   </div>
   <div class="bg-base-200 rounded p-8">
+
+    {% include 'partials/attendee_login.html' with general_login=True %}
+
     <form method="post">
       {% csrf_token %}
 

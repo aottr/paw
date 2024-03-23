@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "../paw/templates/**/*.{html,js}",
     "../status/templates/**/*.{html,js}",
+    "../fbl_integration/templates/**/*.{html,js}",
   ],
   theme: {
     extend: {},
