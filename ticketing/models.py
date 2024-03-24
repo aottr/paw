@@ -216,7 +216,7 @@ class Comment(models.Model):
 
 @receiver(post_save, sender=Comment, dispatch_uid="mail_comment_notification")
 def send_mail_comment_notification(sender, instance, created, **kwargs):
-    if created and instance.ticket.user.receive_email_notifications:
+    if created and instance.ticket.user.receive_email_notifications and instance.user != instance.ticket.user:
         mail_template = MailTemplate.get_template('new_comment', instance.user.language)
         if not mail_template:
             return None

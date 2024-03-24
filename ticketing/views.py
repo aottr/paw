@@ -72,6 +72,7 @@ def show_ticket(request, ticket_id):
 
                 if 'close' in request.POST and can_edit:
                     ticket.close_ticket()
+                return redirect("ticket_detail", ticket_id=ticket.id)
 
     comments = ticket.comment_set.all()
     context = {
