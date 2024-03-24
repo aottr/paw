@@ -9,6 +9,7 @@
   <title>paw</title>
 </head>
 <body>
+  {% load i18n %}
   <div class="container h-full min-h-screen mx-auto flex flex-col w-full">
     <div class="navbar">
       <div class="navbar-start">
@@ -16,8 +17,8 @@
       </div>
       <div class="navbar-center"></div>
       <div class="navbar-end">
-        <a class="btn mr-4" href="{% url 'all_tickets' %}">Tickets</a>
-        <a class="btn mr-4" href="{% url 'incident-list' %}">Status</a>
+        <a class="btn mr-4" href="{% url 'all_tickets' %}">{% trans 'Tickets' %}</a>
+        <a class="btn mr-4" href="{% url 'incident-list' %}">{% trans 'Status' %}</a>
         {% if not request.user.is_authenticated %}
         <label class="swap swap-rotate">
           <input type="checkbox" id="theme-switch" />

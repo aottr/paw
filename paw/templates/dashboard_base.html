@@ -11,69 +11,85 @@
 <body>
 {% block content %}
 {% load i18n %}
-<div class="flex h-full min-h-screen">
-    <div class="flex-none w-20 lg:w-72 fixed h-full bg-neutral text-neutral-content p-4 overflow-y-auto">
-        <div class="flex flex-col h-full">
-            <a href="" class="mt-4 mb-10">
-            {% include 'partials/logo.html' with responsive=True %}
-            </a>
-            <a href="{% url 'create_ticket' %}" class="btn btn-ghost btn-square lg:w-full lg:p-4 lg:btn-lg lg:justify-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
-                <span class="hidden lg:block">{% trans 'Create Ticket' %}</span>
-            </a>
-            <a href="{% url 'all_tickets' %}" class="btn btn-ghost btn-square lg:w-full lg:p-4 lg:btn-lg lg:justify-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 5l0 2" /><path d="M15 11l0 2" /><path d="M15 17l0 2" /><path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2" /></svg>
-                <span class="hidden lg:block">{% trans 'Tickets' %}</span>
-            </a>
-            <a href="{% url 'tickets_history' %}" class="btn btn-ghost btn-square lg:w-full lg:p-4 lg:btn-lg lg:justify-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg>
-                <span class="hidden lg:block">{% trans 'History' %}</span>
-            </a>
-
-            <div class="flex-grow"></div>
-            <a href="{% url 'incident-list' %}" class="btn btn-ghost btn-square lg:w-full lg:p-4 lg:btn-lg lg:justify-start mt-10">
-                <svg  xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 18v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M7 14l3 -3l2 2l3 -3l2 2" /></svg>
-                <span class="hidden lg:block">{% trans 'Status' %}</span>
-            </a>
-            <div class="flex items-center py-2 lg:p-2 justify-center lg:justify-start mt-6">
-                <div class="avatar placeholder">
-                    <div class="bg-base-300 text-base-content rounded-full w-10">
-                        {% if request.user.profile_picture %}
-                        <img src="{{ request.user.profile_picture.url }}" />
-                        {% else %}
-                        <span class="text-xl">{{ request.user.username|slice:":2" }}</span>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="hidden ml-2 text-neutral-content lg:flex flex-col p-1">
-                    {{ request.user.username }}
-                    <span class="text-xs">
-                        {% for group in request.user.groups.all %}
-                            {{ group.name }}{%if not forloop.last%},{%endif%}
-                        {% endfor %}
-                    </span>
-                </div>
-            </div>
-            {% if user.is_superuser %}
-            <a href="/admin" class="btn btn-ghost btn-square lg:w-full lg:px-3 lg:btn-sm lg:justify-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M6 4v4" /><path d="M6 12v8" /><path d="M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M12 4v10" /><path d="M12 18v2" /><path d="M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M18 4v1" /><path d="M18 9v11" /></svg>
-                <span class="hidden lg:block">Admin</span>
-            </a>
-            {% endif %}
-            <a href="{% url 'settings' %}" class="btn btn-ghost btn-square lg:w-full lg:px-3 lg:btn-sm lg:justify-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg>
-                <span class="hidden lg:block">{% trans 'Settings' %}</span>
-            </a>
-            <a href="{% url 'logout' %}" class="btn btn-error btn-square lg:w-full lg:px-3 lg:btn-sm lg:justify-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M9 12h12l-3 -3" /><path d="M18 15l3 -3" /></svg>
-                <span class="hidden lg:block">{% trans 'Logout' %}</span>
-            </a>
-        </div>
-    </div>
-    <div class="flex-grow ml-20 lg:ml-72 overflow-y-auto">
+<div class="drawer lg:drawer-open">
+    <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col">
+    <div class="flex-none lg:hidden">
+        <label for="my-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost z-10 fixed top-0 left-0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </label>
+      </div> 
     {% block dashboard_content %}
     {% endblock %}
-    </div>
+  </div> 
+  <div class="drawer-side z-20">
+    <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label> 
+    <ul class="menu p-4 w-72 min-h-full bg-neutral text-neutral-content">
+        <a href="" class="mt-4 mb-10">
+        {% include 'partials/logo.html' with responsive=False %}
+        </a>
+        <li>
+            <a href="{% url 'create_ticket' %}" class="btn btn-ghost w-full p-4 btn-lg justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
+                <span class="block">{% trans 'Create Ticket' %}</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'all_tickets' %}" class="btn btn-ghost w-full p-4 btn-lg justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 5l0 2" /><path d="M15 11l0 2" /><path d="M15 17l0 2" /><path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2" /></svg>
+                <span class="block">{% trans 'Tickets' %}</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'tickets_history' %}" class="btn btn-ghost w-full p-4 btn-lg justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" /><path d="M10 12l4 0" /></svg>
+                <span class="block">{% trans 'History' %}</span>
+            </a>
+        </li>
+        <div class="flex-grow"></div>
+        <li>
+            <a href="{% url 'incident-list' %}" class="btn btn-ghost btn-square w-full p-4 btn-lg justify-start mt-10">
+                <svg  xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 18v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M7 14l3 -3l2 2l3 -3l2 2" /></svg>
+                <span class="block">{% trans 'Status' %}</span>
+            </a>
+        </li>
+        <div class="flex items-center py-2 p-2 justify-start mt-6">
+            <div class="avatar placeholder">
+                <div class="bg-base-300 text-base-content rounded-full w-10">
+                    {% if request.user.profile_picture %}
+                    <img src="{{ request.user.profile_picture.url }}" />
+                    {% else %}
+                    <span class="text-xl">{{ request.user.username|slice:":2" }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="ml-2 text-neutral-content flex flex-col p-1">
+                {{ request.user.username }}
+                <span class="text-xs">
+                    {% for group in request.user.groups.all %}
+                        {{ group.name }}{%if not forloop.last%},{%endif%}
+                    {% endfor %}
+                </span>
+            </div>
+        </div>
+        {% if user.is_superuser %}
+        <li>
+            <a href="/admin" class="btn btn-ghost btn-square w-full px-3 btn-sm justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M6 4v4" /><path d="M6 12v8" /><path d="M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M12 4v10" /><path d="M12 18v2" /><path d="M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M18 4v1" /><path d="M18 9v11" /></svg>
+                <span class="block">{% trans 'Admin' %}</span>
+            </a>
+        </li>
+        {% endif %}
+        <a href="{% url 'settings' %}" class="btn btn-ghost btn-square w-full px-3 btn-sm justify-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg>
+            <span class="block">{% trans 'Settings' %}</span>
+        </a>
+        <a href="{% url 'logout' %}" class="btn btn-error btn-square w-full px-3 btn-sm justify-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M9 12h12l-3 -3" /><path d="M18 15l3 -3" /></svg>
+            <span class="block">{% trans 'Logout' %}</span>
+        </a>
+    </ul>
+  </div>
 </div>
 {% endblock %}
 </body>
