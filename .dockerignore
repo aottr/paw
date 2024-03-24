@@ -1,2 +1,6 @@
 .env
 *.sqlite3
+.gitattributes
+.gitignore
+.prettierignore
+CONTRIBUTING.md
