@@ -62,6 +62,7 @@
         </div>
         <div class="mb-10">
         {% if ticket.status != 'closed' %}
+        {% if can_edit or ticker.user == request.user %}
         {% if can_edit %}
         <form action="" method="post">
             {% csrf_token %}
@@ -94,7 +95,7 @@
             </div>
 
             <div class="flex justify-end">
-                {% if request.user.is_staff %}
+                {% if can_edit %}
                 <div class="form-control mt-2">
                     <label for="{{ form.hidden_from_client.id_for_label }}" class="cursor-pointer label">
                     {{ form.hidden_from_client }}
@@ -104,6 +105,7 @@
                 {% endif %}
             </div>
         </form>
+        {% endif %} {% comment %} can_edit or ticket.user == request.user {% endcomment %}
         {% else %}
         <div class="divider">{% trans 'Ticket has been closed' %}</div>
         {% if can_edit and ticket.status == 'closed' %}

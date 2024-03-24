@@ -74,6 +74,9 @@ class Ticket(models.Model):
         """
         For regular users with no team: return all open tickets that are created by the user
         """
+        if user.is_superuser:
+            return cls.objects.all()
+        
         user_teams = user.team_set.all()
         if not user_teams:
             return cls.objects.filter(user=user)
@@ -103,10 +106,14 @@ class Ticket(models.Model):
         return cls._get_tickets(user).filter(status=cls.Status.CLOSED)
     
     def can_open(self, user):
+        if user.is_superuser:
+            return True
         return self.user == user or self.assigned_to == user or self.assigned_team in user.team_set.all() or self.assigned_team is None and user.team_set.filter(access_non_category_tickets=True).exists()
     
     def can_edit(self, user):
-        assigned_and_write_access = self.assigned_team in user.team_set.filter(readonly_access=False)
+        if user.is_superuser:
+            return True
+        assigned_and_write_access = self.assigned_team in user.team_set.filter(readonly_access=False) or self.assigned_to == user
         unassigned_and_write_access = self.assigned_team is None and user.team_set.filter(access_non_category_tickets=True, readonly_access=False).exists()
         print(assigned_and_write_access, unassigned_and_write_access)
         return self.can_open(user) and (assigned_and_write_access or unassigned_and_write_access)
