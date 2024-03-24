@@ -1009,6 +1009,12 @@ html {
   line-height: 1.25rem;
 }
 
+.chat-footer {
+  grid-row-start: 3;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .chat-bubble {
   position: relative;
   display: block;
@@ -1773,6 +1779,15 @@ html {
   background-color: var(--fallback-er,oklch(var(--er)/var(--tw-bg-opacity)));
   --tw-text-opacity: 1;
   color: var(--fallback-erc,oklch(var(--erc)/var(--tw-text-opacity)));
+}
+
+.badge-ghost {
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-bg-opacity)));
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
 }
 
 .badge-outline.badge-neutral {
@@ -3308,6 +3323,11 @@ html {
   background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
 }
 
+.bg-base-content {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-bg-opacity)));
+}
+
 .stroke-current {
   stroke: currentColor;
 }
@@ -3451,6 +3471,10 @@ html {
 
 .opacity-70 {
   opacity: 0.7;
+}
+
+.opacity-60 {
+  opacity: 0.6;
 }
 
 @media (min-width: 1024px) {

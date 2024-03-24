@@ -55,7 +55,12 @@
                     {{ comment.user.username }}
                     <time class="text-xs opacity-50">{{ comment.created_at|date:"d.m.y" }}</time>
                     </div>
-                    <div class="chat-bubble whitespace-pre-line">{{ comment.text }}</div>
+                    <div class="chat-bubble {% if comment.is_only_for_staff %}bg-base-300 text-base-content{% endif %} whitespace-pre-line">{{ comment.text }}</div>
+                    {% if comment.is_only_for_staff %}
+                    <div class="chat-footer opacity-60 text-sm">
+                        {% trans 'Internal' %}
+                    </div>
+                    {% endif %}
                 </div>
             {% endif %}
         {% endfor %}
