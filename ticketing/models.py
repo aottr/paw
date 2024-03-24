@@ -18,6 +18,7 @@ class Team(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     members = models.ManyToManyField(PawUser)
+    access_non_category_tickets = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -66,6 +67,43 @@ class Ticket(models.Model):
         indexes = [
             models.Index(fields=["priority", "title"]),
         ]
+
+    @classmethod
+    def _get_tickets(cls, user) -> models.QuerySet:
+        """
+        For regular users with no team: return all open tickets that are created by the user
+        """
+        user_teams = user.team_set.all()
+        if not user_teams:
+            return cls.objects.filter(user=user)
+        
+        q = cls.objects.filter(
+            models.Q(user=user) | # tickets created by user
+            (models.Q(assigned_team__in=user_teams) | models.Q(assigned_to=user)) | # tickets assigned to user or user's team
+            (models.Q(assigned_team=None) & models.Q(category=None)) # tickets that are not assigned and have no category (general), needs to be excluded with filter
+        )
+
+        if not any([team.access_non_category_tickets for team in user_teams]):
+            return q.exclude(models.Q(assigned_team=None) & models.Q(category=None) & ~models.Q(user=user))
+        return q
+
+    @classmethod
+    def get_open_tickets(cls, user) -> models.QuerySet:
+        """
+        For regular users with no team: return all open tickets that are created by the user
+        """
+        return cls._get_tickets(user).exclude(status=cls.Status.CLOSED)
+
+    @classmethod
+    def get_closed_tickets(cls, user) -> models.QuerySet:
+        """
+        For regular users with no team: return all closed tickets that are created by the user
+        """
+        return cls._get_tickets(user).filter(status=cls.Status.CLOSED)
+    
+    def can_open(self, user):
+        return self in Ticket._get_tickets(user)
+
 
     def close_ticket(self):
         self.status = self.Status.CLOSED

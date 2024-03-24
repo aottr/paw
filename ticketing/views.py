@@ -8,15 +8,7 @@ from .forms import CommentForm, TicketForm, TemplateForm, TeamAssignmentForm, Ca
 
 @login_required
 def show_tickets(request):
-    if request.user.is_staff:
-        # show only tickets that are not closed and are not assigned or assigned to the current user's team
-        tickets = Ticket.objects.filter(
-            ~Q(status=Ticket.Status.CLOSED) & (~Q(assigned_team=None)
-                                               | ~Q(assigned_team__in=request.user.team_set.all()))
-        ).order_by("priority", "-created_at")
-    else:
-        tickets = Ticket.objects.filter(
-            user=request.user).order_by("-created_at")
+    tickets = Ticket.get_open_tickets(request.user).order_by("priority", "-updated_at")
     return render(request, "ticketing/tickets.html", {"tickets": tickets})
 
 
@@ -37,7 +29,7 @@ def show_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, pk=ticket_id)
     # comment_templates = Template.objects.filter(category=ticket.category)
 
-    if request.user != ticket.user and not request.user.is_staff:
+    if not ticket.can_open(request.user):
         return redirect("all_tickets")
 
     form, template_form, team_assignment_form, category_assignment_form = CommentForm(

@@ -15,5 +15,8 @@ class TicketAdmin(admin.ModelAdmin):
 
 admin.site.register(Comment)
 admin.site.register(Template)
-admin.site.register(Team)
+
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
+    filter_horizontal = ('members',)
 admin.site.register(FileAttachment)
