@@ -62,7 +62,7 @@
         </div>
         <div class="mb-10">
         {% if ticket.status != 'closed' %}
-        {% if can_edit or ticker.user == request.user %}
+        {% if can_edit or ticket.user == request.user %}
         {% if can_edit %}
         <form action="" method="post">
             {% csrf_token %}
