@@ -135,6 +135,9 @@ class Ticket(models.Model):
 
     def get_priority(self):
         return self.Priority(self.priority).label
+    
+    def get_status(self):
+        return self.Status(self.status).label
 
     def __str__(self):
         return self.title
@@ -177,7 +180,7 @@ def send_mail_notification(sender, instance, created, **kwargs):
             'ticket_description': instance.description, 'ticket_category': instance.category.name if instance.category else _('General')})
 
 @receiver(pre_save, sender=Ticket, dispatch_uid="mail_change_notification")
-def send_mail_change_notification(sender, instance, update_fields=None, **kwargs):
+def send_mail_change_notification(sender, instance: Ticket, update_fields=None, **kwargs):
     if not instance.user.receive_email_notifications:
         return None
     try:
@@ -190,8 +193,8 @@ def send_mail_change_notification(sender, instance, update_fields=None, **kwargs
         if not mail_template:
             return None
         mail_template.send_mail(instance.user.email, {
-            'ticket_id': instance.id, 'ticket_creator_username': instance.user.username, 'ticket_status': instance.status, 
-            'ticket_status_old': old_instance.status, 'ticket_title': instance.title
+            'ticket_id': instance.id, 'ticket_creator_username': instance.user.username, 'ticket_status': instance.get_status(), 
+            'ticket_status_old': old_instance.get_status(), 'ticket_title': instance.title
         })
 
 class Comment(models.Model):
