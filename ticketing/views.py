@@ -14,13 +14,7 @@ def show_tickets(request):
 
 @login_required
 def show_tickets_history(request):
-    if request.user.is_staff:
-        tickets = Ticket.objects.filter(
-            status=Ticket.Status.CLOSED).order_by("priority", "-created_at")
-        print(tickets)
-    else:
-        tickets = Ticket.objects.filter(
-            user=request.user).order_by("-created_at")
+    tickets = Ticket.get_closed_tickets(request.user).order_by("priority", "-updated_at")
     return render(request, "ticketing/tickets_history.html", {"tickets": tickets})
 
 
