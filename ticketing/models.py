@@ -19,6 +19,7 @@ class Team(models.Model):
     description = models.TextField(blank=True)
     members = models.ManyToManyField(PawUser)
     access_non_category_tickets = models.BooleanField(default=False)
+    readonly_access = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -102,7 +103,13 @@ class Ticket(models.Model):
         return cls._get_tickets(user).filter(status=cls.Status.CLOSED)
     
     def can_open(self, user):
-        return self in Ticket._get_tickets(user)
+        return self.user == user or self.assigned_to == user or self.assigned_team in user.team_set.all() or self.assigned_team is None and user.team_set.filter(access_non_category_tickets=True).exists()
+    
+    def can_edit(self, user):
+        assigned_and_write_access = self.assigned_team in user.team_set.filter(readonly_access=False)
+        unassigned_and_write_access = self.assigned_team is None and user.team_set.filter(access_non_category_tickets=True, readonly_access=False).exists()
+        print(assigned_and_write_access, unassigned_and_write_access)
+        return self.can_open(user) and (assigned_and_write_access or unassigned_and_write_access)
 
 
     def close_ticket(self):

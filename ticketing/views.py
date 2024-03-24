@@ -76,7 +76,8 @@ def show_ticket(request, ticket_id):
     context = {
         "ticket": ticket, "comments": comments, "attachments": [attachment.file for attachment in ticket.fileattachment_set.all()],
         "form": form, "template_form": template_form,
-        "team_assignment_form": team_assignment_form, "category_assignment_form": category_assignment_form
+        "team_assignment_form": team_assignment_form, "category_assignment_form": category_assignment_form,
+        "can_edit": ticket.can_edit(request.user)
     }
     return render(request, "ticketing/ticket_detail.html", context)
 
