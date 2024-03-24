@@ -125,6 +125,7 @@ def settings_view(request):
             request.user.language = form.cleaned_data["language"]
             request.user.telegram_username = form.cleaned_data["telegram_username"]
             request.user.use_darkmode = form.cleaned_data["use_darkmode"]
+            request.user.receive_email_notifications = form.cleaned_data["receive_email_notifications"]
             if form.cleaned_data["profile_picture"]:
                 request.user.profile_picture = form.cleaned_data["profile_picture"]
             request.user.save()
@@ -134,6 +135,7 @@ def settings_view(request):
             "language": request.user.language,
             "telegram_username": request.user.telegram_username,
             "use_darkmode": request.user.use_darkmode,
+            "receive_email_notifications": request.user.receive_email_notifications
         })
 
     res = render(request, "core/settings.html", {"form": form})

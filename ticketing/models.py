@@ -116,7 +116,7 @@ def update_team_assignment(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Ticket, dispatch_uid="mail_notification")
 def send_mail_notification(sender, instance, created, **kwargs):
-    if created:
+    if created and instance.user.receive_email_notifications:
         mail_template = MailTemplate.get_template('new_ticket', instance.user.language)
         if not mail_template:
             return None
@@ -126,6 +126,8 @@ def send_mail_notification(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender=Ticket, dispatch_uid="mail_change_notification")
 def send_mail_change_notification(sender, instance, update_fields=None, **kwargs):
+    if not instance.user.receive_email_notifications:
+        return None
     try:
         old_instance = Ticket.objects.get(id=instance.id)
     except Ticket.DoesNotExist:
@@ -159,7 +161,7 @@ class Comment(models.Model):
 
 @receiver(post_save, sender=Comment, dispatch_uid="mail_comment_notification")
 def send_mail_comment_notification(sender, instance, created, **kwargs):
-    if created:
+    if created and instance.ticket.user.receive_email_notifications:
         mail_template = MailTemplate.get_template('new_comment', instance.user.language)
         if not mail_template:
             return None

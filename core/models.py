@@ -11,6 +11,7 @@ class PawUser(AbstractUser):
     language = models.CharField(max_length=2, default='en')
     telegram_username = models.CharField(max_length=50, null=True, blank=True)
     use_darkmode = models.BooleanField(default=False)
+    receive_email_notifications = models.BooleanField(default=True)
 
     def __str__(self):
         return self.username
@@ -52,7 +53,7 @@ class MailTemplate(models.Model):
                 fail_silently=False,
             )
         except Exception as e:
-            print(e)
+            print(f"Error sending email with type {type(e)}: {e}")
 
     def __str__(self):
         return f"{self.name} - [{self.event}]"

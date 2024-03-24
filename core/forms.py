@@ -14,11 +14,13 @@ class UserChangeForm(forms.Form):
         'class': 'grow', 'placeholder': 'Telegram Username'}))
     use_darkmode = forms.BooleanField(
         required=False, widget=forms.CheckboxInput(attrs={'class': 'toggle toggle-secondary'}))
+    receive_email_notifications = forms.BooleanField(
+        required=False, widget=forms.CheckboxInput(attrs={'class': 'toggle toggle-secondary'}))
 
     class Meta:
         model = PawUser
         fields = ('email', 'profile_picture',
-                  'language', 'telegram_username', 'use_darkmode')
+                  'language', 'telegram_username', 'use_darkmode', 'receive_email_notifications')
 
 USERNAME_REGEX_FIELD = forms.RegexField(
     required=True,

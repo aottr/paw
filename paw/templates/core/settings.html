@@ -30,7 +30,14 @@
               <span class="label-text font-semibold text-base-content" for="{{ form.use_darkmode.id_for_label }}">{% trans 'Use Darkmode' %}</span> 
               {{ form.use_darkmode }}
             </label>
-          </div>
+        </div>
+
+        <div class="form-control w-full mb-2">
+          <label class="label cursor-pointer">
+            <span class="label-text font-semibold text-base-content" for="{{ form.receive_email_notifications.id_for_label }}">{% trans 'Receive Email Notifications' %}</span> 
+            {{ form.receive_email_notifications }}
+          </label>
+        </div>
 
         <label class="form-control w-full mb-2">
             <div class="label">
