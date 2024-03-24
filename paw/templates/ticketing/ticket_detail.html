@@ -36,7 +36,7 @@
         <h1 class="text-xl font-bold my-4">{% trans 'Activity' %}</h1>
         <div class="mb-4">
         {% for comment in comments %}
-            {% if not comment.is_only_for_staff or comment.is_only_for_staff and request.user.is_staff %}
+            {% if not comment.is_only_for_staff or comment.is_only_for_staff and can_edit %}
                 {% if comment.user == request.user %}
                 <div class="chat chat-start">
                 {% else %}
@@ -62,7 +62,8 @@
         </div>
         <div class="mb-10">
         {% if ticket.status != 'closed' %}
-        {% if request.user.is_staff %}
+        {% if can_edit or ticket.user == request.user %}
+        {% if can_edit %}
         <form action="" method="post">
             {% csrf_token %}
             <div class="flex justify-end items-center mt-4 mb-2">
@@ -88,13 +89,13 @@
                 </div>
                 <div class="grow"></div>
                 <button type="submit" name="submit" class="btn btn-success">{% trans 'Add Comment' %}</button>
-                {% if request.user.is_staff %}
+                {% if can_edit %}
                 <button type="submit" name="close" class="btn btn-error ml-4">{% trans 'Close Ticket' %}</button>
                 {% endif %}
             </div>
 
             <div class="flex justify-end">
-                {% if request.user.is_staff %}
+                {% if can_edit %}
                 <div class="form-control mt-2">
                     <label for="{{ form.hidden_from_client.id_for_label }}" class="cursor-pointer label">
                     {{ form.hidden_from_client }}
@@ -104,16 +105,17 @@
                 {% endif %}
             </div>
         </form>
+        {% endif %} {% comment %} can_edit or ticket.user == request.user {% endcomment %}
         {% else %}
         <div class="divider">{% trans 'Ticket has been closed' %}</div>
-        {% if request.user.is_staff and ticket.status == 'closed' %}
+        {% if can_edit and ticket.status == 'closed' %}
         <div class="flex justify-end items-center mt-4">
             <form method="post">
                 {% csrf_token %}
                 <button class="btn btn-warning ml-2" name="reopen_ticket">{% trans 'Re-Open Ticket' %}</button>
             </form>
         </div>
-        {% endif %} {% comment %} request.user.is_staff and ticket.status == 'closed' {% endcomment %}
+        {% endif %} {% comment %} can_edit and ticket.status == 'closed' {% endcomment %}
         {% endif %}
         </div>
     </div>
@@ -162,7 +164,7 @@
             <span>{% trans 'General' %}</span>
             {% endif %}
         </div>
-        {% if request.user.is_staff %}
+        {% if can_edit %}
         <form action="" method="post">
             {% csrf_token %}
             <h2 class="font-semibold text-xs mb-2">{% trans 'Assign to new category' %}</h2>
@@ -177,7 +179,7 @@
         <div class="text-base-content/85 flex items-center text-sm mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
             {% include 'partials/assigned_to.html' with assigned_to=ticket.assigned_to %}
-            {% if request.user.is_staff and ticket.assigned_to != request.user %}
+            {% if can_edit and ticket.assigned_to != request.user %}
             <form method="post">
                 {% csrf_token %}
                 <button class="btn btn-xs btn-neutral ml-2" name="assign_self">{% trans 'Assign to me' %}</button>
@@ -192,7 +194,7 @@
             <span class="italic">{% trans 'Unassigned' %}</span>
             {% endif %}
         </div>
-        {% if request.user.is_staff %}
+        {% if can_edit %}
         <form action="" method="post">
             {% csrf_token %}
             <h2 class="font-semibold text-xs mb-2">{% trans 'Assign to new team' %}</h2>

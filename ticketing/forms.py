@@ -96,7 +96,7 @@ class TemplateForm(forms.Form):
 
 
 class TeamAssignmentForm(forms.Form):
-    team_select = forms.ModelChoiceField(queryset=Team.objects.all(), empty_label=_('No Team'), required=False, widget=forms.Select(
+    team_select = forms.ModelChoiceField(queryset=Team.objects.filter(readonly_access=False), empty_label=_('No Team'), required=False, widget=forms.Select(
         attrs={'class': 'select select-bordered select-sm w-full'}))
 
 

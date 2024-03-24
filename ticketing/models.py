@@ -18,6 +18,8 @@ class Team(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     members = models.ManyToManyField(PawUser)
+    access_non_category_tickets = models.BooleanField(default=False)
+    readonly_access = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -67,6 +69,56 @@ class Ticket(models.Model):
             models.Index(fields=["priority", "title"]),
         ]
 
+    @classmethod
+    def _get_tickets(cls, user) -> models.QuerySet:
+        """
+        For regular users with no team: return all open tickets that are created by the user
+        """
+        if user.is_superuser:
+            return cls.objects.all()
+        
+        user_teams = user.team_set.all()
+        if not user_teams:
+            return cls.objects.filter(user=user)
+        
+        q = cls.objects.filter(
+            models.Q(user=user) | # tickets created by user
+            (models.Q(assigned_team__in=user_teams) | models.Q(assigned_to=user)) | # tickets assigned to user or user's team
+            (models.Q(assigned_team=None) & models.Q(category=None)) # tickets that are not assigned and have no category (general), needs to be excluded with filter
+        )
+
+        if not any([team.access_non_category_tickets for team in user_teams]):
+            return q.exclude(models.Q(assigned_team=None) & models.Q(category=None) & ~models.Q(user=user))
+        return q
+
+    @classmethod
+    def get_open_tickets(cls, user) -> models.QuerySet:
+        """
+        For regular users with no team: return all open tickets that are created by the user
+        """
+        return cls._get_tickets(user).exclude(status=cls.Status.CLOSED)
+
+    @classmethod
+    def get_closed_tickets(cls, user) -> models.QuerySet:
+        """
+        For regular users with no team: return all closed tickets that are created by the user
+        """
+        return cls._get_tickets(user).filter(status=cls.Status.CLOSED)
+    
+    def can_open(self, user):
+        if user.is_superuser:
+            return True
+        return self.user == user or self.assigned_to == user or self.assigned_team in user.team_set.all() or self.assigned_team is None and user.team_set.filter(access_non_category_tickets=True).exists()
+    
+    def can_edit(self, user):
+        if user.is_superuser:
+            return True
+        assigned_and_write_access = self.assigned_team in user.team_set.filter(readonly_access=False) or self.assigned_to == user
+        unassigned_and_write_access = self.assigned_team is None and user.team_set.filter(access_non_category_tickets=True, readonly_access=False).exists()
+        print(assigned_and_write_access, unassigned_and_write_access)
+        return self.can_open(user) and (assigned_and_write_access or unassigned_and_write_access)
+
+
     def close_ticket(self):
         self.status = self.Status.CLOSED
         self.save()
@@ -83,6 +135,9 @@ class Ticket(models.Model):
 
     def get_priority(self):
         return self.Priority(self.priority).label
+    
+    def get_status(self):
+        return self.Status(self.status).label
 
     def __str__(self):
         return self.title
@@ -125,7 +180,7 @@ def send_mail_notification(sender, instance, created, **kwargs):
             'ticket_description': instance.description, 'ticket_category': instance.category.name if instance.category else _('General')})
 
 @receiver(pre_save, sender=Ticket, dispatch_uid="mail_change_notification")
-def send_mail_change_notification(sender, instance, update_fields=None, **kwargs):
+def send_mail_change_notification(sender, instance: Ticket, update_fields=None, **kwargs):
     if not instance.user.receive_email_notifications:
         return None
     try:
@@ -138,8 +193,8 @@ def send_mail_change_notification(sender, instance, update_fields=None, **kwargs
         if not mail_template:
             return None
         mail_template.send_mail(instance.user.email, {
-            'ticket_id': instance.id, 'ticket_creator_username': instance.user.username, 'ticket_status': instance.status, 
-            'ticket_status_old': old_instance.status, 'ticket_title': instance.title
+            'ticket_id': instance.id, 'ticket_creator_username': instance.user.username, 'ticket_status': instance.get_status(), 
+            'ticket_status_old': old_instance.get_status(), 'ticket_title': instance.title
         })
 
 class Comment(models.Model):

@@ -8,15 +8,7 @@ from .forms import CommentForm, TicketForm, TemplateForm, TeamAssignmentForm, Ca
 
 @login_required
 def show_tickets(request):
-    if request.user.is_staff:
-        # show only tickets that are not closed and are not assigned or assigned to the current user's team
-        tickets = Ticket.objects.filter(
-            ~Q(status=Ticket.Status.CLOSED) & (~Q(assigned_team=None)
-                                               | ~Q(assigned_team__in=request.user.team_set.all()))
-        ).order_by("priority", "-created_at")
-    else:
-        tickets = Ticket.objects.filter(
-            user=request.user).order_by("-created_at")
+    tickets = Ticket.get_open_tickets(request.user).order_by("priority", "-updated_at")
     return render(request, "ticketing/tickets.html", {"tickets": tickets})
 
 
@@ -35,34 +27,35 @@ def show_tickets_history(request):
 @login_required
 def show_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, pk=ticket_id)
+    can_edit = ticket.can_edit(request.user)
     # comment_templates = Template.objects.filter(category=ticket.category)
 
-    if request.user != ticket.user and not request.user.is_staff:
+    if not ticket.can_open(request.user):
         return redirect("all_tickets")
 
     form, template_form, team_assignment_form, category_assignment_form = CommentForm(
     ), TemplateForm(), TeamAssignmentForm(), CategoryAssignmentForm()
 
     if request.method == "POST":
-        if 'apply_template' in request.POST and request.user.is_staff:
+        if 'apply_template' in request.POST and can_edit:
             template_form = TemplateForm(request.POST)
             if template_form.is_valid():
                 template = template_form.cleaned_data["template_select"]
                 form = CommentForm(initial={"text": template.content})
-        elif 'assign_to_team' in request.POST and request.user.is_staff:
+        elif 'assign_to_team' in request.POST and can_edit:
             team_assignment_form = TeamAssignmentForm(request.POST)
             if team_assignment_form.is_valid():
                 ticket.assign_to_team(
                     team_assignment_form.cleaned_data["team_select"])
-        elif 'assign_to_category' in request.POST and request.user.is_staff:
+        elif 'assign_to_category' in request.POST and can_edit:
             category_assignment_form = CategoryAssignmentForm(request.POST)
             if category_assignment_form.is_valid():
                 ticket.category = category_assignment_form.cleaned_data["category_select"]
                 ticket.save()
-        elif 'assign_self' in request.POST and request.user.is_staff:
+        elif 'assign_self' in request.POST and can_edit:
             ticket.assigned_to = request.user
             ticket.save()
-        elif 'reopen_ticket' in request.POST and request.user.is_staff:
+        elif 'reopen_ticket' in request.POST and can_edit:
             ticket.status = Ticket.Status.IN_PROGRESS
             ticket.save()
         else:
@@ -77,14 +70,15 @@ def show_ticket(request, ticket_id):
                     for file in form.cleaned_data["attachments"]:
                         ticket.fileattachment_set.create(file=file)
 
-                if 'close' in request.POST and request.user.is_staff:
+                if 'close' in request.POST and can_edit:
                     ticket.close_ticket()
 
     comments = ticket.comment_set.all()
     context = {
         "ticket": ticket, "comments": comments, "attachments": [attachment.file for attachment in ticket.fileattachment_set.all()],
         "form": form, "template_form": template_form,
-        "team_assignment_form": team_assignment_form, "category_assignment_form": category_assignment_form
+        "team_assignment_form": team_assignment_form, "category_assignment_form": category_assignment_form,
+        "can_edit": can_edit
     }
     return render(request, "ticketing/ticket_detail.html", context)
 
