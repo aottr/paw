@@ -157,6 +157,15 @@ class Comment(models.Model):
     def __str__(self):
         return f'Comment by {self.user.username} on {self.ticket.title}'
 
+@receiver(post_save, sender=Comment, dispatch_uid="mail_comment_notification")
+def send_mail_comment_notification(sender, instance, created, **kwargs):
+    if created:
+        mail_template = MailTemplate.get_template('new_comment', instance.user.language)
+        if not mail_template:
+            return None
+        mail_template.send_mail(instance.ticket.user.email, {
+            'ticket_id': instance.ticket.id, 'ticket_title': instance.ticket.title, 'ticket_creator_username': instance.user.username,
+            'comment_text': instance.text})
 
 class FileAttachment(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)

@@ -154,7 +154,6 @@ cython_debug/
 node_modules
 
 
-static/admin
-static/colorfield
+static/*
 media/*
 .DS_Store
