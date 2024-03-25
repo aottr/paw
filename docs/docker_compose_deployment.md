@@ -37,7 +37,6 @@ If, for whatever reason, a production deployment should be used with **sqlite3**
 For this we slightly modify the deployment volumes:
 
 ```yaml
----
 volumes:
   - db:/usr/src/app/db.sqlite3
   - /opt/paw/media:/usr/src/app/media
@@ -45,6 +44,8 @@ volumes:
 ```
 
 Now you write directives in your config to host these files, the following snipped shows an example nginx config:
+
+#### Example nginx config
 
 ```nginx
 upstream paw {
@@ -73,6 +74,25 @@ server {
         proxy_set_header Host $host;
         proxy_redirect off;
     }
+}
+```
+
+#### Example Caddyfile
+
+```
+example.com {
+
+    handle /static/* {
+		file_server /opt/paw/static/*
+	}
+
+    handle /media/* {
+		file_server /opt/paw/media/*
+	}
+
+    handle {
+		reverse_proxy 127.0.0.1:8000
+	}
 }
 ```
 
