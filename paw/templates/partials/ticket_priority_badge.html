@@ -1,9 +1,9 @@
 {% block ticket_priority_badge %}
     {% if ticket.priority == 3 %}
-    <span class="badge badge-success join-item">Low</span>
+    <span class="badge badge-success join-item">{% trans 'Low' %}</span>
     {% elif ticket.priority == 2 %}
-    <span class="badge badge-warning join-item">Medium</span>
+    <span class="badge badge-warning join-item">{% trans 'Medium' %}</span>
     {% else %}
-    <span class="badge badge-error join-item">High</span>
+    <span class="badge badge-error join-item">{% trans 'High' %}</span>
     {% endif %}
 {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 23:44+0000\n"
+"POT-Creation-Date: 2024-03-25 11:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 
 #: core/forms.py:35 paw/templates/core/account_finish.html:29
-#: paw/templates/core/login.html:24
+#: paw/templates/core/login.html:24 paw/templates/core/register.html:20
 msgid "Username"
 msgstr ""
 
@@ -48,7 +48,16 @@ msgstr ""
 msgid "German"
 msgstr ""
 
-#: paw/templates/core/account_finish.html:10
+#: paw/templates/base.html:20 paw/templates/dashboard_base.html:40
+msgid "Tickets"
+msgstr ""
+
+#: paw/templates/base.html:21 paw/templates/dashboard_base.html:53
+#: paw/templates/ticketing/tickets.html:20
+msgid "Status"
+msgstr "Statut"
+
+#: paw/templates/core/account_finish.html:10 paw/templates/core/register.html:6
 msgid "Register a new account"
 msgstr ""
 
@@ -77,7 +86,7 @@ msgstr ""
 msgid "Register Account"
 msgstr ""
 
-#: paw/templates/core/login.html:30
+#: paw/templates/core/login.html:30 paw/templates/core/register.html:32
 msgid "Password"
 msgstr ""
 
@@ -87,6 +96,20 @@ msgstr ""
 
 #: paw/templates/core/login.html:46
 msgid "Log in with Google"
+msgstr ""
+
+#: paw/templates/core/register.html:26
+#, fuzzy
+#| msgid "Mail Address"
+msgid "Email Address"
+msgstr "Adresse e-mail"
+
+#: paw/templates/core/register.html:38
+msgid "Confirm Password"
+msgstr ""
+
+#: paw/templates/core/register.html:43
+msgid "Register"
 msgstr ""
 
 #: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:85
@@ -123,18 +146,10 @@ msgstr ""
 msgid "Create Ticket"
 msgstr "Nouveau ticket"
 
-#: paw/templates/dashboard_base.html:40
-msgid "Tickets"
-msgstr ""
-
 #: paw/templates/dashboard_base.html:46
 #: paw/templates/ticketing/tickets_history.html:5
 msgid "History"
 msgstr "Historique"
-
-#: paw/templates/dashboard_base.html:53 paw/templates/ticketing/tickets.html:20
-msgid "Status"
-msgstr "Statut"
 
 #: paw/templates/dashboard_base.html:79
 msgid "Admin"
@@ -148,6 +163,18 @@ msgstr "Se déconnecter"
 #: paw/templates/ticketing/ticket_detail.html:201
 msgid "Unassigned"
 msgstr "Non attribué"
+
+#: paw/templates/partials/ticket_priority_badge.html:3 ticketing/models.py:45
+msgid "Low"
+msgstr ""
+
+#: paw/templates/partials/ticket_priority_badge.html:5 ticketing/models.py:46
+msgid "Medium"
+msgstr ""
+
+#: paw/templates/partials/ticket_priority_badge.html:7 ticketing/models.py:47
+msgid "High"
+msgstr ""
 
 #: paw/templates/partials/ticket_status_badge.html:4 ticketing/models.py:40
 msgid "Open"
@@ -327,6 +354,22 @@ msgstr ""
 msgid "All services are operational"
 msgstr ""
 
+#: status/templates/status/incident_list.html:21
+msgid "Incidents"
+msgstr ""
+
+#: status/templates/status/incident_list.html:29
+msgid "Resolved"
+msgstr ""
+
+#: status/templates/status/incident_list.html:31
+msgid "Unresolved"
+msgstr ""
+
+#: status/templates/status/incident_list.html:37
+msgid "No incidents yet."
+msgstr ""
+
 #: ticketing/forms.py:39
 msgid "File size must be under 5MB."
 msgstr ""
@@ -354,18 +397,6 @@ msgstr "Aucune Team"
 #: ticketing/models.py:31
 msgid ""
 "If a team is selected, new tickets will automatically assigned to this team."
-msgstr ""
-
-#: ticketing/models.py:45
-msgid "Low"
-msgstr ""
-
-#: ticketing/models.py:46
-msgid "Medium"
-msgstr ""
-
-#: ticketing/models.py:47
-msgid "High"
 msgstr ""
 
 #~ msgid "Comment and close"

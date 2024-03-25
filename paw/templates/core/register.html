@@ -3,7 +3,7 @@
 {% block content %}
 {% load i18n %}
 <div class="self-center w-full max-w-xl mx-auto p-4">
-  <h1 class="text-3xl font-bold p-2">Register a new account</h1>
+  <h1 class="text-3xl font-bold p-2">{% trans 'Register a new account' %}</h1>
   <div class="bg-base-200 rounded p-8">
     <form method="post">
       {% csrf_token %}
@@ -17,30 +17,30 @@
 
       <div>
         <label class="label">
-            <span class="text-base label-text" for="{{ form.username.id_for_label }}">Username</span>
+            <span class="text-base label-text" for="{{ form.username.id_for_label }}">{% trans 'Username' %}</span>
         </label>
         {{ form.username }}
       </div>
       <div>
         <label class="label">
-            <span class="text-base label-text" for="{{ form.email.id_for_label }}">Email Address</span>
+            <span class="text-base label-text" for="{{ form.email.id_for_label }}">{% trans 'Email Address' %}</span>
         </label>
         {{ form.email}}
       </div>
       <div>
           <label class="label">
-              <span class="text-base label-text" for="{{ form.password.id_for_label }}">Password</span>
+              <span class="text-base label-text" for="{{ form.password.id_for_label }}">{% trans 'Password' %}</span>
           </label>
           {{ form.password }}
       </div>
       <div>
         <label class="label">
-            <span class="text-base label-text" for="{{ form.password_confirm.id_for_label }}">Confirm Password</span>
+            <span class="text-base label-text" for="{{ form.password_confirm.id_for_label }}">{% trans 'Confirm Password' %}</span>
         </label>
         {{ form.password_confirm }}
     </div>
       <div class="flex justify-end mt-4">
-        <button type="submit" class="btn btn-accent">Register</button>
+        <button type="submit" class="btn btn-accent">{% trans 'Register' %}</button>
       </div>
     </form>
   </div>

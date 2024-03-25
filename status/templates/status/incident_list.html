@@ -17,7 +17,7 @@
     {% endif %}
 
     <h1 class="text-2xl font-semibold mt-10 mb-2">
-      Incidents
+      {% trans 'Incidents' %}
     </h1>
 
     {% for incident in object_list %}
@@ -25,15 +25,15 @@
       <div class="text-xl mb-4 font-semibold flex items-center">
         <span class="flex-grow">{{ incident.title }}</span>
         {% if incident.resolved %}
-        <span class="badge badge-success">Resolved</span>
+        <span class="badge badge-success">{% trans 'Resolved' %}</span>
         {% else %}
-        <span class="badge badge-error">Unresolved</span>
+        <span class="badge badge-error">{% trans 'Unresolved' %}</span>
         {% endif %}
       </div>
       <p class="whitespace-pre-line">{{ incident.description }}</p>
     </div>
     {% empty %}
-    <div>No incidents yet.</div>
+    <div>{% trans 'No incidents yet.' %}</div>
     {% endfor %} 
   </div>
 </div>
