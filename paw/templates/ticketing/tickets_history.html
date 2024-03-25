@@ -43,7 +43,7 @@
             {% endif %}
           </div>
       </td>
-      <td>{{ ticket.updated_at|date:"d.m.Y H:m" }}</td>
+      <td>{{ ticket.updated_at|date:"SHORT_DATETIME_FORMAT" }}</td>
         <td class="flex justify-end"><a href="{% url 'ticket_detail' ticket.id %}" class="btn btn-xs btn-accent">{% trans 'View' %}</a></td>
       </tr>
         {% endfor %}
