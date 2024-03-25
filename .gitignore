@@ -157,3 +157,4 @@ node_modules
 static/*
 media/*
 .DS_Store
+!paw/locale/**/django.mo
