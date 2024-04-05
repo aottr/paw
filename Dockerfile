@@ -23,6 +23,3 @@ ENV VIRTUAL_ENV=/usr/src/app/.venv \
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 COPY . /usr/src/app
 WORKDIR /usr/src/app
-
-ENTRYPOINT ["python3"] 
-CMD ["manage.py", "runserver", "0.0.0.0:8000"]
