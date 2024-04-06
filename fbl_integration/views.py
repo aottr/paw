@@ -5,6 +5,7 @@ from .forms import FblAuthForm, FblAuthCodeForm, RegistrationCompletionForm
 from .utils import fbl_auth_request_code, fbl_auth_validate_code, fbl_auth_get_account, get_or_create_account
 
 def fbl_authentication_start(request):
+    print('fbl auth started')
     auth_form = FblAuthForm(request.POST or None)
     if request.method == "POST":
         if auth_form.is_valid():

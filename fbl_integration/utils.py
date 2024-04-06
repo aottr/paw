@@ -8,6 +8,7 @@ def fbl_auth_request_code(badge_number: int, dob: str) -> bool:
         "password": dob
     })
     if res.status_code != 201:
+        print(res.status_code, res.json())
         return False
     return True
 
@@ -18,6 +19,7 @@ def fbl_auth_validate_code(badge_number: str, dob: str, validation_code: str) ->
         "code": validation_code
     })
     if res.status_code != 201:
+        print(res.status_code, res.json())
         return None
     
     return res.json()["accessToken"]
@@ -27,6 +29,7 @@ def fbl_auth_get_account(jwt_token: str) -> dict[str, str] | None:
         "Authorization": f"Bearer {jwt_token}" 
     })
     if res.status_code != 200:
+        print(res.status_code, res.json())
         return None
     
     return res.json()
