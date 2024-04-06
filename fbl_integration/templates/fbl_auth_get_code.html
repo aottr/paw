@@ -2,10 +2,22 @@
 {% block content %}
 {% load i18n %}
 <div class="self-center w-full max-w-xl mx-auto">
+  <div class="flex items-center">
+    <h1 class="text-3xl font-bold p-2">{% trans 'FurryBlacklight Login' %}</h1>
+    <div class="flex-grow"></div>
+    <a href="{% url 'login' %}" class="btn btn-sm btn-neutral">{% trans 'Go Back' %}</a>
+  </div>
   <div class="bg-base-200 rounded p-8">
-    <p>
-        {% trans 'We sent you an email that contains a code for your login. Please enter the code in the field below.' %}
-    </p>
+    <ul class="steps w-full mb-6">
+      <li class="step step-accent">{% trans 'Authenticate' %}</li>
+      <li class="step step-accent">{% trans 'Confirm Code' %}</li>
+      <li class="step">{% trans 'Account Completion' %}</li>
+      <li class="step step-success">{% trans 'Done' %}</li>
+  </ul>
+
+  <div role="alert" class="alert alert-info mb-4">
+    {% trans 'We sent you an email that contains a code for your login. Please enter the code in the field below.' %}
+  </div>
     <form method="post" action="/fbl/auth_get_code">
         {% csrf_token %}
     
@@ -15,15 +27,30 @@
           <span>{{ get_code_form.non_field_errors }}</span>
         </div>
         {% endif %}
-        
-        <div>
+
+        <div class="form-control w-full">
+          <label class="label">
+              <span class="text-base label-text" for="{{ get_code_form.username.id_for_label }}">{% trans 'Badge Number' %}</span>
+          </label>
+          <input type="number" name="badge_number" class="w-full input input-bordered" value="{{ get_code_form.badge_number.value }}" readonly />
+        </div>
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="text-base label-text" for="{{ get_code_form.dob.id_for_label }}">{% trans 'Date of Birth' %}</span>
+          </label>
+          <input type="text" name="dob" class="w-full input input-bordered" value="{{ get_code_form.dob.value }}" readonly />
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <div class="form-control w-full">
           <label class="label">
               <span class="text-base label-text" for="{{ get_code_form.username.id_for_label }}">{% trans 'Verify Code' %}</span>
           </label>
-          <input type="number" name="validation_code" placeholder="000000" class="w-full input input-bordered" />
+          <input type="text" name="validation_code" x-mask="999999" placeholder="000000" class="w-full input input-bordered text-2xl" />
         </div>
         <div class="flex justify-end mt-6">
-          <button type="submit" class="btn btn-accent mb-4">{% trans 'Log In' %}</button>
+          <button type="submit" class="btn btn-accent mb-4">{% trans 'Confirm Code' %}</button>
         </div>
       </form>
   </div>

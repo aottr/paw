@@ -38,3 +38,31 @@ class FblAuthForm(forms.Form):
         cleaned_data["dob"] = dob
 
         return cleaned_data
+    
+class FblAuthCodeForm(FblAuthForm):
+    validation_code = forms.CharField(required=True)
+
+    def clean(self) -> dict[str, Any]:
+        cleaned_data = super(FblAuthCodeForm, self).clean()
+        validation_code = cleaned_data.get("validation_code")
+
+        if not validation_code:
+            raise forms.ValidationError(
+                _("The validation code is required. Please check your emails.")
+            )
+        
+        return cleaned_data
+    
+class RegistrationCompletionForm(forms.Form):
+    email = forms.EmailField(required=True)
+
+    def clean(self) -> dict[str, Any]:
+        cleaned_data = super(RegistrationCompletionForm, self).clean()
+        email = cleaned_data.get("email")
+
+        if not email:
+            raise forms.ValidationError(
+                _("A Mail is required for notifications.")
+            )
+        
+        return cleaned_data

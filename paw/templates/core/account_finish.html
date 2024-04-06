@@ -10,10 +10,10 @@
     <h1 class="text-3xl font-bold p-2">{% trans 'Register a new account' %}</h1>
     <div class="bg-base-200 rounded p-8">
         <ul class="steps w-full mb-6">
-            <li class="step step-accent">{% trans 'Authenticate' %}</li>
-            <li class="step step-accent">{% trans 'Set up account' %}</li>
-            <li class="step step-success">{% trans 'Done' %}</li>
-          </ul>
+          <li class="step step-accent">{% trans 'Authenticate' %}</li>
+          <li class="step step-accent">{% trans 'Set up account' %}</li>
+          <li class="step step-success">{% trans 'Done' %}</li>
+        </ul>
       <form method="post">
         {% csrf_token %}
 
