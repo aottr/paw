@@ -305,39 +305,29 @@ msgid "General"
 msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:177
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assign to new category"
-msgstr "Me l'attribuer"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:180
 #: paw/templates/ticketing/ticket_detail.html:210
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assign"
-msgstr "Me l'attribuer"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:185
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assignees"
-msgstr "Me l'attribuer"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:192
 msgid "Assign to me"
 msgstr "Me l'attribuer"
 
 #: paw/templates/ticketing/ticket_detail.html:207
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assign to new team"
-msgstr "Me l'attribuer"
+msgstr ""
 
 #: paw/templates/ticketing/tickets.html:5
-#, fuzzy
-#| msgid "Re-Open Ticket"
 msgid "Open Tickets"
-msgstr "Réouverture du ticket"
+msgstr ""
 
 #: paw/templates/ticketing/tickets.html:7
 #: paw/templates/ticketing/tickets_history.html:7
@@ -362,10 +352,8 @@ msgid "View"
 msgstr "Ouvrir"
 
 #: paw/templates/ticketing/tickets_history.html:20
-#, fuzzy
-#| msgid "Closed"
 msgid "Closed on"
-msgstr "Fermé"
+msgstr ""
 
 #: status/templates/status/incident_list.html:11
 msgid "Some services might not be fully operational"

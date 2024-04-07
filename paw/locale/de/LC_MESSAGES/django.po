@@ -24,16 +24,10 @@ msgid "Username"
 msgstr "Benutzername"
 
 #: core/forms.py:31
-#, fuzzy
-#| msgid "Please enter your name"
 msgid "Please enter a username"
 msgstr "Gib bitte deinen Namen an"
 
 #: core/forms.py:32
-#, fuzzy
-#| msgid ""
-#| "Alphanumeric characters and underscores and dashes only (a-z, 0-9, _, -, "
-#| "@)"
 msgid ""
 "Username can only have alphanumeric characters and underscores and dashes (a-"
 "z, 0-9, _, -, @)"
@@ -127,8 +121,6 @@ msgid "Log in with Google"
 msgstr "Mit Google anmelden"
 
 #: paw/templates/core/register.html:30
-#, fuzzy
-#| msgid "Mail Address"
 msgid "Email Address"
 msgstr "Mail Adresse"
 
@@ -137,8 +129,6 @@ msgid "Confirm Password"
 msgstr "Passwort bestätigen"
 
 #: paw/templates/core/register.html:47
-#, fuzzy
-#| msgid "Register Account"
 msgid "Register"
 msgstr "Account erstellen"
 
@@ -357,10 +347,8 @@ msgid "View"
 msgstr "Anzeigen"
 
 #: paw/templates/ticketing/tickets_history.html:20
-#, fuzzy
-#| msgid "Closed"
 msgid "Closed on"
-msgstr "Geschlossen"
+msgstr "Geschlossen am"
 
 #: status/templates/status/incident_list.html:11
 msgid "Some services might not be fully operational"

@@ -132,8 +132,6 @@ msgid "Register"
 msgstr ""
 
 #: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:85
-#, fuzzy
-#| msgid "SettingsHeading"
 msgid "Settings"
 msgstr "Settings"
 
