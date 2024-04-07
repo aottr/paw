@@ -1,4 +1,5 @@
 {% block ticket_priority_badge %}
+{% load i18n %}
     {% if ticket.priority == 3 %}
     <span class="badge badge-success join-item">{% trans 'Low' %}</span>
     {% elif ticket.priority == 2 %}

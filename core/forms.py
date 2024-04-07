@@ -28,8 +28,8 @@ USERNAME_REGEX_FIELD = forms.RegexField(
     max_length=50,
     regex=r'^[a-zA-Z0-9-_@]+$',
     error_messages={
-        'required': _('Please enter your name'),
-        'invalid': _('Alphanumeric characters and underscores and dashes only (a-z, 0-9, _, -, @)')
+        'required': _('Please enter a username'),
+        'invalid': _('Username can only have alphanumeric characters and underscores and dashes (a-z, 0-9, _, -, @)')
     },
     widget=forms.TextInput(
         attrs={'placeholder': _('Username'), 'class': 'input input-bordered w-full'}),
@@ -55,20 +55,20 @@ class RegisterForm(forms.Form):
 
         if password != password_confirm:
             raise forms.ValidationError(
-                "password and password_confirm does not match"
+                "Password and Confirm Password do not match."
             )
         if len(password) < 10:
             raise forms.ValidationError(
-                "password must be at least 10 characters long"
+                "Password must be at least 10 characters long."
             )
 
         if PawUser.objects.filter(username=cleaned_data.get("username")).exists():
             raise forms.ValidationError(
-                "An account with this username already exists"
+                "An account with this username already exists."
             )
         if PawUser.objects.filter(email=cleaned_data.get("email")).exists():
             raise forms.ValidationError(
-                "An account with this email already exists"
+                "An account with this email already exists."
             )
         return cleaned_data
 
