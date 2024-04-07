@@ -120,8 +120,6 @@ msgid "Log in with Google"
 msgstr "Se connecter avec Google"
 
 #: paw/templates/core/register.html:30
-#, fuzzy
-#| msgid "Mail Address"
 msgid "Email Address"
 msgstr "Adresse e-mail"
 
@@ -268,8 +266,6 @@ msgid "Add Comment"
 msgstr "Ajouter un commentaire"
 
 #: paw/templates/ticketing/ticket_detail.html:98
-#, fuzzy
-#| msgid "Create Ticket"
 msgid "Close Ticket"
 msgstr "Nouveau ticket"
 
@@ -305,21 +301,15 @@ msgid "General"
 msgstr "Général"
 
 #: paw/templates/ticketing/ticket_detail.html:177
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assign to new category"
 msgstr "Attribuer à une nouvelle catégorie"
 
 #: paw/templates/ticketing/ticket_detail.html:180
 #: paw/templates/ticketing/ticket_detail.html:210
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assign"
 msgstr "Attribuer"
 
 #: paw/templates/ticketing/ticket_detail.html:185
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assignees"
 msgstr "Attribué à"
 
@@ -328,16 +318,12 @@ msgid "Assign to me"
 msgstr "Me l'attribuer"
 
 #: paw/templates/ticketing/ticket_detail.html:207
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assign to new team"
 msgstr "Attribuer à une nouvelle équipe"
 
 #: paw/templates/ticketing/tickets.html:5
-#, fuzzy
-#| msgid "Re-Open Ticket"
 msgid "Open Tickets"
-msgstr "Réouverture du ticket"
+msgstr "Tickets ouverts"
 
 #: paw/templates/ticketing/tickets.html:7
 #: paw/templates/ticketing/tickets_history.html:7
@@ -346,8 +332,6 @@ msgstr "pour"
 
 #: paw/templates/ticketing/tickets.html:18
 #: paw/templates/ticketing/tickets_history.html:18
-#, fuzzy
-#| msgid "Assign to me"
 msgid "Assigned to"
 msgstr "Me l'attribuer"
 
@@ -362,8 +346,6 @@ msgid "View"
 msgstr "Ouvrir"
 
 #: paw/templates/ticketing/tickets_history.html:20
-#, fuzzy
-#| msgid "Closed"
 msgid "Closed on"
 msgstr "Fermé"
 
