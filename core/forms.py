@@ -24,7 +24,7 @@ class UserChangeForm(forms.Form):
 
 USERNAME_REGEX_FIELD = forms.RegexField(
     required=True,
-    label='Username',
+    label=_('Username'),
     max_length=50,
     regex=r'^[a-zA-Z0-9-_@]+$',
     error_messages={
@@ -55,20 +55,20 @@ class RegisterForm(forms.Form):
 
         if password != password_confirm:
             raise forms.ValidationError(
-                "Password and Confirm Password do not match."
+                _("Password and Confirm Password do not match.")
             )
         if len(password) < 10:
             raise forms.ValidationError(
-                "Password must be at least 10 characters long."
+                _("Password must be at least 10 characters long.")
             )
 
         if PawUser.objects.filter(username=cleaned_data.get("username")).exists():
             raise forms.ValidationError(
-                "An account with this username already exists."
+                _("An account with this username already exists.")
             )
         if PawUser.objects.filter(email=cleaned_data.get("email")).exists():
             raise forms.ValidationError(
-                "An account with this email already exists."
+                _("An account with this email already exists.")
             )
         return cleaned_data
 
@@ -85,7 +85,7 @@ class AccountFinishForm(forms.Form):
 
         if PawUser.objects.filter(username=cleaned_data.get("username")).exists():
             raise forms.ValidationError(
-                "An account with this username already exists"
+                _("An account with this username already exists")
             )
 
         return cleaned_data

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-25 11:47+0000\n"
+"POT-Creation-Date: 2024-04-07 16:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: core/forms.py:27 core/forms.py:35 paw/templates/core/account_finish.html:33
+#: paw/templates/core/login.html:24 paw/templates/core/register.html:24
+msgid "Username"
+msgstr ""
+
 #: core/forms.py:31
-msgid "Please enter your name"
+msgid "Please enter a username"
 msgstr ""
 
 #: core/forms.py:32
 msgid ""
-"Alphanumeric characters and underscores and dashes only (a-z, 0-9, _, -, @)"
+"Username can only have alphanumeric characters and underscores and dashes (a-"
+"z, 0-9, _, -, @)"
 msgstr ""
 
-#: core/forms.py:35 paw/templates/core/account_finish.html:29
-#: paw/templates/core/login.html:24 paw/templates/core/register.html:20
-msgid "Username"
+#: core/forms.py:58
+msgid "Password and Confirm Password do not match."
+msgstr ""
+
+#: core/forms.py:62
+msgid "Password must be at least 10 characters long."
+msgstr ""
+
+#: core/forms.py:67
+msgid "An account with this username already exists."
+msgstr ""
+
+#: core/forms.py:71
+msgid "An account with this email already exists."
+msgstr ""
+
+#: core/forms.py:88
+msgid "An account with this username already exists"
 msgstr ""
 
 #: core/models.py:30
@@ -73,7 +94,7 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: paw/templates/core/account_finish.html:34
+#: paw/templates/core/account_finish.html:38
 #: paw/templates/core/settings.html:55
 msgid "Save"
 msgstr ""
@@ -86,7 +107,7 @@ msgstr ""
 msgid "Register Account"
 msgstr ""
 
-#: paw/templates/core/login.html:30 paw/templates/core/register.html:32
+#: paw/templates/core/login.html:30 paw/templates/core/register.html:36
 msgid "Password"
 msgstr ""
 
@@ -98,21 +119,19 @@ msgstr ""
 msgid "Log in with Google"
 msgstr ""
 
-#: paw/templates/core/register.html:26
+#: paw/templates/core/register.html:30
 msgid "Email Address"
 msgstr ""
 
-#: paw/templates/core/register.html:38
+#: paw/templates/core/register.html:42
 msgid "Confirm Password"
 msgstr ""
 
-#: paw/templates/core/register.html:43
+#: paw/templates/core/register.html:47
 msgid "Register"
 msgstr ""
 
 #: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:85
-#, fuzzy
-#| msgid "SettingsHeading"
 msgid "Settings"
 msgstr "Settings"
 
@@ -164,15 +183,15 @@ msgstr ""
 msgid "Unassigned"
 msgstr ""
 
-#: paw/templates/partials/ticket_priority_badge.html:3 ticketing/models.py:45
+#: paw/templates/partials/ticket_priority_badge.html:4 ticketing/models.py:45
 msgid "Low"
 msgstr ""
 
-#: paw/templates/partials/ticket_priority_badge.html:5 ticketing/models.py:46
+#: paw/templates/partials/ticket_priority_badge.html:6 ticketing/models.py:46
 msgid "Medium"
 msgstr ""
 
-#: paw/templates/partials/ticket_priority_badge.html:7 ticketing/models.py:47
+#: paw/templates/partials/ticket_priority_badge.html:8 ticketing/models.py:47
 msgid "High"
 msgstr ""
 
