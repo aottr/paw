@@ -1,0 +1,9 @@
+{% block attendee_info %}
+{% load i18n %}
+<h2 class="font-semibold text-xs mt-4 mb-2">{% trans 'Rawrgister Info' %}</h2>
+<div class="text-sm">
+{{ fbl_account.username }} <div class="ml-2 badge badge-neutral">#{{ fbl_account.badge_number }}</div>
+
+{% trans 'Status' %}: <div class="ml-2 badge badge-neutral">{{ fbl_account.status }}</div>
+</div>
+{% endblock %}
