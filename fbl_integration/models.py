@@ -10,6 +10,9 @@ class FblAccount(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=64)
 
+    def tags_list(self):
+        return self.tags_secured.split(',')
+
     @classmethod
     def create_user(cls, username) -> PawUser:
         if not PawUser.objects.filter(username=username).exists():
