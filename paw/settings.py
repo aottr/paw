@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "status",
+    "fbl_integration",
 ]
 
 AUTH_USER_MODEL = "core.PawUser"
@@ -65,7 +66,10 @@ ROOT_URLCONF = "paw.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'paw' / 'templates'],
+        "DIRS": [
+            BASE_DIR / 'paw' / 'templates',
+            BASE_DIR / 'fbl_integration' / 'templates',
+            ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -187,3 +191,7 @@ GOOGLE_OAUTH_PROJECT_ID = environ['GOOGLE_OAUTH_PROJECT_ID']
 GOOGLE_OAUTH_CLIENT_SECRET = environ['GOOGLE_OAUTH_CLIENT_SECRET']
 GOOGLE_OAUTH_REDIRECT_URI = environ['GOOGLE_OAUTH_REDIRECT_URI']
 GOOGLE_OAUTH_SCOPES = environ.get('GOOGLE_OAUTH_SCOPES', '').split(",")
+
+# FBL Integration
+FBL_AUTH_ENABLED = environ.get('FBL_AUTH_ENABLED').lower() == 'true'
+FBL_AUTH_SERVER = environ['FBL_AUTH_SERVER']

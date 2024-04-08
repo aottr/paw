@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load i18n %}
+<div class="self-center w-full max-w-xl mx-auto">
+  <div class="flex items-center">
+    <h1 class="text-3xl font-bold p-2">{% trans 'FurryBlacklight Login' %}</h1>
+  </div>
+  <div class="bg-base-200 rounded p-8">
+    <ul class="steps w-full mb-6">
+      <li class="step step-accent">{% trans 'Authenticate' %}</li>
+      <li class="step step-accent">{% trans 'Confirm Code' %}</li>
+      <li class="step step-accent">{% trans 'Account Completion' %}</li>
+      <li class="step step-success">{% trans 'Done' %}</li>
+  </ul>
+
+  <div role="alert" class="alert alert-info mb-4">
+    {% trans 'Please set up a mail address. This will be used for notifications.' %}
+  </div>
+
+    <form method="post" action="">
+        {% csrf_token %}
+    
+        {% if form.non_field_errors %}
+        <div role="alert" class="alert alert-error mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="hidden sm:block stroke-current shrink-0 h-6 w-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10l4 4m0 -4l-4 4" /><path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" /></svg>
+          <span>{{ form.non_field_errors }}</span>
+        </div>
+        {% endif %}
+
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="text-base label-text" for="{{ form.email.id_for_label }}">{% trans 'Mail Address' %}</span>
+          </label>
+          <input type="email" name="email" class="w-full input input-bordered" />
+        </div>
+
+        <div class="flex justify-end mt-6">
+          <button type="submit" class="btn btn-accent mb-4">{% trans 'Save Changes' %}</button>
+        </div>
+      </form>
+  </div>
+</div>
+{% endblock %}

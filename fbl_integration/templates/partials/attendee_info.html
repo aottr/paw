@@ -1,0 +1,21 @@
+{% block attendee_info %}
+{% load i18n %}
+{% if fbl_account %}
+<h2 class="font-semibold text-xs mt-4 mb-2">{% trans 'Rawrgister Info' %}</h2>
+
+<div class="text-sm flex flex-col">
+    <div class="my-1 flex items-center">
+        {{ fbl_account.username }} <div class="ml-2 badge badge-accent">#{{ fbl_account.badge_number }}</div>
+    </div>
+    <div class="my-1 flex items-center">
+        <label class="font-semibold text-xs">{% trans 'Status' %}:</label> <div class="ml-2 badge badge-info">{{ fbl_account.status }}</div>
+    </div>
+    <div>
+        <h3 class="font-semibold text-xs my-1">{% trans 'Tags' %}</h3>
+        {% for tag in fbl_account.tags_list %}
+        <div class="badge badge-accent badge-outline mr-2">{{ tag }}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
