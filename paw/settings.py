@@ -133,6 +133,7 @@ LANGUAGES = [
     ("en", _("English")),
     ("fr", _("French")),
     ("de", _("German")),
+    ("nl", _("Dutch")),
 ]
 LOCALE_PATHS = [
     path.join(BASE_DIR, 'paw', 'locale'),

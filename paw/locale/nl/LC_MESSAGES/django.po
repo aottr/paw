@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-08 14:59+0000\n"
+"POT-Creation-Date: 2024-04-08 15:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,61 +16,57 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: core/forms.py:27 core/forms.py:35 paw/templates/core/account_finish.html:33
 #: paw/templates/core/login.html:24 paw/templates/core/register.html:24
 msgid "Username"
-msgstr "Nom d'utilisateur"
+msgstr ""
 
 #: core/forms.py:31
 msgid "Please enter a username"
-msgstr "Veuillez entrer un nom d'utilisateur"
+msgstr ""
 
 #: core/forms.py:32
 msgid ""
 "Username can only have alphanumeric characters and underscores and dashes (a-"
 "z, 0-9, _, -, @)"
 msgstr ""
-"Les noms d’utilisateurs ne peuvent contenir que des caractères "
-"alphanumériques, ainsi que des tirets ou des tirets du bas. (a-z, 0-9, -, _, "
-"@)"
 
 #: core/forms.py:58
 msgid "Password and Confirm Password do not match."
-msgstr "Le mot de passe et la confirmation ne correspondent pas."
+msgstr ""
 
 #: core/forms.py:62
 msgid "Password must be at least 10 characters long."
-msgstr "Le mot de passe doit être long d'au moins 10 carractères."
+msgstr ""
 
 #: core/forms.py:67
 msgid "An account with this username already exists."
-msgstr "Un compte utilisant ce nom d'utilisateur existe déjà."
+msgstr ""
 
 #: core/forms.py:71
 msgid "An account with this email already exists."
-msgstr "Un compte utilisant cet e-mail existe déjà."
+msgstr ""
 
 #: core/forms.py:88
 msgid "An account with this username already exists"
-msgstr "Un compte utilisant ce nom d'utilisateur existe déjà"
+msgstr ""
 
 #: core/models.py:30
 msgid "Google SSO User"
-msgstr "Utilisateur Google SSO"
+msgstr ""
 
 #: paw/settings.py:133
 msgid "English"
-msgstr "Anglais"
+msgstr ""
 
 #: paw/settings.py:134
 msgid "French"
-msgstr "Français"
+msgstr ""
 
 #: paw/settings.py:135
 msgid "German"
-msgstr "Allemand"
+msgstr ""
 
 #: paw/settings.py:136
 msgid "Dutch"
@@ -78,342 +74,333 @@ msgstr ""
 
 #: paw/templates/base.html:20 paw/templates/dashboard_base.html:40
 msgid "Tickets"
-msgstr "Tickets"
+msgstr ""
 
 #: paw/templates/base.html:21 paw/templates/dashboard_base.html:53
 #: paw/templates/ticketing/tickets.html:20
 msgid "Status"
-msgstr "Statut"
+msgstr ""
 
 #: paw/templates/core/account_finish.html:10 paw/templates/core/register.html:6
 msgid "Register a new account"
-msgstr "Créer un nouveau compte"
+msgstr ""
 
 #: paw/templates/core/account_finish.html:13
 msgid "Authenticate"
-msgstr "Se connecter"
+msgstr ""
 
 #: paw/templates/core/account_finish.html:14
 msgid "Set up account"
-msgstr "Configurer le compte"
+msgstr ""
 
 #: paw/templates/core/account_finish.html:15
 msgid "Done"
-msgstr "Terminer"
+msgstr ""
 
 #: paw/templates/core/account_finish.html:38
 #: paw/templates/core/settings.html:55
 msgid "Save"
-msgstr "Enregistrer"
+msgstr ""
 
 #: paw/templates/core/login.html:7 paw/templates/core/login.html:39
 msgid "Log In"
-msgstr "Connexion"
+msgstr ""
 
 #: paw/templates/core/login.html:9
 msgid "Register Account"
-msgstr "Inscription"
+msgstr ""
 
 #: paw/templates/core/login.html:30 paw/templates/core/register.html:36
 msgid "Password"
-msgstr "Mot de passe"
+msgstr ""
 
 #: paw/templates/core/login.html:35
 msgid "Password Reset"
-msgstr "Redéfinir le mot de passe"
+msgstr ""
 
 #: paw/templates/core/login.html:46
 msgid "Log in with Google"
-msgstr "Se connecter avec Google"
+msgstr ""
 
 #: paw/templates/core/register.html:30
 msgid "Email Address"
-msgstr "Adresse e-mail"
+msgstr ""
 
 #: paw/templates/core/register.html:42
 msgid "Confirm Password"
-msgstr "Confirmer le mot de passe"
+msgstr ""
 
 #: paw/templates/core/register.html:47
 msgid "Register"
-msgstr "S'enregistrer"
+msgstr ""
 
 #: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:85
 msgid "Settings"
-msgstr "Paramètres"
+msgstr ""
 
 #: paw/templates/core/settings.html:12
 msgid "Mail Address"
-msgstr "Adresse e-mail"
+msgstr ""
 
 #: paw/templates/core/settings.html:23
 msgid "Language"
-msgstr "Langue"
+msgstr ""
 
 #: paw/templates/core/settings.html:30
 msgid "Use Darkmode"
-msgstr "Utiliser le mode sombre"
+msgstr ""
 
 #: paw/templates/core/settings.html:37
 msgid "Receive Email Notifications"
-msgstr "Me notifier par e-mail"
+msgstr ""
 
 #: paw/templates/core/settings.html:44
 msgid "Profile Picture"
-msgstr "Image du profil"
+msgstr ""
 
 #: paw/templates/core/settings.html:49
 #: paw/templates/ticketing/ticket_detail.html:152
 msgid "Contact"
-msgstr "Contact"
+msgstr ""
 
 #: paw/templates/dashboard_base.html:34
 #: paw/templates/ticketing/create_ticket.html:50
 msgid "Create Ticket"
-msgstr "Nouveau ticket"
+msgstr ""
 
 #: paw/templates/dashboard_base.html:46
 #: paw/templates/ticketing/tickets_history.html:5
 msgid "History"
-msgstr "Historique"
+msgstr ""
 
 #: paw/templates/dashboard_base.html:79
 msgid "Admin"
-msgstr "Admin"
+msgstr ""
 
 #: paw/templates/dashboard_base.html:89
 msgid "Logout"
-msgstr "Se déconnecter"
+msgstr ""
 
 #: paw/templates/partials/assigned_to.html:17
 #: paw/templates/ticketing/ticket_detail.html:201
 msgid "Unassigned"
-msgstr "Non attribué"
+msgstr ""
 
 #: paw/templates/partials/ticket_priority_badge.html:4 ticketing/models.py:45
 msgid "Low"
-msgstr "Bas"
+msgstr ""
 
 #: paw/templates/partials/ticket_priority_badge.html:6 ticketing/models.py:46
 msgid "Medium"
-msgstr "Moyen"
+msgstr ""
 
 #: paw/templates/partials/ticket_priority_badge.html:8 ticketing/models.py:47
 msgid "High"
-msgstr "Élevé"
+msgstr ""
 
 #: paw/templates/partials/ticket_status_badge.html:4 ticketing/models.py:40
 msgid "Open"
-msgstr "Ouvert"
+msgstr ""
 
 #: paw/templates/partials/ticket_status_badge.html:6 ticketing/models.py:41
 msgid "In Progress"
-msgstr "En cours"
+msgstr ""
 
 #: paw/templates/partials/ticket_status_badge.html:8 ticketing/models.py:42
 msgid "Closed"
-msgstr "Fermé"
+msgstr ""
 
 #: paw/templates/ticketing/create_ticket.html:5
 msgid "Create a new ticket"
-msgstr "Créer un ticket"
+msgstr ""
 
 #: paw/templates/ticketing/create_ticket.html:12
 #: paw/templates/ticketing/ticket_detail.html:165
 #: paw/templates/ticketing/tickets.html:19
 #: paw/templates/ticketing/tickets_history.html:19
 msgid "Category"
-msgstr "Catégorie"
+msgstr ""
 
 #: paw/templates/ticketing/create_ticket.html:19
 #: paw/templates/ticketing/tickets.html:17
 #: paw/templates/ticketing/tickets_history.html:17 ticketing/forms.py:73
 msgid "Title"
-msgstr "Titre"
+msgstr ""
 
 #: paw/templates/ticketing/create_ticket.html:26 ticketing/forms.py:74
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
 #: paw/templates/ticketing/create_ticket.html:34
 #: paw/templates/ticketing/ticket_detail.html:9
 msgid "Attachments"
-msgstr "Pièces jointes"
+msgstr ""
 
 #: paw/templates/ticketing/create_ticket.html:43
 msgid "Create as follow-up to a closed ticket"
-msgstr "Créer comme le suivi d'un ticket fermé"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:14
 msgid "Attachment"
-msgstr "Pièce jointe"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:21
 msgid "Follow-Up Ticket to"
-msgstr "Suivi du ticket"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:28
 msgid "Followed-Up by"
-msgstr "Suivi par le ticket"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:36
 msgid "Activity"
-msgstr "Activité"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:61
 msgid "Internal"
-msgstr "Interne"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:78
 msgid "Apply Template"
-msgstr "Appliquer le modèle"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:96
 msgid "Add Comment"
-msgstr "Ajouter un commentaire"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:98
 msgid "Close Ticket"
-msgstr "Nouveau ticket"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:107
 msgid "Make this an internal comment"
-msgstr "Rendre le commentaire interne"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:116
 msgid "Ticket has been closed"
-msgstr "Le ticket a été fermé"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:121
 msgid "Re-Open Ticket"
-msgstr "Réouverture du ticket"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:132
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:145
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:149
 msgid "Last updated"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:171
 #: paw/templates/ticketing/tickets.html:42
 #: paw/templates/ticketing/tickets_history.html:42 ticketing/forms.py:81
 #: ticketing/forms.py:104 ticketing/models.py:167 ticketing/models.py:180
 msgid "General"
-msgstr "Général"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:177
 msgid "Assign to new category"
-msgstr "Attribuer à une nouvelle catégorie"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:180
 #: paw/templates/ticketing/ticket_detail.html:210
 msgid "Assign"
-msgstr "Attribuer"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:185
 msgid "Assignees"
-msgstr "Attribué à"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:192
 msgid "Assign to me"
-msgstr "Me l'attribuer"
+msgstr ""
 
 #: paw/templates/ticketing/ticket_detail.html:207
 msgid "Assign to new team"
-msgstr "Attribuer à une nouvelle équipe"
+msgstr ""
 
 #: paw/templates/ticketing/tickets.html:5
 msgid "Open Tickets"
-msgstr "Tickets ouverts"
+msgstr ""
 
 #: paw/templates/ticketing/tickets.html:7
 #: paw/templates/ticketing/tickets_history.html:7
 msgid "for"
-msgstr "pour"
+msgstr ""
 
 #: paw/templates/ticketing/tickets.html:18
 #: paw/templates/ticketing/tickets_history.html:18
 msgid "Assigned to"
-msgstr "Me l'attribuer"
+msgstr ""
 
 #: paw/templates/ticketing/tickets.html:27
 #: paw/templates/ticketing/tickets_history.html:27
 msgid "No tickets found"
-msgstr "Aucun ticket trouvé"
+msgstr ""
 
 #: paw/templates/ticketing/tickets.html:49
 #: paw/templates/ticketing/tickets_history.html:47
 msgid "View"
-msgstr "Ouvrir"
+msgstr ""
 
 #: paw/templates/ticketing/tickets_history.html:20
 msgid "Closed on"
-msgstr "Fermé"
+msgstr ""
 
 #: status/templates/status/incident_list.html:11
 msgid "Some services might not be fully operational"
-msgstr "Certains services peuvent ne pas être opérationnels"
+msgstr ""
 
 #: status/templates/status/incident_list.html:16
 msgid "All services are operational"
-msgstr "Tous les services sont opérationnels"
+msgstr ""
 
 #: status/templates/status/incident_list.html:21
 msgid "Incidents"
-msgstr "Incidents"
+msgstr ""
 
 #: status/templates/status/incident_list.html:29
 msgid "Resolved"
-msgstr "Résolu"
+msgstr ""
 
 #: status/templates/status/incident_list.html:31
 msgid "Unresolved"
-msgstr "Non-résolu"
+msgstr ""
 
 #: status/templates/status/incident_list.html:37
 msgid "No incidents yet."
-msgstr "Encore aucun incident."
+msgstr ""
 
 #: ticketing/forms.py:39
 msgid "File size must be under 5MB."
-msgstr "La taille du fichier ne doit pas excéder 5Mo."
+msgstr ""
 
 #: ticketing/forms.py:52
 msgid "File type not supported. Supported types are: .jpg, .png, .pdf"
 msgstr ""
-"Format du fichier non supporté. Les formats supportés sont: .jpg, .png. .pdf"
 
 #: ticketing/forms.py:73
 msgid "Please enter a title"
-msgstr "Veuillez entrer un titre"
+msgstr ""
 
 #: ticketing/forms.py:74
 msgid "Please describe your issue"
-msgstr "Veuillez décrire votre problème"
+msgstr ""
 
 #: ticketing/forms.py:82
 msgid "No Follow-up"
-msgstr "Aucun suivi"
+msgstr ""
 
 #: ticketing/forms.py:99
 msgid "No Team"
-msgstr "Aucune équipe"
+msgstr ""
 
 #: ticketing/models.py:31
 msgid ""
 "If a team is selected, new tickets will automatically assigned to this team."
 msgstr ""
-"Si une équipe est sélectionnée, les nouveaux tickets lui seront "
-"automatiquement attribués."
-
-#~ msgid "Comment and close"
-#~ msgstr "Commenter et fermer"
-
-#~ msgid "No Category"
-#~ msgstr "Aucune catégorie"

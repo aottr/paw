@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 16:31+0000\n"
+"POT-Creation-Date: 2024-04-08 14:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,6 +68,10 @@ msgstr "Français"
 #: paw/settings.py:135
 msgid "German"
 msgstr "Deutsch"
+
+#: paw/settings.py:136
+msgid "Dutch"
+msgstr ""
 
 #: paw/templates/base.html:20 paw/templates/dashboard_base.html:40
 msgid "Tickets"
