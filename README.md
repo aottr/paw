@@ -33,7 +33,7 @@ poetry install
 ```
 
 3. Configure settings:
-   Copy `.env.example` to `.env` and update the configuration variables as needed.
+   Copy `example.env` to `.env` and update the configuration variables as needed.
 
 4. Run migrations:
 
@@ -61,6 +61,7 @@ services:
   paw:
     image: ghcr.io/aottr/paw:latest
     container_name: paw-ticket-system
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     restart: unless-stopped
     ports:
     - "127.0.0.1:8000:8000"
