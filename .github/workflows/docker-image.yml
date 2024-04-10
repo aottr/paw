@@ -3,10 +3,9 @@ name: Docker Image CI
 on:
   push:
     branches:
-      - "fbl-integration"
-      - "staging"
+      - "main"
   pull_request:
-    branches: ["fbl-integration"]
+    branches: ["main"]
 
 env:
   REGISTRY: ghcr.io

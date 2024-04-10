@@ -26,7 +26,6 @@ urlpatterns = [
     path("", include("core.urls")),
     path("", include("ticketing.urls")),
     path("status", include("status.urls")),
-    path("fbl/", include("fbl_integration.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

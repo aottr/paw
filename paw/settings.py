@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "status",
-    "fbl_integration",
 ]
 
 AUTH_USER_MODEL = "core.PawUser"
@@ -68,7 +67,6 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             BASE_DIR / 'paw' / 'templates',
-            BASE_DIR / 'fbl_integration' / 'templates',
             ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -186,12 +184,8 @@ else:
 
 # Google SSO
 GOOGLE_OAUTH_ENABLED = environ.get('GOOGLE_OAUTH_ENABLED').lower() == 'true'
-GOOGLE_OAUTH_CLIENT_ID = environ['GOOGLE_OAUTH_CLIENT_ID']
-GOOGLE_OAUTH_PROJECT_ID = environ['GOOGLE_OAUTH_PROJECT_ID']
-GOOGLE_OAUTH_CLIENT_SECRET = environ['GOOGLE_OAUTH_CLIENT_SECRET']
-GOOGLE_OAUTH_REDIRECT_URI = environ['GOOGLE_OAUTH_REDIRECT_URI']
+GOOGLE_OAUTH_CLIENT_ID = environ.get('GOOGLE_OAUTH_CLIENT_ID')
+GOOGLE_OAUTH_PROJECT_ID = environ.get('GOOGLE_OAUTH_PROJECT_ID')
+GOOGLE_OAUTH_CLIENT_SECRET = environ.get('GOOGLE_OAUTH_CLIENT_SECRET')
+GOOGLE_OAUTH_REDIRECT_URI = environ.get('GOOGLE_OAUTH_REDIRECT_URI')
 GOOGLE_OAUTH_SCOPES = environ.get('GOOGLE_OAUTH_SCOPES', '').split(",")
-
-# FBL Integration
-FBL_AUTH_ENABLED = environ.get('FBL_AUTH_ENABLED').lower() == 'true'
-FBL_AUTH_SERVER = environ['FBL_AUTH_SERVER']

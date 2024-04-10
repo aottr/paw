@@ -38,6 +38,8 @@ def register_view(request):
 
 def login_view(request):
 
+    auth_url = None
+
     if settings.GOOGLE_OAUTH_ENABLED:
         google_sso = GoogleSSO()
         auth_url, state = google_sso.flow.authorization_url(prompt="consent")
