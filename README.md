@@ -93,6 +93,15 @@ docker compose exec paw python manage.py collectstatic --no-input
 - Register an account or log in with existing credentials.
 - Start creating and managing tickets based on your role and permissions.
 
+### Sending Mails
+If not configured, mails get sent to the console stdout. This is (mainly) for use in dev environments.
+SMTP can be used by setting the `MAIL_SERVER` variable to `smtp`.
+
+To also assign a display name when sending mails, adjust the `EMAIL_FROM` variable in the following format: 
+```
+EMAIL_FROM='Don't Reply <do_not_reply@domain.example>'
+```
+
 ## Contributing
 
 🙌 Contributions are welcome! Please follow the [guidelines](CONTRIBUTING.md).
