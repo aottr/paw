@@ -20,387 +20,387 @@ msgstr ""
 #: core/forms.py:27 core/forms.py:35 paw/templates/core/account_finish.html:33
 #: paw/templates/core/login.html:24 paw/templates/core/register.html:24
 msgid "Username"
-msgstr ""
+msgstr "Gebruikersnaam"
 
 #: core/forms.py:31
 msgid "Please enter a username"
-msgstr ""
+msgstr "Vul uw gebruikersnaam in"
 
 #: core/forms.py:32
 msgid ""
 "Username can only have alphanumeric characters and underscores and dashes (a-"
 "z, 0-9, _, -, @)"
-msgstr ""
+msgstr "Gebruikersnaam mag alleen alfanumerieke tekens, underscores en streepjes bevatten (a-z, 0-9, _, -, @)"
 
 #: core/forms.py:58
 msgid "Password and Confirm Password do not match."
-msgstr ""
+msgstr "Wachtwoord en Wachtwoordbevestiging komen niet overeen."
 
 #: core/forms.py:62
 msgid "Password must be at least 10 characters long."
-msgstr ""
+msgstr "Wachtwoord moet minimaal 10 tekens lang zĳn."
 
 #: core/forms.py:67
 msgid "An account with this username already exists."
-msgstr ""
+msgstr "Er bestaat al een account met deze gebruikersnaam."
 
 #: core/forms.py:71
 msgid "An account with this email already exists."
-msgstr ""
+msgstr "Er bestaat al een account met deze email."
 
 #: core/forms.py:88
 msgid "An account with this username already exists"
-msgstr ""
+msgstr "Er bestaat al een account met deze gebruikersnaam"
 
 #: core/models.py:30
 msgid "Google SSO User"
-msgstr ""
+msgstr "Google SSO Gebruiker"
 
 #: paw/settings.py:133
 msgid "English"
-msgstr ""
+msgstr "Engels"
 
 #: paw/settings.py:134
 msgid "French"
-msgstr ""
+msgstr "Frans"
 
 #: paw/settings.py:135
 msgid "German"
-msgstr ""
+msgstr "Duits"
 
 #: paw/settings.py:136
 msgid "Dutch"
-msgstr ""
+msgstr "Nederlands"
 
 #: paw/templates/base.html:20 paw/templates/dashboard_base.html:40
 msgid "Tickets"
-msgstr ""
+msgstr "Ticketjes"
 
 #: paw/templates/base.html:21 paw/templates/dashboard_base.html:53
 #: paw/templates/ticketing/tickets.html:20
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: paw/templates/core/account_finish.html:10 paw/templates/core/register.html:6
 msgid "Register a new account"
-msgstr ""
+msgstr "Registreer nieuw account"
 
 #: paw/templates/core/account_finish.html:13
 msgid "Authenticate"
-msgstr ""
+msgstr "Inloggen"
 
 #: paw/templates/core/account_finish.html:14
 msgid "Set up account"
-msgstr ""
+msgstr "Account instellingen"
 
 #: paw/templates/core/account_finish.html:15
 msgid "Done"
-msgstr ""
+msgstr "Gedaan"
 
 #: paw/templates/core/account_finish.html:38
 #: paw/templates/core/settings.html:55
 msgid "Save"
-msgstr ""
+msgstr "Opslaan"
 
 #: paw/templates/core/login.html:7 paw/templates/core/login.html:39
 msgid "Log In"
-msgstr ""
+msgstr "Inloggen"
 
 #: paw/templates/core/login.html:9
 msgid "Register Account"
-msgstr ""
+msgstr "Registreren"
 
 #: paw/templates/core/login.html:30 paw/templates/core/register.html:36
 msgid "Password"
-msgstr ""
+msgstr "Wachtwoord"
 
 #: paw/templates/core/login.html:35
 msgid "Password Reset"
-msgstr ""
+msgstr "Wachtwoord resetten"
 
 #: paw/templates/core/login.html:46
 msgid "Log in with Google"
-msgstr ""
+msgstr "Inloggen met Google"
 
 #: paw/templates/core/register.html:30
 msgid "Email Address"
-msgstr ""
+msgstr "E-mailadres"
 
 #: paw/templates/core/register.html:42
 msgid "Confirm Password"
-msgstr ""
+msgstr "Wachtwoordbevestiging"
 
 #: paw/templates/core/register.html:47
 msgid "Register"
-msgstr ""
+msgstr "Registreren"
 
 #: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:85
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: paw/templates/core/settings.html:12
 msgid "Mail Address"
-msgstr ""
+msgstr "E-mailadres"
 
 #: paw/templates/core/settings.html:23
 msgid "Language"
-msgstr ""
+msgstr "Taal"
 
 #: paw/templates/core/settings.html:30
 msgid "Use Darkmode"
-msgstr ""
+msgstr "Gebruik donkere modus"
 
 #: paw/templates/core/settings.html:37
 msgid "Receive Email Notifications"
-msgstr ""
+msgstr "Meldingen per e-mail"
 
 #: paw/templates/core/settings.html:44
 msgid "Profile Picture"
-msgstr ""
+msgstr "Profielfoto"
 
 #: paw/templates/core/settings.html:49
 #: paw/templates/ticketing/ticket_detail.html:152
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #: paw/templates/dashboard_base.html:34
 #: paw/templates/ticketing/create_ticket.html:50
 msgid "Create Ticket"
-msgstr ""
+msgstr "Ticketje aanmaken"
 
 #: paw/templates/dashboard_base.html:46
 #: paw/templates/ticketing/tickets_history.html:5
 msgid "History"
-msgstr ""
+msgstr "Eerdere activiteiten"
 
 #: paw/templates/dashboard_base.html:79
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: paw/templates/dashboard_base.html:89
 msgid "Logout"
-msgstr ""
+msgstr "Uitloggen"
 
 #: paw/templates/partials/assigned_to.html:17
 #: paw/templates/ticketing/ticket_detail.html:201
 msgid "Unassigned"
-msgstr ""
+msgstr "Niet toegewezen"
 
 #: paw/templates/partials/ticket_priority_badge.html:4 ticketing/models.py:45
 msgid "Low"
-msgstr ""
+msgstr "Laag"
 
 #: paw/templates/partials/ticket_priority_badge.html:6 ticketing/models.py:46
 msgid "Medium"
-msgstr ""
+msgstr "Gemiddeld"
 
 #: paw/templates/partials/ticket_priority_badge.html:8 ticketing/models.py:47
 msgid "High"
-msgstr ""
+msgstr "Hoog"
 
 #: paw/templates/partials/ticket_status_badge.html:4 ticketing/models.py:40
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 #: paw/templates/partials/ticket_status_badge.html:6 ticketing/models.py:41
 msgid "In Progress"
-msgstr ""
+msgstr "Lopend"
 
 #: paw/templates/partials/ticket_status_badge.html:8 ticketing/models.py:42
 msgid "Closed"
-msgstr ""
+msgstr "Gesloten"
 
 #: paw/templates/ticketing/create_ticket.html:5
 msgid "Create a new ticket"
-msgstr ""
+msgstr "Maak een nieuw ticketje aan"
 
 #: paw/templates/ticketing/create_ticket.html:12
 #: paw/templates/ticketing/ticket_detail.html:165
 #: paw/templates/ticketing/tickets.html:19
 #: paw/templates/ticketing/tickets_history.html:19
 msgid "Category"
-msgstr ""
+msgstr "Categorie"
 
 #: paw/templates/ticketing/create_ticket.html:19
 #: paw/templates/ticketing/tickets.html:17
 #: paw/templates/ticketing/tickets_history.html:17 ticketing/forms.py:73
 msgid "Title"
-msgstr ""
+msgstr "Onderwerp"
 
 #: paw/templates/ticketing/create_ticket.html:26 ticketing/forms.py:74
 msgid "Description"
-msgstr ""
+msgstr "Beschrĳving"
 
 #: paw/templates/ticketing/create_ticket.html:34
 #: paw/templates/ticketing/ticket_detail.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "Bĳlagen"
 
 #: paw/templates/ticketing/create_ticket.html:43
 msgid "Create as follow-up to a closed ticket"
-msgstr ""
+msgstr "Maak als vervolg op een gesloten ticket"
 
 #: paw/templates/ticketing/ticket_detail.html:14
 msgid "Attachment"
-msgstr ""
+msgstr "Bĳlage"
 
 #: paw/templates/ticketing/ticket_detail.html:21
 msgid "Follow-Up Ticket to"
-msgstr ""
+msgstr "Vervolg ticketje voor"
 
 #: paw/templates/ticketing/ticket_detail.html:28
 msgid "Followed-Up by"
-msgstr ""
+msgstr "Opgevolgd door"
 
 #: paw/templates/ticketing/ticket_detail.html:36
 msgid "Activity"
-msgstr ""
+msgstr "Activiteit"
 
 #: paw/templates/ticketing/ticket_detail.html:61
 msgid "Internal"
-msgstr ""
+msgstr "Privaat"
 
 #: paw/templates/ticketing/ticket_detail.html:78
 msgid "Apply Template"
-msgstr ""
+msgstr "Gebruik model"
 
 #: paw/templates/ticketing/ticket_detail.html:96
 msgid "Add Comment"
-msgstr ""
+msgstr "Opmerking toevoegen"
 
 #: paw/templates/ticketing/ticket_detail.html:98
 msgid "Close Ticket"
-msgstr ""
+msgstr "Ticketje sluiten"
 
 #: paw/templates/ticketing/ticket_detail.html:107
 msgid "Make this an internal comment"
-msgstr ""
+msgstr "Maak dit opmerking privaat"
 
 #: paw/templates/ticketing/ticket_detail.html:116
 msgid "Ticket has been closed"
-msgstr ""
+msgstr "Ticketje is geslooten"
 
 #: paw/templates/ticketing/ticket_detail.html:121
 msgid "Re-Open Ticket"
-msgstr ""
+msgstr "Heropen dit ticketje"
 
 #: paw/templates/ticketing/ticket_detail.html:132
 msgid "Created by"
-msgstr ""
+msgstr "Gemaakt door"
 
 #: paw/templates/ticketing/ticket_detail.html:145
 msgid "Created on"
-msgstr ""
+msgstr "Gemaakt op"
 
 #: paw/templates/ticketing/ticket_detail.html:149
 msgid "Last updated"
-msgstr ""
+msgstr "Laatst bĳgewerkt"
 
 #: paw/templates/ticketing/ticket_detail.html:171
 #: paw/templates/ticketing/tickets.html:42
 #: paw/templates/ticketing/tickets_history.html:42 ticketing/forms.py:81
 #: ticketing/forms.py:104 ticketing/models.py:167 ticketing/models.py:180
 msgid "General"
-msgstr ""
+msgstr "Generaal"
 
 #: paw/templates/ticketing/ticket_detail.html:177
 msgid "Assign to new category"
-msgstr ""
+msgstr "Categorie opnieuw toewĳzen"
 
 #: paw/templates/ticketing/ticket_detail.html:180
 #: paw/templates/ticketing/ticket_detail.html:210
 msgid "Assign"
-msgstr ""
+msgstr "Toewĳzen"
 
 #: paw/templates/ticketing/ticket_detail.html:185
 msgid "Assignees"
-msgstr ""
+msgstr "Toegewezen"
 
 #: paw/templates/ticketing/ticket_detail.html:192
 msgid "Assign to me"
-msgstr ""
+msgstr "Toewĳzen aan mĳ"
 
 #: paw/templates/ticketing/ticket_detail.html:207
 msgid "Assign to new team"
-msgstr ""
+msgstr "Team opnieuw toewĳzen"
 
 #: paw/templates/ticketing/tickets.html:5
 msgid "Open Tickets"
-msgstr ""
+msgstr "Open ticketjes"
 
 #: paw/templates/ticketing/tickets.html:7
 #: paw/templates/ticketing/tickets_history.html:7
 msgid "for"
-msgstr ""
+msgstr "voor"
 
 #: paw/templates/ticketing/tickets.html:18
 #: paw/templates/ticketing/tickets_history.html:18
 msgid "Assigned to"
-msgstr ""
+msgstr "Toegewezen aan"
 
 #: paw/templates/ticketing/tickets.html:27
 #: paw/templates/ticketing/tickets_history.html:27
 msgid "No tickets found"
-msgstr ""
+msgstr "Geen ticketjes gevonden"
 
 #: paw/templates/ticketing/tickets.html:49
 #: paw/templates/ticketing/tickets_history.html:47
 msgid "View"
-msgstr ""
+msgstr "Bekĳken"
 
 #: paw/templates/ticketing/tickets_history.html:20
 msgid "Closed on"
-msgstr ""
+msgstr "Gesloten op"
 
 #: status/templates/status/incident_list.html:11
 msgid "Some services might not be fully operational"
-msgstr ""
+msgstr "Sommige diensten zĳn mogelĳk niet volledig operationeel"
 
 #: status/templates/status/incident_list.html:16
 msgid "All services are operational"
-msgstr ""
+msgstr "Alles diensten zĳn operationeel"
 
 #: status/templates/status/incident_list.html:21
 msgid "Incidents"
-msgstr ""
+msgstr "Incidenten"
 
 #: status/templates/status/incident_list.html:29
 msgid "Resolved"
-msgstr ""
+msgstr "Opgelost"
 
 #: status/templates/status/incident_list.html:31
 msgid "Unresolved"
-msgstr ""
+msgstr "Onopgelost"
 
 #: status/templates/status/incident_list.html:37
 msgid "No incidents yet."
-msgstr ""
+msgstr "Geen incidenten."
 
 #: ticketing/forms.py:39
 msgid "File size must be under 5MB."
-msgstr ""
+msgstr "Bestandsgrootte moet onder de 5 MB zĳn."
 
 #: ticketing/forms.py:52
 msgid "File type not supported. Supported types are: .jpg, .png, .pdf"
-msgstr ""
+msgstr "Bestandstĳpe wordt niet ondersteund. Ondersteunde typen zĳn: .jpg, .png, .pdf"
 
 #: ticketing/forms.py:73
 msgid "Please enter a title"
-msgstr ""
+msgstr "Gelieve een onderwerp in te voeren"
 
 #: ticketing/forms.py:74
 msgid "Please describe your issue"
-msgstr ""
+msgstr "Gelieve een beschrĳving in te voeren"
 
 #: ticketing/forms.py:82
 msgid "No Follow-up"
-msgstr ""
+msgstr "Geen vervolg ticketje"
 
 #: ticketing/forms.py:99
 msgid "No Team"
-msgstr ""
+msgstr "Geen team"
 
 #: ticketing/models.py:31
 msgid ""
 "If a team is selected, new tickets will automatically assigned to this team."
-msgstr ""
+msgstr "Als een team is geselecteerd, worden nieuwe ticketjes automatisch toegewezen aan dit team."
