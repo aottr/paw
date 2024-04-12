@@ -1,0 +1,38 @@
+name: Python Tests
+
+on:
+  push:
+    branches:
+        - '**'
+  pull_request:
+    branches:
+        - '**'
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.12
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+
+    - name: Install dependencies
+      run: |
+        poetry install
+
+    - name: Run tests
+      env:
+        SECRET_KEY: 'asdf'
+        DEBUG: 'True'
+        ALLOWED_HOSTS: 'localhost'
+      run: |
+        poetry run python manage.py test
