@@ -60,19 +60,19 @@ msgstr ""
 
 #: paw/settings.py:133
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: paw/settings.py:134
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: paw/settings.py:135
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 #: paw/settings.py:136
 msgid "Dutch"
-msgstr ""
+msgstr "Nederlands"
 
 #: paw/templates/base.html:20 paw/templates/dashboard_base.html:40
 msgid "Tickets"

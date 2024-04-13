@@ -115,7 +115,6 @@ class Ticket(models.Model):
             return True
         assigned_and_write_access = self.assigned_team in user.team_set.filter(readonly_access=False) or self.assigned_to == user
         unassigned_and_write_access = self.assigned_team is None and user.team_set.filter(access_non_category_tickets=True, readonly_access=False).exists()
-        print(assigned_and_write_access, unassigned_and_write_access)
         return self.can_open(user) and (assigned_and_write_access or unassigned_and_write_access)
 
 
@@ -149,20 +148,19 @@ def update_team_assignment(sender, instance, created, **kwargs):
         return None
     
     if not instance.category or not instance.category.team:
-        mail_template = MailTemplate.get_template('ticket_assigned')
-        if not mail_template:
-            return None
-        #TODO send mail to all supporters
-        return None
-    
-    # assign team to ticket
-    instance.assigned_team = instance.category.team
-    instance.save()
+        team_addresses = list(Team.objects.filter(access_non_category_tickets=True).values_list('members__email', flat=True))
+
+    else:
+        # assign team to ticket
+        instance.assigned_team = instance.category.team
+        instance.save()
+        team_addresses = list(instance.category.team.members.values_list('email', flat=True))
 
     mail_template = MailTemplate.get_template('ticket_assigned')
     if not mail_template:
         return None
-    mail_template.send_mail(instance.category.team.members.values_list('email', flat=True), {
+    
+    mail_template.send_mail(team_addresses, {
         'ticket_id': instance.id, 'ticket_title': instance.title, 'ticket_description': instance.description, 
         'ticket_priority': instance.get_priority(), 'ticket_category': instance.category.name if instance.category else _('General'),
         'ticket_creator_username': instance.user.username})
@@ -175,7 +173,7 @@ def send_mail_notification(sender, instance, created, **kwargs):
         mail_template = MailTemplate.get_template('new_ticket', instance.user.language)
         if not mail_template:
             return None
-        mail_template.send_mail(instance.user.email, {
+        mail_template.send_mail([instance.user.email], {
             'ticket_id': instance.id, 'ticket_creator_username': instance.user.username, 'ticket_title': instance.title,
             'ticket_description': instance.description, 'ticket_category': instance.category.name if instance.category else _('General')})
 
@@ -192,7 +190,7 @@ def send_mail_change_notification(sender, instance: Ticket, update_fields=None, 
         mail_template = MailTemplate.get_template('ticket_status_change', instance.user.language)
         if not mail_template:
             return None
-        mail_template.send_mail(instance.user.email, {
+        mail_template.send_mail([instance.user.email], {
             'ticket_id': instance.id, 'ticket_creator_username': instance.user.username, 'ticket_status': instance.get_status(), 
             'ticket_status_old': old_instance.get_status(), 'ticket_title': instance.title
         })
@@ -220,7 +218,7 @@ def send_mail_comment_notification(sender, instance, created, **kwargs):
         mail_template = MailTemplate.get_template('new_comment', instance.user.language)
         if not mail_template:
             return None
-        mail_template.send_mail(instance.ticket.user.email, {
+        mail_template.send_mail([instance.ticket.user.email], {
             'ticket_id': instance.ticket.id, 'ticket_title': instance.ticket.title, 'ticket_creator_username': instance.user.username,
             'comment_text': instance.text})
 
