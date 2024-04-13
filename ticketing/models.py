@@ -115,7 +115,6 @@ class Ticket(models.Model):
             return True
         assigned_and_write_access = self.assigned_team in user.team_set.filter(readonly_access=False) or self.assigned_to == user
         unassigned_and_write_access = self.assigned_team is None and user.team_set.filter(access_non_category_tickets=True, readonly_access=False).exists()
-        print(assigned_and_write_access, unassigned_and_write_access)
         return self.can_open(user) and (assigned_and_write_access or unassigned_and_write_access)
 
 
