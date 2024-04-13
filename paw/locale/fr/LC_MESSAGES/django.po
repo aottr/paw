@@ -62,7 +62,7 @@ msgstr "Utilisateur Google SSO"
 
 #: paw/settings.py:133
 msgid "English"
-msgstr "Anglais"
+msgstr "English"
 
 #: paw/settings.py:134
 msgid "French"
@@ -70,11 +70,11 @@ msgstr "Français"
 
 #: paw/settings.py:135
 msgid "German"
-msgstr "Allemand"
+msgstr "Deutsch"
 
 #: paw/settings.py:136
 msgid "Dutch"
-msgstr ""
+msgstr "Nederlands"
 
 #: paw/templates/base.html:20 paw/templates/dashboard_base.html:40
 msgid "Tickets"
@@ -274,7 +274,7 @@ msgstr "Ajouter un commentaire"
 
 #: paw/templates/ticketing/ticket_detail.html:98
 msgid "Close Ticket"
-msgstr "Nouveau ticket"
+msgstr "Fermer"
 
 #: paw/templates/ticketing/ticket_detail.html:107
 msgid "Make this an internal comment"
@@ -340,7 +340,7 @@ msgstr "pour"
 #: paw/templates/ticketing/tickets.html:18
 #: paw/templates/ticketing/tickets_history.html:18
 msgid "Assigned to"
-msgstr "Me l'attribuer"
+msgstr "Attribué à"
 
 #: paw/templates/ticketing/tickets.html:27
 #: paw/templates/ticketing/tickets_history.html:27

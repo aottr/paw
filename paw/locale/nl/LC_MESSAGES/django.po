@@ -58,15 +58,15 @@ msgstr "Google SSO Gebruiker"
 
 #: paw/settings.py:133
 msgid "English"
-msgstr "Engels"
+msgstr "English"
 
 #: paw/settings.py:134
 msgid "French"
-msgstr "Frans"
+msgstr "Français"
 
 #: paw/settings.py:135
 msgid "German"
-msgstr "Duits"
+msgstr "Deutsch"
 
 #: paw/settings.py:136
 msgid "Dutch"

@@ -71,7 +71,7 @@ msgstr "Deutsch"
 
 #: paw/settings.py:136
 msgid "Dutch"
-msgstr ""
+msgstr "Nederlands"
 
 #: paw/templates/base.html:20 paw/templates/dashboard_base.html:40
 msgid "Tickets"
