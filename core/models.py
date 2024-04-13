@@ -43,13 +43,13 @@ class MailTemplate(models.Model):
             template = cls.objects.filter(event=event, language='en').first()
         return template
     
-    def send_mail(self, to, context):
+    def send_mail(self, to_list: list[str], context):
         try:
             send_mail(
                 self.subject.format(**context),
                 self.content.format(**context),
                 settings.DEFAULT_FROM_EMAIL,
-                [to],
+                to_list,
                 fail_silently=False,
             )
         except Exception as e:
