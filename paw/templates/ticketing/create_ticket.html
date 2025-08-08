@@ -3,7 +3,7 @@
 {% load i18n %}
 <div class="w-full max-w-4xl mx-auto p-8">
     <h1 class="text-2xl font-bold mb-4">{% trans 'Create a new ticket' %}</h1>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data" x-data="{ submitting: false }" @submit="submitting = true">
         {% csrf_token %}
         {{ form.non_field_errors }}
         <label class="form-control mb-2">
@@ -47,7 +47,10 @@
         {% endif %}
         
         <div class="flex justify-end items-center mt-4">
-            <button type="submit" class="btn btn-success">{% trans 'Create Ticket' %}</button>
+            <button type="submit" class="btn btn-success" :disabled="submitting">
+                <span class="loading loading-ring loading-md" x-show="submitting"></span>
+                {% trans 'Create Ticket' %}
+            </button>
         </div>
     </form>
 </div>
