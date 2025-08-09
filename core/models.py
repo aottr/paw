@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 from django.conf import settings
 from django.core.mail import send_mail
 
@@ -57,3 +59,14 @@ class MailTemplate(models.Model):
 
     def __str__(self):
         return f"{self.name} - [{self.event}]"
+
+@receiver(post_save, sender=PawUser, dispatch_uid="new_user_notification")
+def new_user_notification(sender, instance, created, **kwargs):
+    if not created or not instance.email:
+        return None
+    
+    mail_template = MailTemplate.get_template('new_user', instance.language)
+    if not mail_template:
+        return None
+    mail_template.send_mail([instance.email], {
+        'username': instance.username, 'email': instance.email })
