@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-08 14:59+0000\n"
+"POT-Creation-Date: 2025-08-09 01:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: core/forms.py:27 core/forms.py:35 paw/templates/core/account_finish.html:33
-#: paw/templates/core/login.html:24 paw/templates/core/register.html:24
+#: paw/templates/core/login.html:25 paw/templates/core/register.html:24
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -56,31 +56,31 @@ msgstr "Un compte utilisant cet e-mail existe déjà."
 msgid "An account with this username already exists"
 msgstr "Un compte utilisant ce nom d'utilisateur existe déjà"
 
-#: core/models.py:30
+#: core/models.py:32
 msgid "Google SSO User"
 msgstr "Utilisateur Google SSO"
 
-#: paw/settings.py:133
+#: paw/settings.py:135
 msgid "English"
 msgstr "English"
 
-#: paw/settings.py:134
+#: paw/settings.py:136
 msgid "French"
 msgstr "Français"
 
-#: paw/settings.py:135
+#: paw/settings.py:137
 msgid "German"
 msgstr "Deutsch"
 
-#: paw/settings.py:136
+#: paw/settings.py:138
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: paw/templates/base.html:20 paw/templates/dashboard_base.html:40
+#: paw/templates/base.html:20 paw/templates/dashboard_base.html:41
 msgid "Tickets"
 msgstr "Tickets"
 
-#: paw/templates/base.html:21 paw/templates/dashboard_base.html:53
+#: paw/templates/base.html:21 paw/templates/dashboard_base.html:54
 #: paw/templates/ticketing/tickets.html:20
 msgid "Status"
 msgstr "Statut"
@@ -106,7 +106,7 @@ msgstr "Terminer"
 msgid "Save"
 msgstr "Enregistrer"
 
-#: paw/templates/core/login.html:7 paw/templates/core/login.html:39
+#: paw/templates/core/login.html:7 paw/templates/core/login.html:40
 msgid "Log In"
 msgstr "Connexion"
 
@@ -114,15 +114,15 @@ msgstr "Connexion"
 msgid "Register Account"
 msgstr "Inscription"
 
-#: paw/templates/core/login.html:30 paw/templates/core/register.html:36
+#: paw/templates/core/login.html:31 paw/templates/core/register.html:36
 msgid "Password"
 msgstr "Mot de passe"
 
-#: paw/templates/core/login.html:35
+#: paw/templates/core/login.html:36
 msgid "Password Reset"
 msgstr "Redéfinir le mot de passe"
 
-#: paw/templates/core/login.html:46
+#: paw/templates/core/login.html:47
 msgid "Log in with Google"
 msgstr "Se connecter avec Google"
 
@@ -138,7 +138,7 @@ msgstr "Confirmer le mot de passe"
 msgid "Register"
 msgstr "S'enregistrer"
 
-#: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:85
+#: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:86
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -167,21 +167,21 @@ msgstr "Image du profil"
 msgid "Contact"
 msgstr "Contact"
 
-#: paw/templates/dashboard_base.html:34
-#: paw/templates/ticketing/create_ticket.html:50
+#: paw/templates/dashboard_base.html:35
+#: paw/templates/ticketing/create_ticket.html:52
 msgid "Create Ticket"
 msgstr "Nouveau ticket"
 
-#: paw/templates/dashboard_base.html:46
+#: paw/templates/dashboard_base.html:47
 #: paw/templates/ticketing/tickets_history.html:5
 msgid "History"
 msgstr "Historique"
 
-#: paw/templates/dashboard_base.html:79
+#: paw/templates/dashboard_base.html:80
 msgid "Admin"
 msgstr "Admin"
 
-#: paw/templates/dashboard_base.html:89
+#: paw/templates/dashboard_base.html:90
 msgid "Logout"
 msgstr "Se déconnecter"
 
@@ -303,7 +303,7 @@ msgstr "Dernière mise à jour le"
 #: paw/templates/ticketing/ticket_detail.html:171
 #: paw/templates/ticketing/tickets.html:42
 #: paw/templates/ticketing/tickets_history.html:42 ticketing/forms.py:81
-#: ticketing/forms.py:104 ticketing/models.py:167 ticketing/models.py:180
+#: ticketing/forms.py:104 ticketing/models.py:165 ticketing/models.py:178
 msgid "General"
 msgstr "Général"
 
@@ -355,6 +355,14 @@ msgstr "Ouvrir"
 #: paw/templates/ticketing/tickets_history.html:20
 msgid "Closed on"
 msgstr "Fermé"
+
+#: paw/templates/ticketing/tickets_history.html:72
+msgid "Page"
+msgstr "Page"
+
+#: paw/templates/ticketing/tickets_history.html:72
+msgid "of"
+msgstr "sur"
 
 #: status/templates/status/incident_list.html:11
 msgid "Some services might not be fully operational"
