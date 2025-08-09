@@ -10,16 +10,16 @@
 Example `docker-compose.yml` file:
 
 ```yaml
-version: "3.8"
 services:
   paw:
     image: ghcr.io/aottr/paw:latest
+    command: gunicorn paw.wsgi:application --bind 0.0.0.0:8000
     container_name: paw-ticket-system
     restart: unless-stopped
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
-      - db:/usr/src/app/db.sqlite3
+      - db:/usr/src/app/data
       - media:/usr/src/app/media
     environment:
       - DATABASE_ENGINE=sqlite3
@@ -38,7 +38,7 @@ For this we slightly modify the deployment volumes:
 
 ```yaml
 volumes:
-  - db:/usr/src/app/db.sqlite3
+  - /opt/paw/data:/usr/src/app/data
   - /opt/paw/media:/usr/src/app/media
   - /opt/paw/static:/usr/src/app/static
 ```

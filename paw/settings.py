@@ -90,10 +90,14 @@ WSGI_APPLICATION = "paw.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 if environ.get('DATABASE_ENGINE', 'sqlite3') == "sqlite3":
+    DB_DIR = Path(BASE_DIR / 'data')
+    # fall back to root for old deployments
+    if not (DB_DIR.exists() and DB_DIR.is_dir()):
+        DB_DIR = BASE_DIR
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": str(DB_DIR / "db.sqlite3"),
         }
     }
 else:
