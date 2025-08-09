@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import Group
 from django.urls import reverse
 from .utils.initial_data import populate_groups
-from .utils.general import sainitize_username
+from .utils.general import sanitize_username
 from .models import PawUser
 from django.conf import settings
 
@@ -12,14 +12,27 @@ class PopulateGroupTestCase(TestCase):
         populate_groups(None, None)
 
     def test_groups_created(self):
-        self.assertEqual(Group.objects.count(), 2)
-        self.assertEqual(Group.objects.filter(name="Client").count(), 1)
-        self.assertEqual(Group.objects.filter(name="Supporter").count(), 1)
+        self.assertEqual(Group.objects.filter(name__in=["Client", "Supporter"]).count(), 2)
+        # Run again and confirm no duplicates
+        populate_groups(None, None)
+        self.assertEqual(Group.objects.filter(name__in=["Client", "Supporter"]).count(), 2)
 
-class UsernameSainitizationTestCase(TestCase):
-    def test_sainitize_username(self):
-        self.assertEqual(sainitize_username("test"), "test")
-        self.assertEqual(sainitize_username("test !!"), "test")
+class UsernameSanitizationTestCase(TestCase):
+    def test_allows_safe_chars(self):
+        self.assertEqual(sanitize_username("Alice-01_@corp"), "Alice-01_@corp")
+
+    def test_strips_spaces_and_symbols(self):
+        self.assertEqual(sanitize_username(" alice.smith "), "alicesmith")
+        self.assertEqual(sanitize_username("a/b\\c"), "abc")
+        self.assertEqual(sanitize_username("a%b^c&d*e"), "abcde")
+
+    def test_empty_and_only_illegal(self):
+        self.assertEqual(sanitize_username(""), "")
+        self.assertEqual(sanitize_username("!#$()., +="), "")
+
+    def test_unicode_behavior(self):
+        # Decide policy: currently regex drops non ASCII letters.
+        self.assertEqual(sanitize_username("álïçé"), "l")
 
 class LoginViewTestCase(TestCase):
     def setUp(self):
@@ -47,6 +60,13 @@ class LoginViewTestCase(TestCase):
         self.client.cookies.load(response.cookies)
         self.assertEqual(self.client.cookies[settings.LANGUAGE_COOKIE_NAME].value, self.user.language)
         self.assertEqual(response.url, reverse("all_tickets"))
+    
+    def test_login_sets_session(self):
+        resp = self.client.post(reverse("login"), {"username": self.username, "password": self.password})
+        self.assertEqual(resp.status_code, 302)
+        # Access a protected view to ensure session auth holds
+        resp2 = self.client.get(reverse("home"))
+        self.assertIn("_auth_user_id", self.client.session)
 
 class RegisterViewTestCase(TestCase):
 

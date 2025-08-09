@@ -5,4 +5,4 @@ from django.contrib.auth.models import Group, Permission
 def populate_groups(apps, schema_editor):
     user_roles = ["Client", "Supporter"]
     for name in user_roles:
-        Group.objects.create(name=name)
+        Group.objects.get_or_create(name=name)
