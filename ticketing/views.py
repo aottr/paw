@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from .models import Ticket, Template
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from .forms import CommentForm, TicketForm, TemplateForm, TeamAssignmentForm, CategoryAssignmentForm
 
@@ -14,8 +15,29 @@ def show_tickets(request):
 
 @login_required
 def show_tickets_history(request):
-    tickets = Ticket.get_closed_tickets(request.user).order_by("priority", "-updated_at")
-    return render(request, "ticketing/tickets_history.html", {"tickets": tickets})
+    qs = Ticket.get_closed_tickets(request.user).order_by("priority", "-updated_at")
+
+    per_page = int(request.GET.get("per_page") or 20)
+    paginator = Paginator(qs, per_page)
+
+    page_number = request.GET.get("page") or 1
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        # Show last page if page is out of range
+        page_obj = paginator.page(paginator.num_pages)
+
+    context = {
+        "tickets": page_obj.object_list,
+        "page_obj": page_obj,
+        "paginator": paginator,
+        "is_paginated": page_obj.paginator.num_pages > 1,
+        "per_page": per_page,
+    }
+    print(paginator, page_obj)
+    return render(request, "ticketing/tickets_history.html", context)
 
 
 @login_required

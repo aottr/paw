@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-08 15:04+0000\n"
+"POT-Creation-Date: 2025-08-09 01:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: core/forms.py:27 core/forms.py:35 paw/templates/core/account_finish.html:33
-#: paw/templates/core/login.html:24 paw/templates/core/register.html:24
+#: paw/templates/core/login.html:25 paw/templates/core/register.html:24
 msgid "Username"
 msgstr "Gebruikersnaam"
 
@@ -30,7 +31,9 @@ msgstr "Vul uw gebruikersnaam in"
 msgid ""
 "Username can only have alphanumeric characters and underscores and dashes (a-"
 "z, 0-9, _, -, @)"
-msgstr "Gebruikersnaam mag alleen alfanumerieke tekens, underscores en streepjes bevatten (a-z, 0-9, _, -, @)"
+msgstr ""
+"Gebruikersnaam mag alleen alfanumerieke tekens, underscores en streepjes "
+"bevatten (a-z, 0-9, _, -, @)"
 
 #: core/forms.py:58
 msgid "Password and Confirm Password do not match."
@@ -52,31 +55,31 @@ msgstr "Er bestaat al een account met deze email."
 msgid "An account with this username already exists"
 msgstr "Er bestaat al een account met deze gebruikersnaam"
 
-#: core/models.py:30
+#: core/models.py:32
 msgid "Google SSO User"
 msgstr "Google SSO Gebruiker"
 
-#: paw/settings.py:133
+#: paw/settings.py:135
 msgid "English"
 msgstr "English"
 
-#: paw/settings.py:134
+#: paw/settings.py:136
 msgid "French"
 msgstr "Français"
 
-#: paw/settings.py:135
+#: paw/settings.py:137
 msgid "German"
 msgstr "Deutsch"
 
-#: paw/settings.py:136
+#: paw/settings.py:138
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: paw/templates/base.html:20 paw/templates/dashboard_base.html:40
+#: paw/templates/base.html:20 paw/templates/dashboard_base.html:41
 msgid "Tickets"
 msgstr "Ticketjes"
 
-#: paw/templates/base.html:21 paw/templates/dashboard_base.html:53
+#: paw/templates/base.html:21 paw/templates/dashboard_base.html:54
 #: paw/templates/ticketing/tickets.html:20
 msgid "Status"
 msgstr "Status"
@@ -102,7 +105,7 @@ msgstr "Gedaan"
 msgid "Save"
 msgstr "Opslaan"
 
-#: paw/templates/core/login.html:7 paw/templates/core/login.html:39
+#: paw/templates/core/login.html:7 paw/templates/core/login.html:40
 msgid "Log In"
 msgstr "Inloggen"
 
@@ -110,15 +113,15 @@ msgstr "Inloggen"
 msgid "Register Account"
 msgstr "Registreren"
 
-#: paw/templates/core/login.html:30 paw/templates/core/register.html:36
+#: paw/templates/core/login.html:31 paw/templates/core/register.html:36
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: paw/templates/core/login.html:35
+#: paw/templates/core/login.html:36
 msgid "Password Reset"
 msgstr "Wachtwoord resetten"
 
-#: paw/templates/core/login.html:46
+#: paw/templates/core/login.html:47
 msgid "Log in with Google"
 msgstr "Inloggen met Google"
 
@@ -134,7 +137,7 @@ msgstr "Wachtwoordbevestiging"
 msgid "Register"
 msgstr "Registreren"
 
-#: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:85
+#: paw/templates/core/settings.html:7 paw/templates/dashboard_base.html:86
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -163,21 +166,21 @@ msgstr "Profielfoto"
 msgid "Contact"
 msgstr "Contact"
 
-#: paw/templates/dashboard_base.html:34
-#: paw/templates/ticketing/create_ticket.html:50
+#: paw/templates/dashboard_base.html:35
+#: paw/templates/ticketing/create_ticket.html:52
 msgid "Create Ticket"
 msgstr "Ticketje aanmaken"
 
-#: paw/templates/dashboard_base.html:46
+#: paw/templates/dashboard_base.html:47
 #: paw/templates/ticketing/tickets_history.html:5
 msgid "History"
 msgstr "Eerdere activiteiten"
 
-#: paw/templates/dashboard_base.html:79
+#: paw/templates/dashboard_base.html:80
 msgid "Admin"
 msgstr "Admin"
 
-#: paw/templates/dashboard_base.html:89
+#: paw/templates/dashboard_base.html:90
 msgid "Logout"
 msgstr "Uitloggen"
 
@@ -299,7 +302,7 @@ msgstr "Laatst bĳgewerkt"
 #: paw/templates/ticketing/ticket_detail.html:171
 #: paw/templates/ticketing/tickets.html:42
 #: paw/templates/ticketing/tickets_history.html:42 ticketing/forms.py:81
-#: ticketing/forms.py:104 ticketing/models.py:167 ticketing/models.py:180
+#: ticketing/forms.py:104 ticketing/models.py:165 ticketing/models.py:178
 msgid "General"
 msgstr "Generaal"
 
@@ -352,6 +355,14 @@ msgstr "Bekĳken"
 msgid "Closed on"
 msgstr "Gesloten op"
 
+#: paw/templates/ticketing/tickets_history.html:72
+msgid "Page"
+msgstr "Pagina"
+
+#: paw/templates/ticketing/tickets_history.html:72
+msgid "of"
+msgstr "van"
+
 #: status/templates/status/incident_list.html:11
 msgid "Some services might not be fully operational"
 msgstr "Sommige diensten zĳn mogelĳk niet volledig operationeel"
@@ -382,7 +393,8 @@ msgstr "Bestandsgrootte moet onder de 5 MB zĳn."
 
 #: ticketing/forms.py:52
 msgid "File type not supported. Supported types are: .jpg, .png, .pdf"
-msgstr "Bestandstĳpe wordt niet ondersteund. Ondersteunde typen zĳn: .jpg, .png, .pdf"
+msgstr ""
+"Bestandstĳpe wordt niet ondersteund. Ondersteunde typen zĳn: .jpg, .png, .pdf"
 
 #: ticketing/forms.py:73
 msgid "Please enter a title"
@@ -403,4 +415,6 @@ msgstr "Geen team"
 #: ticketing/models.py:31
 msgid ""
 "If a team is selected, new tickets will automatically assigned to this team."
-msgstr "Als een team is geselecteerd, worden nieuwe ticketjes automatisch toegewezen aan dit team."
+msgstr ""
+"Als een team is geselecteerd, worden nieuwe ticketjes automatisch toegewezen "
+"aan dit team."
