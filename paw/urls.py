@@ -18,11 +18,18 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from ninja import NinjaAPI
+from ninja.security import django_auth
+from ticketing.api import router as ticketing_router
+
+api = NinjaAPI(auth=django_auth)
+api.add_router("/tickets", ticketing_router)
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("api/", api.urls),  # Mount the API at /api/
     path("", include("core.urls")),
     path("", include("ticketing.urls")),
     path("status", include("status.urls")),
