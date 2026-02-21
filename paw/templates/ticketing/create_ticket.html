@@ -3,47 +3,46 @@
 {% load i18n %}
 <div class="w-full max-w-4xl mx-auto p-8">
     <h1 class="text-2xl font-bold mb-4">{% trans 'Create a new ticket' %}</h1>
-    <form action="" method="post" enctype="multipart/form-data" x-data="{ submitting: false }" @submit="submitting = true">
+    <form action="" method="post" class="flex flex-col gap-2" enctype="multipart/form-data" x-data="{ submitting: false }" @submit="submitting = true">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        <label class="form-control mb-2">
+        <fieldset class="fieldset">
             {{ form.category.errors }}
-            <div class="label">
-                <span for="{{ form.category.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Category' %}</span>
-                </div>
+            <legend class="fieldset-legend">{% trans 'Category' %}</legend>
             {{ form.category }}
-        </label>
-        <label class="form-control mb-2">
-            {{ form.title.errors }}
-            <div class="label">
-                <span for="{{ form.title.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Title' %}</span>
-            </div>
+        </fieldset>
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">{% trans 'Title' %}</legend>
             {{ form.title }}
-        </label>
-        <label class="form-control mb-2">
-            {{ form.description.errors }}
-            <div class="label">
-                <span for="{{ form.description.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Description' %}</span>
-            </div>
-            {{ form.description }}
-        </label>
+            {% if form.title.errors %}
+            <div class="text-error">{{ form.title.errors }}</div>
+            {% endif %}
+        </fieldset>
 
-        <label class="form-control mb-2">
-            {{ form.attachments.errors }}
-            <div class="label">
-                <span for="{{ form.attachments.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Attachments' %}</span>
-            </div>
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">{% trans 'Description' %}</legend>
+            {{ form.description }}
+            {% if form.description.errors %}
+            <div class="text-error">{{ form.description.errors }}</div>
+            {% endif %}
+        </fieldset>
+
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">{% trans 'Attachments' %}</legend>
             {{ form.attachments }}
-        </label>
+            {% if form.attachments.errors %}
+            <div class="text-error">{{ form.attachments.errors }}</div>
+            {% endif %}
+        </fieldset>
 
         {% if has_closed_tickets %}
-        <label class="form-control mb-2">
-            {{ form.follow_up_to.errors }}
-            <div class="label">
-                <span for="{{ form.follow_up_to.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Create as follow-up to a closed ticket' %}</span>
-                </div>
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">{% trans 'Create as follow-up to a closed ticket' %}</legend>
             {{ form.follow_up_to }}
-        </label>
+            {% if form.follow_up_to.errors %}
+            <div class="text-error">{{ form.follow_up_to.errors }}</div>
+            {% endif %}
+        </fieldset>
         {% endif %}
         
         <div class="flex justify-end items-center mt-4">

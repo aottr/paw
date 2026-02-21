@@ -37,3 +37,7 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 }
+
+.fieldset-legend {
+  @apply fieldset-legend text-base-content/80;
+}

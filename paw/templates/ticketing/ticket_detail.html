@@ -72,7 +72,7 @@
         <form action="" method="post">
             {% csrf_token %}
             <div class="flex justify-end items-center mt-4 mb-2">
-                <div class="form-control w-full max-w-xs">
+                <div class="w-full max-w-xs">
                     {{ template_form.template_select }}
                 </div>
                 <button type="submit" name="apply_template" class="btn btn-sm btn-success ml-2">{% trans 'Apply Template' %}</button>
@@ -83,15 +83,17 @@
             {% csrf_token %}
             {{ form.non_field_errors }}
 
-            <label class="form-control">
-                {{ form.text.errors }}
+            <fieldset class="fieldset">
                 {{ form.text }}
-            </label>
+                {% if form.text.errors %}
+                <div class="text-error">{{ form.text.errors }}</div>
+                {% endif %}
+            </fieldset>
             
             <div class="flex items-center mt-4">
-                <div class="form-control w-full max-w-lg mr-4">
+                <fieldset class="fieldset w-full max-w-lg mr-4">
                     {{ form.attachments }}
-                </div>
+                </fieldset>
                 <div class="grow"></div>
                 <button type="submit" name="submit" class="btn btn-success">{% trans 'Add Comment' %}</button>
                 {% if can_edit %}
@@ -101,12 +103,12 @@
 
             <div class="flex justify-end">
                 {% if can_edit %}
-                <div class="form-control mt-2">
+                <fieldset class="fieldset mt-2">
                     <label for="{{ form.hidden_from_client.id_for_label }}" class="cursor-pointer label">
                     {{ form.hidden_from_client }}
-                    <span class="ml-2 label-text">{% trans 'Make this an internal comment' %}</span> 
+                    <span class="ml-2 text-base label-text">{% trans 'Make this an internal comment' %}</span> 
                     </label>
-                </div>
+                </fieldset>
                 {% endif %}
             </div>
         </form>

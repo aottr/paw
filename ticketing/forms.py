@@ -55,7 +55,7 @@ def clean_attachments(files):
 
 class CommentForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea(
-        attrs={'class': 'textarea  h-32', 'placeholder': 'Enter your comment here...'}))
+        attrs={'class': 'textarea h-32 w-full', 'placeholder': 'Enter your comment here...'}))
     hidden_from_client = forms.BooleanField(widget=forms.CheckboxInput(
         attrs={'class': 'checkbox checkbox-secondary'}), required=False)
 
@@ -70,7 +70,7 @@ class TicketForm(forms.ModelForm):
         model = Ticket
         fields = ['title', 'description', 'category', 'follow_up_to']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'input  w-full', 'placeholder': _('Please enter a title'), 'aria-label': _('Title')}),
+            'title': forms.TextInput(attrs={'class': 'input w-full', 'placeholder': _('Please enter a title'), 'aria-label': _('Title')}),
             'description': forms.Textarea(attrs={'class': 'textarea  h-32 w-full', 'placeholder': _('Please describe your issue'), 'aria-label': _('Description')}),
             'category': forms.Select(attrs={'class': 'select  w-full'}),
             'follow_up_to': forms.Select(attrs={'class': 'select  w-full'}),

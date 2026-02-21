@@ -28,12 +28,10 @@
         </div>
         {% endif %}
 
-        <div>
-          <label class="label">
-              <span class="text-base label-text" for="{{ form.username.id_for_label }}">{% trans 'Username' %}</span>
-          </label>
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend">{% trans 'Username' %}</legend>
           {{ form.username }}
-        </div>
+        </fieldset>
         <div class="flex justify-end mt-4">
           <button type="submit" name="account_finish" class="btn btn-success">{% trans 'Save' %}</button>
         </div>

@@ -4,7 +4,7 @@
 {% load i18n %}
 <div class="self-center w-full max-w-xl mx-auto p-4">
   <div class="flex items-center">
-    <h1 class="text-3xl font-bold p-2">{% trans 'Log In' %}</h1>
+    <h1 class="text-3xl font-bold p-2 text-base-content/80">{% trans 'Log In' %}</h1>
     <div class="flex-grow"></div>
     <a href="{% url 'register' %}" class="btn btn-sm btn-neutral">{% trans 'Register Account' %}</a>
   </div>
@@ -19,23 +19,15 @@
         <span>{{ form.non_field_errors }}</span>
       </div>
       {% endif %}
-      
-      <div>
-        <label class="label">
-            <span class="text-base label-text" for="{{ form.username.id_for_label }}">{% trans 'Username' %}</span>
-        </label>
-        <input type="text" name="username" placeholder="Username" class="w-full input " />
-      </div>
-      <label class="form-control w-full">
-        <div class="label">
-          <span class="text-base label-text" for="{{ form.password.id_for_label }}">{% trans 'Password' %}</span>
-        </div>
-        <input type="password" name="password" placeholder="Enter Password"
-              class="w-full input " />
-        <div class="label">
-          <span class="label-text-alt"><a href="" class="link">{% trans 'Password Reset' %}</a></span>
-        </div>
-      </label>
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend text-base-content/80">{% trans 'Username' %}</legend>
+          <input type="text" name="username" placeholder="Username" class="w-full input" />
+        </fieldset>
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend text-base-content/80">{% trans 'Password' %}</legend>
+        <input type="password" name="password" placeholder="Enter Password" class="w-full input" />
+        <p class="label-text-alt"><a href="" class="link link-accent">{% trans 'Password Reset' %}</a></p>
+      </fieldset>
       <div class="flex justify-end mt-2">
         <button type="submit" class="btn btn-accent">{% trans 'Log In' %}</button>
       </div>
