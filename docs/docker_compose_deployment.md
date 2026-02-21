@@ -21,6 +21,7 @@ services:
     volumes:
       - db:/usr/src/app/data
       - media:/usr/src/app/media
+      - secure_media:/usr/src/app/secure_media  # storage for ticket attachments
     environment:
       - DATABASE_ENGINE=sqlite3
       - DEBUG=true
@@ -41,6 +42,7 @@ volumes:
   - /opt/paw/data:/usr/src/app/data
   - /opt/paw/media:/usr/src/app/media
   - /opt/paw/static:/usr/src/app/static
+  - /opt/paw/secure_media:/usr/src/app/secure_media  # storage for ticket attachments
 ```
 
 Now you write directives in your config to host these files, the following snipped shows an example nginx config:
@@ -59,7 +61,7 @@ server {
     listen [::]:80;
 
     location /media/ {
-        # media files, uploaded by us
+        # media files, uploaded by us (profile pictures, etc.)
         alias /opt/paw/media/; # ending slash is required
     }
 

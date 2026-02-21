@@ -6,10 +6,12 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from uuid import uuid4
 from core.models import MailTemplate
+from .storage import SecureFileStorage
+from django.conf import settings
 
 
 def ticket_directory_path(instance, filename):
-    """ file will be uploaded to MEDIA_ROOT/ticket_<id>/<filename> """
+    """ file will be uploaded to (SECURE_)MEDIA_ROOT/attachments/ticket_<id>/<filename> """
     ext = filename.split('.')[-1]
     return "attachments/ticket_{0}/{1}.{2}".format(instance.ticket.id, uuid4(), ext)
 
@@ -225,11 +227,20 @@ def send_mail_comment_notification(sender, instance, created, **kwargs):
 class FileAttachment(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     file = models.FileField(
-        upload_to=ticket_directory_path, max_length=255)
+        upload_to=ticket_directory_path, 
+        max_length=255,
+        storage=SecureFileStorage() if settings.SECURE_MEDIA_ENABLED else None)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{_('Attachment for')} {self.ticket.title}'
+    
+    def get_attachment_url(self):
+        """
+        Returns the URL for downloading the attachment.
+        """
+        from django.urls import reverse
+        return reverse('download_attachment', args=[self.id])
 
 
 class Template(models.Model):

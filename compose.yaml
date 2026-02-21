@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  paw:
+    build: .
+    container_name: paw-ticket-system
+    command: gunicorn paw.wsgi:application --bind 0.0.0.0:8000
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./data:/usr/src/app/data
+      - media:/usr/src/app/media
+      - secure_media:/usr/src/app/secure_media
+    environment:
+      - DATABASE_ENGINE=sqlite3
+      - DEBUG=true
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+      - SECRET_KEY=your-secret-key
+
+volumes:
+  media:
+  secure_media:

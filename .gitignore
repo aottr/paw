@@ -156,6 +156,7 @@ node_modules
 
 static/*
 media/*
+secure_media/*
 .DS_Store
 !paw/locale/**/django.mo
 .vscode

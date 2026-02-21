@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="flex items-center justify-center w-full">
+  <div class="text-center max-w-2xl mx-auto px-4">
+    <div class="mb-8">
+      <h1 class="text-9xl font-bold text-error mb-4">404</h1>
+      <h2 class="text-4xl font-bold mb-4">{% trans 'Page Not Found' %}</h2>
+      <p class="text-lg text-base-content/70 mb-8">
+        {% trans "Sorry, we couldn't find the page you're looking for. The page may have been moved, deleted, or the URL might be incorrect." %}
+      </p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="btn btn-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" />
+            </svg>
+            {% trans 'Go Home' %}
+        </a>
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'all_tickets' %}" class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M15 5l0 2" /><path d="M15 11l0 2" /><path d="M15 17l0 2" /><path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2" />
+        </svg>
+        {% trans 'Go to Tickets' %}
+      </a>
+      <a href="{% url 'create_ticket' %}" class="btn btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" />
+        </svg>
+        {% trans 'Create Ticket' %}
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+

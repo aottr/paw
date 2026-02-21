@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
-from .models import Ticket, Template
+from .models import Ticket, Template, FileAttachment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from .forms import CommentForm, TicketForm, TemplateForm, TeamAssignmentForm, CategoryAssignmentForm
+from django.http import Http404, FileResponse
+from django.conf import settings
+import os
 
 
 @login_required
@@ -92,7 +95,7 @@ def show_ticket(request, ticket_id):
 
     comments = ticket.comment_set.all()
     context = {
-        "ticket": ticket, "comments": comments, "attachments": [attachment.file for attachment in ticket.fileattachment_set.all()],
+        "ticket": ticket, "comments": comments, "attachments": ticket.fileattachment_set.all(),
         "form": form, "template_form": template_form,
         "team_assignment_form": team_assignment_form, "category_assignment_form": category_assignment_form,
         "can_edit": can_edit
@@ -132,3 +135,40 @@ def dashboard(request):
     in_progress_tickets = tickets.filter(status=Ticket.Status.IN_PROGRESS)
     closed_tickets = tickets.filter(status=Ticket.Status.CLOSED)
     return render(request, "ticketing/dashboard.html", {"tickets": tickets, "open_tickets": open_tickets, "in_progress_tickets": in_progress_tickets, "closed_tickets": closed_tickets})
+
+
+@login_required
+def download_attachment(request, attachment_id):
+    """
+    View that checks if the user has permission
+    to access the ticket before serving the file.
+    """
+    attachment = get_object_or_404(FileAttachment, pk=attachment_id)
+    ticket = attachment.ticket
+    
+    if not ticket.can_open(request.user):
+        raise Http404("File not found")
+    
+    if not attachment.file:
+        raise Http404("File not found")
+    
+    try:
+        file = attachment.file.open('rb')
+        response = FileResponse(file, content_type='application/octet-stream')
+        
+        filename = os.path.basename(attachment.file.name)
+        response['Content-Disposition'] = f'inline; filename="{filename}"'
+        return response
+    except (ValueError, IOError, OSError):
+        # backwards compatibility
+        try:
+            old_path = os.path.join(settings.MEDIA_ROOT, attachment.file.name)
+            if os.path.exists(old_path):
+                file = open(old_path, 'rb')
+                response = FileResponse(file, content_type='application/octet-stream')
+                filename = os.path.basename(attachment.file.name)
+                response['Content-Disposition'] = f'inline; filename="{filename}"'
+                return response
+        except (ValueError, IOError, OSError):
+            pass
+        raise Http404("File not found")

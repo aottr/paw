@@ -165,6 +165,11 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Secure storage for ticket attachments
+# This directory should NOT be served by the web server
+SECURE_MEDIA_ENABLED = environ.get('SECURE_MEDIA_ENABLED', 'false').lower() == 'true'
+SECURE_MEDIA_ROOT = BASE_DIR / 'secure_media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
