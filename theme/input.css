@@ -1,3 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../paw/templates/**/*.{html,js}";
+@source "../status/templates/**/*.{html,js}";
+@plugin "daisyui" {
+  themes: nord --default, dark --prefersdark;
+};
+@plugin "daisyui/theme" {
+  name: nord;
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+};
+@plugin "daisyui/theme" {
+  name: dark;
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-accent: #88C0D0;
+  --color-secondary: #81A1C1;
+  --color-success: #A3BE8C;
+  --color-warning: #EBCB8B;
+  --color-error: #BF616A;
+  
+  --rounded-box: 0.4rem;
+  --rounded-btn: 0.2rem;
+  --rounded-badge: 0.4rem;
+  --tab-radius: 0.2rem;
+};
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}

@@ -18,7 +18,7 @@ class MultipleFileInput(forms.ClearableFileInput):
 class MultipleFileField(forms.FileField):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("widget", MultipleFileInput(
-            attrs={'class': 'file-input file-input-bordered w-full'}))
+            attrs={'class': 'file-input  w-full'}))
         super().__init__(*args, **kwargs)
 
     def clean(self, data, initial=None):
@@ -55,7 +55,7 @@ def clean_attachments(files):
 
 class CommentForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea(
-        attrs={'class': 'textarea textarea-bordered h-32', 'placeholder': 'Enter your comment here...'}))
+        attrs={'class': 'textarea  h-32', 'placeholder': 'Enter your comment here...'}))
     hidden_from_client = forms.BooleanField(widget=forms.CheckboxInput(
         attrs={'class': 'checkbox checkbox-secondary'}), required=False)
 
@@ -70,10 +70,10 @@ class TicketForm(forms.ModelForm):
         model = Ticket
         fields = ['title', 'description', 'category', 'follow_up_to']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'input input-bordered w-full', 'placeholder': _('Please enter a title'), 'aria-label': _('Title')}),
-            'description': forms.Textarea(attrs={'class': 'textarea textarea-bordered h-32 w-full', 'placeholder': _('Please describe your issue'), 'aria-label': _('Description')}),
-            'category': forms.Select(attrs={'class': 'select select-bordered w-full'}),
-            'follow_up_to': forms.Select(attrs={'class': 'select select-bordered w-full'}),
+            'title': forms.TextInput(attrs={'class': 'input  w-full', 'placeholder': _('Please enter a title'), 'aria-label': _('Title')}),
+            'description': forms.Textarea(attrs={'class': 'textarea  h-32 w-full', 'placeholder': _('Please describe your issue'), 'aria-label': _('Description')}),
+            'category': forms.Select(attrs={'class': 'select  w-full'}),
+            'follow_up_to': forms.Select(attrs={'class': 'select  w-full'}),
         }
 
     def __init__(self, user, *args, **kwargs):
@@ -92,14 +92,14 @@ class TicketForm(forms.ModelForm):
 class TemplateForm(forms.Form):
 
     template_select = forms.ModelChoiceField(queryset=Template.objects.all(), widget=forms.Select(
-        attrs={'class': 'select select-bordered select-sm w-full'}))
+        attrs={'class': 'select  select-sm w-full'}))
 
 
 class TeamAssignmentForm(forms.Form):
     team_select = forms.ModelChoiceField(queryset=Team.objects.filter(readonly_access=False), empty_label=_('No Team'), required=False, widget=forms.Select(
-        attrs={'class': 'select select-bordered select-sm w-full'}))
+        attrs={'class': 'select  select-sm w-full'}))
 
 
 class CategoryAssignmentForm(forms.Form):
     category_select = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label=_('General'), required=False, widget=forms.Select(
-        attrs={'class': 'select select-bordered select-sm w-full'}))
+        attrs={'class': 'select  select-sm w-full'}))

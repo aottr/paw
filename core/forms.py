@@ -5,11 +5,11 @@ from django.utils.translation import gettext_lazy as _
 
 class UserChangeForm(forms.Form):
     email = forms.EmailField(required=True, widget=forms.EmailInput(
-        attrs={'class': 'input input-bordered w-full'}))
+        attrs={'class': 'input  w-full'}))
     profile_picture = forms.ImageField(required=False, widget=forms.FileInput(
-        attrs={'class': 'file-input file-input-bordered w-full'}))
+        attrs={'class': 'file-input  w-full'}))
     language = forms.ChoiceField(choices=settings.LANGUAGES, widget=forms.Select(
-        attrs={'class': 'select select-bordered w-full'}))
+        attrs={'class': 'select  w-full'}))
     telegram_username = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'class': 'grow', 'placeholder': 'Telegram Username'}))
     use_darkmode = forms.BooleanField(
@@ -32,17 +32,17 @@ USERNAME_REGEX_FIELD = forms.RegexField(
         'invalid': _('Username can only have alphanumeric characters and underscores and dashes (a-z, 0-9, _, -, @)')
     },
     widget=forms.TextInput(
-        attrs={'placeholder': _('Username'), 'class': 'input input-bordered w-full'}),
+        attrs={'placeholder': _('Username'), 'class': 'input  w-full'}),
 )
 
 class RegisterForm(forms.Form):
     username = USERNAME_REGEX_FIELD
     email = forms.EmailField(required=True, widget=forms.EmailInput(
-        attrs={'class': 'input input-bordered w-full'}))
+        attrs={'class': 'input  w-full'}))
     password = forms.CharField(required=True, widget=forms.PasswordInput(
-        attrs={'class': 'input input-bordered w-full'}))
+        attrs={'class': 'input  w-full'}))
     password_confirm = forms.CharField(required=True, widget=forms.PasswordInput(
-        attrs={'class': 'input input-bordered w-full'}))
+        attrs={'class': 'input  w-full'}))
 
     class Meta:
         model = PawUser

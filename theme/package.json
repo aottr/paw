@@ -4,7 +4,8 @@
   "author": "Alex Ottr <alex@otter.foo>",
   "license": "MIT",
   "devDependencies": {
-    "daisyui": "^4.7.2",
-    "tailwindcss": "^3.4.1"
+    "@tailwindcss/cli": "^4.2.0",
+    "daisyui": "^5.5.19",
+    "tailwindcss": "^4.2.0"
   }
 }

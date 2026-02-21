@@ -12,7 +12,7 @@
               <span for="{{ form.email.id_for_label }}" class="label-text font-semibold text-base-content">{% trans 'Mail Address' %}</span>
             </div>
             {% if request.user.googlessouser %}
-            {{ form.email|add_attr:'class:input input-bordered w-full input-disabled,readonly:' }}
+            {{ form.email|add_attr:'class:input  w-full input-disabled,readonly:' }}
             {% else %}
             {{ form.email }}
             {% endif %}
@@ -47,7 +47,7 @@
         </label>
 
         <h2 class="text-xl font-semibold mt-8 mb-2">{% trans 'Contact' %}</h2>
-        <label class="input input-bordered flex items-center gap-2">
+        <label class="input  flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 opacity-70" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
             {{ form.telegram_username }}
             </label>

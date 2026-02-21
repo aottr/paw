@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "status",
+    'django_cotton',
 ]
 
 AUTH_USER_MODEL = "core.PawUser"
